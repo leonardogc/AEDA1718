@@ -1,15 +1,19 @@
 #ifndef CANDIDATO_HPP_
 #define CANDIDATO_HPP_
-#include <string>
-#include <vector>
 
-using namespace std;
+#include "Participacao.hpp"
+#include "Pessoa.hpp"
+#include "utils.hpp"
 
-class Candidato{
+class Candidato: protected Pessoa {
 private:
-	string data;
-	int id;
-	vector <Participacao *> participacao;
+	string dataNascimento;
+	int numInscricao;
+	vector <Participacao *> participacoes;
+	/*
+	 * se cada pessoa guardar as suas participações o vetor é mais pequeno do que se fosse guardado nas sessoes
+	 * e para sabem quem participou em cada sessão pode-se evitar percorrer todos os candidatos saltando os que não sejam da arte da sessao
+	 */
 public:
 	Candidato();
 	string getData();

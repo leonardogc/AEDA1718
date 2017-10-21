@@ -1,8 +1,17 @@
-#ifndef CASTING_HPP_
-#define CASTING_HPP_
+#ifndef PESSOA_HPP_
+#define PESSOA_HPP_
+
+#include "utils.hpp"
 
 
+class Pessoa {
+protected:
+	string nome;
+	string morada;
+	string generoArte;
+public:
+
+};
 
 
-
-#endif /* CASTING_HPP_ */
+#endif /* PESSOA_HPP_ */
