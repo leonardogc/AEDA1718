@@ -5,7 +5,7 @@
 
 void draw_changeFileName_menu(string (&nomes)[3]);
 void changeFileName_menu(string (&ficheiros)[3]);
-
+void changeFileName (string &ficheiro);
 
 
 

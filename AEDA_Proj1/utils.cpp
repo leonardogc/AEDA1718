@@ -11,12 +11,12 @@ bool is_number(const std::string& s)
 int readMenuInput() {
 	string input;
 	int option;
-	cin >> input;
+	getline(cin, input);
 
 	if (!is_number(input) || 0 == (option = atoi(input.c_str())) ) { throw invalid_argument(input);}
 	return option;
 }
 
-void clear_scrn() {	cout<<string('\n', 20); }
+void clear_scrn() {	cout << string(20, '\n'); }
 
 

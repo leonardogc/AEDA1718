@@ -2,14 +2,15 @@
 #define UTILS_HPP_
 
 
-
+#include <algorithm>
+#include <cstdlib>
+#include <iostream>
+#include <stdexcept>
 #include <string>
 #include <vector>
-#include <iostream>
-#include <cstdlib>
-#include <stdexcept>
 
 using namespace std;
+
 
 int readMenuInput();
 

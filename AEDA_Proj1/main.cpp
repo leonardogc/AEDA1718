@@ -5,7 +5,7 @@
 
 
 int main(){
-	string ficheiros[] = {"jurados.txt","sessoes.txt","candidatos.txt"};
+	string ficheiros[3] = {"jurados.txt","sessoes.txt","candidatos.txt"};
 
 	changeFileName_menu(ficheiros);
 
