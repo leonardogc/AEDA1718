@@ -1,12 +1,14 @@
 #ifndef MENUS_HPP_
 #define MENUS_HPP_
 
-#include "utils.hpp"
+
+#include "Empresa.hpp"
 
 void draw_changeFileName_menu(string (&nomes)[3]);
 void changeFileName_menu(string (&ficheiros)[3]);
 void changeFileName (string &ficheiro);
 
-
+void draw_main_menu();
+void main_menu(Empresa * empresa);
 
 #endif /* MENUS_HPP_ */
