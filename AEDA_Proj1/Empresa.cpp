@@ -15,9 +15,10 @@ Empresa::Empresa() {
  * numTelemJurado1(responsável),numTelemJurado2,numTelemJurado3;artePerformativa;data\n
  *
  * Candidatos.txt
- * numInscrição;nome;dataNascimento;generoArte;morada;Participação1;Participação2...\n
+ * numInscrição;nome;dataNascimento;generoArte;morada\n
  *
- * (Participação# = Fase,Data,Pontuação1(juradoResponsável),Pontuação2,Pontuação3,Posição)
+ * Participacao.txt
+ * numInscrição;Fase,Data,Pontuação1(juradoResponsável),Pontuação2,Pontuação3,Posição)
  */
 
 void Empresa::load_files(){

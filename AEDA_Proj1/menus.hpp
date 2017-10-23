@@ -4,8 +4,8 @@
 
 #include "Empresa.hpp"
 
-void draw_changeFileName_menu(string (&nomes)[3]);
-void changeFileName_menu(string (&ficheiros)[3]);
+void draw_changeFileName_menu(string (&nomes)[4]);
+void changeFileName_menu(string (&ficheiros)[4]);
 void changeFileName (string &ficheiro);
 
 void draw_main_menu();

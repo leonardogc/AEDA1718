@@ -2,10 +2,11 @@
 #include "Empresa.hpp"
 #include "menus.hpp"
 
-#include <Windows.h>
+
+const string default_files[] = {"jurados.txt","sessoes.txt","candidatos.txt", "participacao.txt"};
 
 int main(){
-	string ficheiros[3] = {"jurados.txt","sessoes.txt","candidatos.txt"};
+	string ficheiros[] = {"jurados.txt","sessoes.txt","candidatos.txt", "participacao.txt"};
 
 	changeFileName_menu(ficheiros);
 	Empresa empresa = Empresa();

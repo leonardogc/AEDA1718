@@ -4,7 +4,7 @@ const string titulo="Castings TV";
 
 #define size 40
 
-void draw_changeFileName_menu(string (&nomes)[3]) {
+void draw_changeFileName_menu(string (&nomes)[4]) {
 	clear_scrn();
 	cout << ' ' << string(size, '_') << endl;
 	cout << '|' << string(size, ' ') << '|' << endl;
@@ -16,12 +16,13 @@ void draw_changeFileName_menu(string (&nomes)[3]) {
 	cout << "  1 - Jurados guardados em\n    \"" << nomes[0] << "\"\n";
 	cout << "  2 - Sessoes guardadas em\n    \"" << nomes[1] << "\"\n";
 	cout << "  3 - Candidatos guardados em\n    \"" << nomes[2] << "\"\n";
-	cout << "  4 - Continuar com nomes atuais\n";
+	cout << "  4 - participacoes guardadas em\n    \"" << nomes[3] << "\"\n";
+	cout << "  5 - Continuar com nomes atuais\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
 
-void changeFileName_menu(string (&ficheiros)[3]) {
+void changeFileName_menu(string (&ficheiros)[4]) {
 	bool valid_input, done = false;
 	int option;
 
@@ -44,7 +45,10 @@ void changeFileName_menu(string (&ficheiros)[3]) {
 		case 3: //Candidatos
 			changeFileName(ficheiros[2]);
 			break;
-		case 4: //Continuar
+		case 4: //Participações
+			changeFileName(ficheiros[3]);
+			break;
+		case 5: //Continuar
 			done=true;
 			break;
 		}
