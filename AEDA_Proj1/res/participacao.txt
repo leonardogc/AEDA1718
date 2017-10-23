@@ -1,0 +1,1 @@
+numInscrição;Fase,Data,Pontuação1(juradoResponsável),Pontuação2,Pontuação3,Posição)
