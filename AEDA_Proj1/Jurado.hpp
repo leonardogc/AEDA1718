@@ -9,7 +9,7 @@ class Jurado: protected Pessoa {
 private:
 	int telemovel; //must be 9 digits long
 public:
-
+	Jurado(string nome, string  morada, string  generoArte, int telemovel);
 };
 
 

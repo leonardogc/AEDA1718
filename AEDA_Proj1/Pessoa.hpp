@@ -10,7 +10,7 @@ protected:
 	string morada;
 	string generoArte;
 public:
-
+	Pessoa(string nome, string  morada, string  generoArte);
 };
 
 

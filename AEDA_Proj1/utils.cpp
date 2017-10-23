@@ -19,4 +19,10 @@ int readMenuInput() {
 
 void clear_scrn() {	cout << string(20, '\n'); }
 
-
+int numbr_size(int numbr) {
+	stringstream ss; ss.clear();
+	string auxiliar = "";
+	ss<<numbr;
+	ss>>auxiliar;
+	return auxiliar.size();
+}
