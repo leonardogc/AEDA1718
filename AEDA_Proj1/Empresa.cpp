@@ -2,12 +2,13 @@
 
 int numCandidato = 1;
 
-Empresa::Empresa() {
-	//load_files();
+Empresa::Empresa(string (&nomes)[4]) {
+	load_files(nomes);
 }
 
 /*
  * Formato dos ficheiros: (deve sofrer alteração)
+ *
  * jurados.txt
  * Nome;morada;telemovel;generoArte\n
  *
@@ -21,6 +22,8 @@ Empresa::Empresa() {
  * numInscrição;Fase,Data,Pontuação1(juradoResponsável),Pontuação2,Pontuação3,Posição)
  */
 
-void Empresa::load_files(){
+void Empresa::load_files(string (&nomes)[4]){
+	//read
+
 //TODO after format is final
 }

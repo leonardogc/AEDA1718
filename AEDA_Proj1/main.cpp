@@ -9,7 +9,7 @@ int main(){
 	string ficheiros[] = {"jurados.txt","sessoes.txt","candidatos.txt", "participacao.txt"};
 
 	changeFileName_menu(ficheiros);
-	Empresa empresa = Empresa();
+	Empresa empresa = Empresa(ficheiros);
 
 	main_menu(&empresa);
 

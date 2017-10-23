@@ -14,9 +14,9 @@ private:
 	vector<Jurado *> jurados;
 	vector<Candidato *> candidatos;
 	vector<Sessao *> sessoes;
-	void load_files();
+	void load_files(string (&nomes)[4]);
 public:
-	Empresa();
+	Empresa(string (&nomes)[4]);
 	static int numCandidato;
 	int save_files();
 };
