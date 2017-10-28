@@ -1,6 +1,6 @@
 #include "Empresa.hpp"
 
-int numCandidato = 1;
+
 
 Empresa::Empresa(string (&nomes)[4]) {
 	load_files(nomes);

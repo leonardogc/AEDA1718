@@ -17,7 +17,7 @@ private:
 	void load_files(string (&nomes)[4]);
 public:
 	Empresa(string (&nomes)[4]);
-	static int numCandidato;
+
 	int save_files();
 };
 
