@@ -1,3 +1,3 @@
 #include "Candidato.hpp"
 
-unsigned int numCandidato = 1;
+unsigned int Candidato::numCandidato = 1;
