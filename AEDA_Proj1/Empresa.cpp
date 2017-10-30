@@ -38,7 +38,6 @@ void Empresa::load_jurados(string &s){
 
 		if(file.is_open()){
 			while(getline(file, line)){
-
 				//nome
 
 				for (int i=0; i < line.size(); i++){
