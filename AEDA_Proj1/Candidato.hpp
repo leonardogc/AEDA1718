@@ -18,10 +18,12 @@ private:
 public:
 	static unsigned int numCandidato;
 	Candidato(string nome, string  morada, string  generoArte, string dataNascimento);
-	string getData();
-	int getId();
-	vector <Participacao *> getParticipacao();
-
+	string getDataNasc() const;
+	int getNumInscricao() const;
+	vector <Participacao *> getParticipacoes() const;
+	bool addParticipacao(Participacao * participacao);
+	Participacao * getParticipacao(Sessao * sessao) const;
+	bool operator == (const Candidato &c) const;
 };
 
 #endif /* CANDIDATO_HPP_ */
