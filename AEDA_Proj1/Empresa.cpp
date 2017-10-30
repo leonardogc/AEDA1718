@@ -22,8 +22,8 @@ Empresa::Empresa(string (&nomes)[4]) {
  */
 
 void Empresa::load_files(string (&nomes)[4]){
-	//load_candidatos(nomes[2]);
-	//load_jurados(nomes[0]);
+	load_candidatos(nomes[2]);
+	load_jurados(nomes[0]);
 	load_sessoes(nomes[1]);
 	load_participacao(nomes[3]);
 }
@@ -49,7 +49,7 @@ void Empresa::load_jurados(string &s){
 						break;
 					}
 				}
-				nome=stoi(ss.str());
+				nome=ss.str();
 
 				ss.str(string());
 				ss.clear();
