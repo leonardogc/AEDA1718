@@ -15,6 +15,26 @@ private:
 	string artePerformativa;
 	string data; //simple string dd/mm/aaaa
 public:
+	//construtor
+	Sessao(vector<Jurado *> jurados, int indiceResponsavel,string artePerformativa, string data);
+
+	//métodos get
+	vector<Jurado *> getJurados() const;
+	int getIndiceResponsavel() const;
+	string getArtePerformativa() const;
+	string getData() const;
+
+	//metodos set
+	void setJurados(vector <Jurado *> jur);
+	void setIndiceResponsavel(int indiceResponsavel);
+	void setArtePerformativa(string artePerformativa);
+	void setData(string data);
+
+	//operadores
+	bool operator== (Sessao sessao) const;
+	bool operator< (Sessao sessao) const;
+
+
 };
 
 #endif /* SESSAO_HPP_ */
