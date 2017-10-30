@@ -124,7 +124,6 @@ void Empresa::load_candidatos(string &s){
 
 		candidatos.push_back(new Candidato(numInscricao,nome,dataNascimento,generoArte,morada));
 	}
-
 }
 
 void Empresa::load_participacao(string &s){
