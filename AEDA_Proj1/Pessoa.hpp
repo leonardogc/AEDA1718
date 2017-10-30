@@ -23,8 +23,7 @@ public:
 	void setMorada(string morada);
 	void setGeneroArte(string generoArte);
 
-	//operadores
-	virtual bool operator == (Pessoa p);
+
 };
 
 
