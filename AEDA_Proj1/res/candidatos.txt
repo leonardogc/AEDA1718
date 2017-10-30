@@ -1,3 +1,10 @@
- numInscricao;nome;dataNascimento;generoArte;morada;
- 1;Maria Leal;13/05/1985;Música;Setúbal
- 2;Tiago Rodrigo;12/12/2000;Música;Porto
+ 1;Maria Leal;13/05/1985;Musica;Setubal;
+ 2;Tiago Rodrigo;12/12/2000;Musica;Porto;
+ 3;Jessica Beatriz;10/08/1998;Musica;Lisboa;
+ 4;Andre Pereira;09/05/1997;Danca;Marco de Canaveses;
+ 5;Mariana Sobral;01/02/1994;Danca;Guimaraes;
+ 6;Antonio Domingues;24/03/1999;Danca;Espinho;
+ 7;Alessandra Aires;26/08/1978;Danca;Beja;
+ 8;Gil Miquelino;03/09/1987;Artes Circenses;Braga;
+ 9;Vanda Artur;13/07/1994;Artes Circenses;Famalicao;
+ 10;Jose Nunes;15/01/1985;Artes Circenses;Rio Maior;
