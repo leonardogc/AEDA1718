@@ -8,7 +8,7 @@
 class Candidato: protected Pessoa {
 private:
 	string dataNascimento;
-	int numInscricao;
+	const int numInscricao;
 	vector <Participacao *> participacoes;
 
 	/*
@@ -17,7 +17,7 @@ private:
 	 */
 public:
 	static unsigned int numCandidato;
-	Candidato();
+	Candidato(string nome, string  morada, string  generoArte, string dataNascimento);
 	string getData();
 	int getId();
 	vector <Participacao *> getParticipacao();
