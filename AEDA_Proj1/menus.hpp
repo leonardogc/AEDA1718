@@ -17,7 +17,14 @@ void main_menu(Empresa * empresa);
 void draw_menu_ver_info();
 void menu_ver_info(Empresa * empresa);
 
+void draw_menu_gerir_candidatos();
+void menu_gerir_candidatos(Empresa * empresa);
 
+void draw_menu_gerir_jurados();
+void menu_gerir_jurados(Empresa * empresa);
+
+void draw_menu_gerir_sessoes();
+void menu_gerir_sessoes(Empresa * empresa);
 
 /****************************/
 /**       Ver info         **/
