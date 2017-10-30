@@ -5,7 +5,7 @@
 #include "utils.hpp"
 
 
-class Jurado: protected Pessoa {
+class Jurado: public Pessoa {
 private:
 	int telemovel; //must be 9 digits long
 public:

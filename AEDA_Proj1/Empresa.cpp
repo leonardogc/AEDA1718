@@ -22,8 +22,8 @@ Empresa::Empresa(string (&nomes)[4]) {
  */
 
 void Empresa::load_files(string (&nomes)[4]){
-	load_candidatos(nomes[2]);
-	load_jurados(nomes[0]);
+	//load_candidatos(nomes[2]);
+	//load_jurados(nomes[0]);
 	load_sessoes(nomes[1]);
 	load_participacao(nomes[3]);
 }
@@ -32,7 +32,7 @@ void Empresa::load_jurados(string &s){
 		ifstream file;
 		stringstream ss;
 		string line,nome,morada,generoArte;
-		int telemovel;
+		int telemovel=0;
 
 		file.open("res/"+s);
 
@@ -122,7 +122,7 @@ void Empresa::load_candidatos(string &s){
 	ifstream file;
 	stringstream ss;
 	string line,nome,dataNascimento,generoArte,morada;
-	int numInscricao;
+	int numInscricao=0;
 
 	file.open("res/"+s);
 

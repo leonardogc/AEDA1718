@@ -5,7 +5,7 @@
 #include "Pessoa.hpp"
 #include "utils.hpp"
 
-class Candidato: protected Pessoa {
+class Candidato: public Pessoa {
 private:
 	string dataNascimento;
 	const int numInscricao;
