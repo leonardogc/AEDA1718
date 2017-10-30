@@ -1,1 +1,1 @@
-numInscricao;Fase,Data,Pontuacao1(juradoResponsavel),Pontuacaoo2,Pontuacao3,Posicaoo)
+numInscricao;Fase,Data,Pontuacao1(juradoResponsavel),Pontuacao2,Pontuacao3,Posicao;
