@@ -209,27 +209,28 @@ void Empresa::load_sessoes(string &s){
 			ss.str(string());
 			ss.clear();
 
-			for(int i=0; i< jurados.size();i++){
-				if(jurados[i]->getTelemovel() == numTelemJurado1){
-					jurados.push_back(jurados[i]);
+			for(int i=0; i< this->jurados.size();i++){
+				if(this->jurados[i]->getTelemovel() == numTelemJurado1){
+					jurados.push_back(this->jurados[i]);
 				}
 			}
 
-			for(int i=0; i< jurados.size();i++){
-				if(jurados[i]->getTelemovel() == numTelemJurado2){
-					jurados.push_back(jurados[i]);
+			for(int i=0; i< this->jurados.size();i++){
+				if(this->jurados[i]->getTelemovel() == numTelemJurado2){
+					jurados.push_back(this->jurados[i]);
 				}
 			}
 
-			for(int i=0; i< jurados.size();i++){
-				if(jurados[i]->getTelemovel() == numTelemJurado3){
-					jurados.push_back(jurados[i]);
+			for(int i=0; i< this->jurados.size();i++){
+				if(this->jurados[i]->getTelemovel() == numTelemJurado3){
+					jurados.push_back(this->jurados[i]);
 				}
 			}
 
 			sessoes.push_back(new Sessao(jurados, 0, artePerformativa, data));
 		}
 		file.close();
+
 	}
 	else{
 		cout<<"error opening file!"<<endl;
