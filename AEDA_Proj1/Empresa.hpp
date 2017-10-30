@@ -15,6 +15,10 @@ private:
 	vector<Candidato *> candidatos;
 	vector<Sessao *> sessoes;
 	void load_files(string (&nomes)[4]);
+	void load_jurados(string &s);
+	void load_sessoes(string &s);
+	void load_candidatos(string &s);
+	void load_participacao(string &s);
 public:
 	Empresa(string (&nomes)[4]);
 
