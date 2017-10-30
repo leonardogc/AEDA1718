@@ -34,70 +34,84 @@ void Empresa::load_jurados(string &s){
 		string line,nome,morada,generoArte;
 		int telemovel;
 
-		file.open("/res/"+s);
+		file.open("res/"+s);
 
-		while(getline(file,line)){
+		if(file.is_open()){
+			while(getline(file, line)){
 
-			//nome
+				//nome
 
-			for (int i=0; i < line.size(); i++){
-				if(line[i] != ';'){
-					ss<<line[i];
+				for (int i=0; i < line.size(); i++){
+					if(line[i] != ';'){
+						ss<<line[i];
+					}
+					else if(line[i] == ';'){
+						line.erase(0,i+1);
+						break;
+					}
 				}
-				else if(line[i] == ';'){
-					line.erase(line.begin(),line.begin()+i);
-					break;
+				nome=stoi(ss.str());
+
+				ss.str(string());
+				ss.clear();
+
+				//morada
+
+				for (int i=0; i < line.size(); i++){
+					if(line[i] != ';'){
+						ss<<line[i];
+					}
+					else if(line[i] == ';'){
+						line.erase(0,i+1);
+						break;
+					}
 				}
+
+				morada=ss.str();
+
+				ss.str(string());
+				ss.clear();
+
+				//telemovel
+
+				for (int i=0; i < line.size(); i++){
+					if(line[i] != ';'){
+						ss<<line[i];
+					}
+					else if(line[i] == ';'){
+						line.erase(0,i+1);
+						break;
+					}
+				}
+
+				telemovel=stoi(ss.str());
+
+				ss.str(string());
+				ss.clear();
+
+				//generoArte
+
+				for (int i=0; i < line.size(); i++){
+					if(line[i] != ';'){
+						ss<<line[i];
+					}
+					else if(line[i] == ';'){
+						line.erase(0,i+1);
+						break;
+					}
+				}
+
+				generoArte=ss.str();
+
+				ss.str(string());
+				ss.clear();
+
+				jurados.push_back(new Jurado(nome, morada, generoArte, telemovel));
 			}
-			nome=stoi(ss.str());
-			ss.clear();
-
-			//morada
-
-			for (int i=0; i < line.size(); i++){
-				if(line[i] != ';'){
-					ss<<line[i];
-				}
-				else if(line[i] == ';'){
-					line.erase(line.begin(),line.begin()+i);
-					break;
-				}
-			}
-
-			morada=ss.str();
-			ss.clear();
-
-			//telemovel
-
-			for (int i=0; i < line.size(); i++){
-				if(line[i] != ';'){
-					ss<<line[i];
-				}
-				else if(line[i] == ';'){
-					line.erase(line.begin(),line.begin()+i);
-					break;
-				}
-			}
-
-			telemovel=stoi(ss.str());
-			ss.clear();
-
-			//generoArte
-
-			for (int i=0; i < line.size(); i++){
-				if(line[i] != ';'){
-					ss<<line[i];
-				}
-				else if(line[i] == ';'){
-					line.erase(line.begin(),line.begin()+i);
-					break;
-				}
-			}
-
-			generoArte=ss.str();
-			ss.clear();
-
-			jurados.push_back(new Jurado(nome, morada, generoArte, telemovel));
+			file.close();
+		}
+		else{
+			cout<<"error opening file!"<<endl;
 		}
 }
 
@@ -111,86 +125,105 @@ void Empresa::load_candidatos(string &s){
 	string line,nome,dataNascimento,generoArte,morada;
 	int numInscricao;
 
-	file.open("/res/"+s);
+	file.open("res/"+s);
 
-	while(getline(file,line)){
 
-		//numInscricao
+	if(file.is_open()){
+		while(getline(file,line)){
 
-		for (int i=0; i < line.size(); i++){
-			if(line[i] != ';'){
-				ss<<line[i];
+			//numInscricao
+
+			for (int i=0; i < line.size(); i++){
+				if(line[i] != ';'){
+					ss<<line[i];
+				}
+				else if(line[i] == ';'){
+					line.erase(0,i+1);
+					break;
+				}
 			}
-			else if(line[i] == ';'){
-				line.erase(line.begin(),line.begin()+i);
-				break;
+			numInscricao=stoi(ss.str());
+
+			ss.str(string());
+			ss.clear();
+
+			//nome
+
+			for (int i=0; i < line.size(); i++){
+				if(line[i] != ';'){
+					ss<<line[i];
+				}
+				else if(line[i] == ';'){
+					line.erase(0,i+1);
+					break;
+				}
 			}
+
+			nome=ss.str();
+
+			ss.str(string());
+			ss.clear();
+
+			//dataNascimento
+
+			for (int i=0; i < line.size(); i++){
+				if(line[i] != ';'){
+					ss<<line[i];
+				}
+				else if(line[i] == ';'){
+					line.erase(0,i+1);
+					break;
+				}
+			}
+
+			dataNascimento=ss.str();
+
+			ss.str(string());
+			ss.clear();
+
+			//generoArte
+
+			for (int i=0; i < line.size(); i++){
+				if(line[i] != ';'){
+					ss<<line[i];
+				}
+				else if(line[i] == ';'){
+					line.erase(0,i+1);
+					break;
+				}
+			}
+
+			generoArte=ss.str();
+
+			ss.str(string());
+			ss.clear();
+
+
+			//morada
+
+			for (int i=0; i < line.size(); i++){
+				if(line[i] != ';'){
+					ss<<line[i];
+				}
+				else if(line[i] == ';'){
+					line.erase(0,i+1);
+					break;
+				}
+			}
+
+
+			morada=ss.str();
+
+			ss.str(string());
+			ss.clear();
+
+
+			candidatos.push_back(new Candidato(numInscricao,nome,morada,generoArte,dataNascimento));
 		}
-		numInscricao=stoi(ss.str());
-		ss.clear();
-
-		//nome
-
-		for (int i=0; i < line.size(); i++){
-			if(line[i] != ';'){
-				ss<<line[i];
-			}
-			else if(line[i] == ';'){
-				line.erase(line.begin(),line.begin()+i);
-				break;
-			}
-		}
-
-		nome=ss.str();
-		ss.clear();
-
-		//dataNascimento
-
-		for (int i=0; i < line.size(); i++){
-			if(line[i] != ';'){
-				ss<<line[i];
-			}
-			else if(line[i] == ';'){
-				line.erase(line.begin(),line.begin()+i);
-				break;
-			}
-		}
-
-		dataNascimento=ss.str();
-		ss.clear();
-
-		//generoArte
-
-		for (int i=0; i < line.size(); i++){
-			if(line[i] != ';'){
-				ss<<line[i];
-			}
-			else if(line[i] == ';'){
-				line.erase(line.begin(),line.begin()+i);
-				break;
-			}
-		}
-
-		generoArte=ss.str();
-		ss.clear();
-
-
-		//morada
-
-		for (int i=0; i < line.size(); i++){
-			if(line[i] != ';'){
-				ss<<line[i];
-			}
-			else if(line[i] == ';'){
-				line.erase(line.begin(),line.begin()+i);
-				break;
-			}
-		}
-
-		morada=ss.str();
-		ss.clear();
-
-		candidatos.push_back(new Candidato(numInscricao,nome,dataNascimento,generoArte,morada));
+		file.close();
+	}
+	else{
+		cout<<"error opening file!"<<endl;
 	}
 }
 
