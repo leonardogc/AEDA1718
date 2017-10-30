@@ -1,1 +1,10 @@
-Nome;morada;telemovel;generoArte;
+Tiago Tome;Agueda;936985974;Artes Circenses;
+Anthony Ribeiro;Vila Verde;912587489;Danca;
+Ruben Antunes;Nelas;963254781;Musica;
+Ivo Lamas;Braganca;938513624;Musica;
+Rodrigo Tavares;Lamacaes;964875128;Danca;
+Andreia Lomba;Avintes;912698453;Artes Circences;
+Tomas Crespim;Regua;934297164;Artes Circenses;
+Marta Monteiro;Moncao;912576317;Musica;
+Belmira Marques;Faro;925689754;Danca;
+Eva Ribeiro;Tavira;936578415;Artes Circences;
