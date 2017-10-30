@@ -29,28 +29,14 @@ void Empresa::load_files(string (&nomes)[4]){
 }
 
 void Empresa::load_jurados(string &s){
-	/*ifstream file;
+		ifstream file;
 		stringstream ss;
-		string line,nome,morada,telemovel,generoArte;
-		int numInscricao;
+		string line,nome,morada,generoArte;
+		int telemovel;
 
 		file.open("/res/"+s);
 
 		while(getline(file,line)){
-
-			//numInscricao
-
-			for (int i=0; i < line.size(); i++){
-				if(line[i] != ';'){
-					ss<<line[i];
-				}
-				else if(line[i] == ';'){
-					line.erase(line.begin(),line.begin()+i);
-					break;
-				}
-			}
-			numInscricao=stoi(ss.str());
-			ss.clear();
 
 			//nome
 
@@ -63,11 +49,10 @@ void Empresa::load_jurados(string &s){
 					break;
 				}
 			}
-
-			nome=ss.str();
+			nome=stoi(ss.str());
 			ss.clear();
 
-			//dataNascimento
+			//morada
 
 			for (int i=0; i < line.size(); i++){
 				if(line[i] != ';'){
@@ -79,7 +64,22 @@ void Empresa::load_jurados(string &s){
 				}
 			}
 
-			dataNascimento=ss.str();
+			morada=ss.str();
+			ss.clear();
+
+			//telemovel
+
+			for (int i=0; i < line.size(); i++){
+				if(line[i] != ';'){
+					ss<<line[i];
+				}
+				else if(line[i] == ';'){
+					line.erase(line.begin(),line.begin()+i);
+					break;
+				}
+			}
+
+			telemovel=stoi(ss.str());
 			ss.clear();
 
 			//generoArte
@@ -97,24 +97,8 @@ void Empresa::load_jurados(string &s){
 			generoArte=ss.str();
 			ss.clear();
 
-
-			//morada
-
-			for (int i=0; i < line.size(); i++){
-				if(line[i] != ';'){
-					ss<<line[i];
-				}
-				else if(line[i] == ';'){
-					line.erase(line.begin(),line.begin()+i);
-					break;
-				}
-			}
-
-			morada=ss.str();
-			ss.clear();
-
-			candidatos.push_back(new Candidato(numInscricao,nome,dataNascimento,generoArte,morada));
-		}*/
+			jurados.push_back(new Jurado(nome, morada, generoArte, telemovel));
+		}
 }
 
 void Empresa::load_sessoes(string &s){
