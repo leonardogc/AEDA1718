@@ -1,1 +1,3 @@
  numInscricao;nome;dataNascimento;generoArte;morada;
+ 1;Maria Leal;13/05/1985;Música;Setúbal
+ 2;Tiago Rodrigo;12/12/2000;Música;Porto
