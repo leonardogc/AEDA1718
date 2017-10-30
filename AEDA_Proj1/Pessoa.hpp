@@ -10,7 +10,21 @@ protected:
 	string morada;
 	string generoArte;
 public:
+	//construtor
 	Pessoa(string nome, string  morada, string  generoArte);
+
+	//métodos get
+	string getNome() const;
+	string getMorada() const;
+	string getGeneroArte() const;
+
+	//métodos set
+	void setNome(string nome);
+	void setMorada(string morada);
+	void setGeneroArte(string generoArte);
+
+	//operadores
+	virtual bool operator == (Pessoa p);
 };
 
 

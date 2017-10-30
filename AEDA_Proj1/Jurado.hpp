@@ -9,7 +9,17 @@ class Jurado: protected Pessoa {
 private:
 	int telemovel; //must be 9 digits long
 public:
+	//construtor
 	Jurado(string nome, string  morada, string  generoArte, int telemovel);
+
+	//métodos get
+	int getTelemovel() const;
+
+	//metodos set
+	void setTelemovel(int telemovel);
+
+	//operadores
+	bool operator== (Jurado jurado);
 };
 
 

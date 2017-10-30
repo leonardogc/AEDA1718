@@ -36,7 +36,7 @@ Participacao * Candidato::getParticipacao(Sessao * sessao) const
 {
 	for (unsigned i = 0; i < this->participacoes.size(); ++i)
 	{
-		if(this->participacoes[i]->getSessao() == (* sessao))
+		if((*this->participacoes[i]->getSessao()) == (* sessao))
 		{
 			return participacoes[i];
 		}

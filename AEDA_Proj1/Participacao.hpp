@@ -6,10 +6,15 @@
 
 class Participacao {
 private:
-	Sessao * sessao; //assumindo que participacoes sao guardadas nos concorrentes
+	Sessao const * sessao; //assumindo que participacoes sao guardadas nos concorrentes
 	int pontuacao;
 	int posicao;
 public:
+	Participacao(Sessao * sessao, int pontuacao, int posicao);
+	const Sessao * getSessao() const;
+	void setPontuacao(int pontuacao);
+	void setPosicao(int posicao);
+	bool operator == (const Participacao &p) const;
 };
 
 #endif /* PARTICIPACAO_HPP_ */
