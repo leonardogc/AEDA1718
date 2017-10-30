@@ -85,6 +85,7 @@ void Empresa::load_jurados(string &s){
 
 				//telemovel=stoi(ss.str());
 
+
 				ss >> telemovel;
 
 				ss.str(string());
