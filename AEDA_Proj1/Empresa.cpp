@@ -83,7 +83,9 @@ void Empresa::load_jurados(string &s){
 					}
 				}
 
-				telemovel=stoi(ss.str());
+				//telemovel=stoi(ss.str());
+
+				ss >> telemovel;
 
 				ss.str(string());
 				ss.clear();
@@ -108,6 +110,7 @@ void Empresa::load_jurados(string &s){
 				jurados.push_back(new Jurado(nome, morada, generoArte, telemovel));
 			}
 			file.close();
+
 		}
 		else{
 			cout<<"error opening file!"<<endl;
@@ -136,7 +139,8 @@ void Empresa::load_sessoes(string &s){
 					break;
 				}
 			}
-			numTelemJurado1=stoi(ss.str());
+			//numTelemJurado1=stoi(ss.str());
+			ss >> numTelemJurado1;
 
 			ss.str(string());
 			ss.clear();
@@ -153,7 +157,8 @@ void Empresa::load_sessoes(string &s){
 				}
 			}
 
-			numTelemJurado2=stoi(ss.str());
+			//numTelemJurado2=stoi(ss.str());
+			ss >> numTelemJurado2;
 
 			ss.str(string());
 			ss.clear();
@@ -170,7 +175,8 @@ void Empresa::load_sessoes(string &s){
 				}
 			}
 
-			numTelemJurado3=stoi(ss.str());
+			//numTelemJurado3=stoi(ss.str());
+			ss >> numTelemJurado3;
 
 			ss.str(string());
 			ss.clear();
@@ -260,7 +266,8 @@ void Empresa::load_candidatos(string &s){
 					break;
 				}
 			}
-			numInscricao=stoi(ss.str());
+			//numInscricao=stoi(ss.str());
+			ss >> numInscricao;
 
 			ss.str(string());
 			ss.clear();
