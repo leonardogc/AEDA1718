@@ -1,1 +1,1 @@
- numInscrição;nome;dataNascimento;generoArte;morada
+ numInscricao;nome;dataNascimento;generoArte;morada

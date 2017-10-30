@@ -23,7 +23,8 @@ Empresa::Empresa(string (&nomes)[4]) {
  */
 
 void Empresa::load_files(string (&nomes)[4]){
-	//read
 
-//TODO after format is final
+
+
+
 }
