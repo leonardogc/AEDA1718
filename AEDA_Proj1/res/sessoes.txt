@@ -1,1 +1,1 @@
-numTelemJurado1(responsável),numTelemJurado2,numTelemJurado3;artePerformativa;data
+numTelemJurado1(responsavel),numTelemJurado2,numTelemJurado3;artePerformativa;data
