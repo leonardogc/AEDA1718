@@ -18,6 +18,7 @@ private:
 public:
 	static unsigned int numCandidato;
 	Candidato(string nome, string  morada, string  generoArte, string dataNascimento);
+	Candidato(int nInscricao, string nome, string  morada, string  generoArte, string dataNascimento);
 	string getDataNasc() const;
 	int getNumInscricao() const;
 	vector <Participacao *> getParticipacoes() const;
