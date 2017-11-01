@@ -126,12 +126,12 @@ void draw_menu_ver_info(){
 	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(8, ' ') << "Ver Informacao" << string(8, ' ') << '|' << endl;
+	cout << '|' << string(13, ' ') << "Ver Informacao" << string(13, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout << "  1 - Ver candidatos\n";
 	cout << "  2 - Ver jurados\n";
 	cout << "  3 - Ver sessoes\n";
-	cout << "  4 - Exit\n";
+	cout << "  4 - Return\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -178,7 +178,7 @@ void draw_menu_gerir_candidatos(){
 	cout << "  1 - Adicionar\n";
 	cout << "  2 - Remover\n";
 	cout << "  3 - Alterar\n";
-	cout << "  4 - Exit\n";
+	cout << "  4 - Return\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -188,7 +188,7 @@ void menu_gerir_candidatos(Empresa * empresa){
 	int option;
 
 	while (!done) {
-		draw_main_menu();
+		draw_menu_gerir_candidatos();
 		valid_input = false;
 		while (!valid_input) {
 			try {option = readMenuInput();}
@@ -220,12 +220,12 @@ void draw_menu_gerir_jurados(){
 	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(14, ' ') << "Gerir Jurados" << string(15, ' ') << '|' << endl;
+	cout << '|' << string(13, ' ') << "Gerir Jurados" << string(14, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout << "  1 - Adicionar\n";
 	cout << "  2 - Remover\n";
 	cout << "  3 - Alterar\n";
-	cout << "  4 - Exit\n";
+	cout << "  4 - Return\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -235,7 +235,7 @@ void menu_gerir_jurados(Empresa * empresa){
 	int option;
 
 	while (!done) {
-		draw_main_menu();
+		draw_menu_gerir_jurados();
 		valid_input = false;
 		while (!valid_input) {
 			try {option = readMenuInput();}
@@ -267,12 +267,12 @@ void draw_menu_gerir_sessoes(){
 	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(14, ' ') << "Gerir Sessoes" << string(15, ' ') << '|' << endl;
+	cout << '|' << string(13, ' ') << "Gerir Sessoes" << string(14, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout << "  1 - Adicionar\n";
 	cout << "  2 - Remover\n";
 	cout << "  3 - Alterar\n";
-	cout << "  4 - Exit\n";
+	cout << "  4 - Return\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -282,7 +282,7 @@ void menu_gerir_sessoes(Empresa * empresa){
 	int option;
 
 	while (!done) {
-		draw_main_menu();
+		draw_menu_gerir_sessoes();
 		valid_input = false;
 		while (!valid_input) {
 			try {option = readMenuInput();}
@@ -322,7 +322,7 @@ void draw_menu_ver_candidatos(){
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout << "  1 - Ver todos\n";
 	cout << "  2 - Escolher Candidato\n";
-	cout << "  3 - Exit\n";
+	cout << "  3 - Return\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -365,7 +365,7 @@ void draw_menu_ver_jurados(){
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout << "  1 - Ver todos\n";
 	cout << "  2 - Escolher Jurado\n";
-	cout << "  3 - Exit\n";
+	cout << "  3 - Return\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -408,7 +408,7 @@ void draw_menu_ver_sessoes(){
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout << "  1 - Ver todas\n";
 	cout << "  2 - Escolher Sessao\n";
-	cout << "  3 - Exit\n";
+	cout << "  3 - Return\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }

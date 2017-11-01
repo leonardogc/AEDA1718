@@ -31,16 +31,16 @@ void Empresa::load_files(string (&nomes)[4]){
 void Empresa::load_jurados(string &s){
 		ifstream file;
 		stringstream ss;
-		string line,nome,morada,generoArte;
+		string ficheiro="res/"+s, line, nome, morada, generoArte;
 		int telemovel;
 
-		file.open("res/"+s);
+		file.open(ficheiro.c_str());
 
 		if(file.is_open()){
 			while(getline(file, line)){
 				//nome
 
-				for (int i=0; i < line.size(); i++){
+				for (unsigned i=0; i < line.size(); i++){
 					if(line[i] != ';'){
 						ss<<line[i];
 					}
@@ -56,7 +56,7 @@ void Empresa::load_jurados(string &s){
 
 				//morada
 
-				for (int i=0; i < line.size(); i++){
+				for (unsigned i=0; i < line.size(); i++){
 					if(line[i] != ';'){
 						ss<<line[i];
 					}
@@ -73,7 +73,7 @@ void Empresa::load_jurados(string &s){
 
 				//telemovel
 
-				for (int i=0; i < line.size(); i++){
+				for (unsigned i=0; i < line.size(); i++){
 					if(line[i] != ';'){
 						ss<<line[i];
 					}
@@ -93,7 +93,7 @@ void Empresa::load_jurados(string &s){
 
 				//generoArte
 
-				for (int i=0; i < line.size(); i++){
+				for (unsigned i=0; i < line.size(); i++){
 					if(line[i] != ';'){
 						ss<<line[i];
 					}
@@ -121,17 +121,17 @@ void Empresa::load_jurados(string &s){
 void Empresa::load_sessoes(string &s){
 	ifstream file;
 	stringstream ss;
-	string line,artePerformativa,data;
+	string ficheiro = "res/"+s, line, artePerformativa, data;
 	vector<Jurado *> jurados;
-	int numTelemJurado1,numTelemJurado2,numTelemJurado3;
+	int numTelemJurado1, numTelemJurado2, numTelemJurado3;
 
-	file.open("res/"+s);
+	file.open(ficheiro.c_str());
 
 	if(file.is_open()){
 		while(getline(file, line)){
 			//numTelemJurado1(responsável)
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -148,7 +148,7 @@ void Empresa::load_sessoes(string &s){
 
 			//numTelemJurado2
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -166,7 +166,7 @@ void Empresa::load_sessoes(string &s){
 
 			//numTelemJurado3
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -184,7 +184,7 @@ void Empresa::load_sessoes(string &s){
 
 			//artePerformativa
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -201,7 +201,7 @@ void Empresa::load_sessoes(string &s){
 
 			//data
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -216,19 +216,19 @@ void Empresa::load_sessoes(string &s){
 			ss.str(string());
 			ss.clear();
 
-			for(int i=0; i< this->jurados.size();i++){
+			for (unsigned i=0; i< this->jurados.size();i++){
 				if(this->jurados[i]->getTelemovel() == numTelemJurado1){
 					jurados.push_back(this->jurados[i]);
 				}
 			}
 
-			for(int i=0; i< this->jurados.size();i++){
+			for (unsigned i=0; i< this->jurados.size();i++){
 				if(this->jurados[i]->getTelemovel() == numTelemJurado2){
 					jurados.push_back(this->jurados[i]);
 				}
 			}
 
-			for(int i=0; i< this->jurados.size();i++){
+			for (unsigned i=0; i< this->jurados.size();i++){
 				if(this->jurados[i]->getTelemovel() == numTelemJurado3){
 					jurados.push_back(this->jurados[i]);
 				}
@@ -247,10 +247,10 @@ void Empresa::load_sessoes(string &s){
 void Empresa::load_candidatos(string &s){
 	ifstream file;
 	stringstream ss;
-	string line,nome,dataNascimento,generoArte,morada;
+	string ficheiro = "res/"+s, line, nome, dataNascimento, generoArte, morada;
 	int numInscricao;
 
-	file.open("res/"+s);
+	file.open(ficheiro.c_str());
 
 
 	if(file.is_open()){
@@ -258,7 +258,7 @@ void Empresa::load_candidatos(string &s){
 
 			//numInscricao
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -275,7 +275,7 @@ void Empresa::load_candidatos(string &s){
 
 			//nome
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -292,7 +292,7 @@ void Empresa::load_candidatos(string &s){
 
 			//dataNascimento
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -309,7 +309,7 @@ void Empresa::load_candidatos(string &s){
 
 			//generoArte
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -327,7 +327,7 @@ void Empresa::load_candidatos(string &s){
 
 			//morada
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -356,17 +356,17 @@ void Empresa::load_candidatos(string &s){
 void Empresa::load_participacao(string &s){
 	/*ifstream file;
 	stringstream ss;
-	string line,artePerformativa,data;
+	string ficheiro = "res/"+s, line, artePerformativa, data;
 	vector<Jurado *> jurados;
 	int numTelemJurado1,numTelemJurado2,numTelemJurado3;
 
-	file.open("res/"+s);
+	file.open(ficheiro.c_str());
 
 	if(file.is_open()){
 		while(getline(file, line)){
 			//numInscrição;Fase,Data,Pontuação1(juradoResponsável),Pontuação2,Pontuação3,Posição;
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -382,7 +382,7 @@ void Empresa::load_participacao(string &s){
 
 			//numTelemJurado2
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -399,7 +399,7 @@ void Empresa::load_participacao(string &s){
 
 			//numTelemJurado3
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -416,7 +416,7 @@ void Empresa::load_participacao(string &s){
 
 			//artePerformativa
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -433,7 +433,7 @@ void Empresa::load_participacao(string &s){
 
 			//data
 
-			for (int i=0; i < line.size(); i++){
+			for (unsigned i=0; i < line.size(); i++){
 				if(line[i] != ';'){
 					ss<<line[i];
 				}
@@ -448,19 +448,19 @@ void Empresa::load_participacao(string &s){
 			ss.str(string());
 			ss.clear();
 
-			for(int i=0; i< jurados.size();i++){
+			for (unsigned i = 0; i < jurados.size(); i++){
 				if(jurados[i]->getTelemovel() == numTelemJurado1){
 					jurados.push_back(jurados[i]);
 				}
 			}
 
-			for(int i=0; i< jurados.size();i++){
+			for (unsigned i = 0; i < jurados.size(); i++){
 				if(jurados[i]->getTelemovel() == numTelemJurado2){
 					jurados.push_back(jurados[i]);
 				}
 			}
 
-			for(int i=0; i< jurados.size();i++){
+			for (unsigned i = 0; i < jurados.size(); i++){
 				if(jurados[i]->getTelemovel() == numTelemJurado3){
 					jurados.push_back(jurados[i]);
 				}
