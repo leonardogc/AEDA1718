@@ -6,7 +6,7 @@ Empresa::Empresa(string (&nomes)[4]) {
 }
 
 /*
- * Formato dos ficheiros: (deve sofrer alteração)
+ * Formato dos ficheiros: (pode sofrer alteração)
  *
  * jurados.txt
  * Nome;morada;telemovel;generoArte;\n
@@ -114,7 +114,8 @@ void Empresa::load_jurados(string &s){
 
 		}
 		else{
-			cout<<"error opening file!"<<endl;
+			//cout<<"error opening file!"<<endl;
+			throw(InvalidFileNameException(ficheiro));
 		}
 }
 
@@ -240,7 +241,8 @@ void Empresa::load_sessoes(string &s){
 
 	}
 	else{
-		cout<<"error opening file!"<<endl;
+		//cout<<"error opening file!"<<endl;
+		throw(InvalidFileNameException(ficheiro));
 	}
 }
 
@@ -349,7 +351,8 @@ void Empresa::load_candidatos(string &s){
 		file.close();
 	}
 	else{
-		cout<<"error opening file!"<<endl;
+		//cout<<"error opening file!"<<endl;
+		throw(InvalidFileNameException(ficheiro));
 	}
 }
 
@@ -471,6 +474,7 @@ void Empresa::load_participacao(string &s){
 		file.close();
 	}
 	else{
-		cout<<"error opening file!"<<endl;
+		//cout<<"error opening file!"<<endl;
+		throw(InvalidFileNameException(ficheiro));
 	}*/
 }

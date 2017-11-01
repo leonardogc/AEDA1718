@@ -2,7 +2,7 @@
 
 const string titulo="Castings TV";
 
-#define size 40
+const int size = 40;
 
 void draw_changeFileName_menu(string (&nomes)[4]) {
 	clear_scrn();
