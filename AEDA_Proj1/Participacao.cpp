@@ -33,9 +33,12 @@ bool Participacao::operator== (const Participacao &p) const
 	return (* this->sessao) == (*p.sessao);
 }
 
-void Participacao::setPontuacao(int pontuacao)
+void Participacao::setPontuacao(int pontuacao[4])
 {
-	this->pontuacao = pontuacao;
+	this->pontuacao[0] = pontuacao[0];
+	this->pontuacao[1] = pontuacao[1];
+	this->pontuacao[2] = pontuacao[2];
+	this->pontuacao[3] = pontuacao[3];
 }
 void Participacao::setPosicao(int posicao)
 {

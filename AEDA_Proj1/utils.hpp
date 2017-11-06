@@ -21,13 +21,6 @@ void clear_scrn();
 
 int numbr_size(int numbr);
 
-template<class T>
-void order(vector<T> &vec)
-{
-	sort(vec.begin(), vec.end());
-}
-
-
 
 class InvalidFileException
 {
