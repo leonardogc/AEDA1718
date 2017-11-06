@@ -26,3 +26,4 @@ int numbr_size(int numbr) {
 	ss>>auxiliar;
 	return auxiliar.size();
 }
+
