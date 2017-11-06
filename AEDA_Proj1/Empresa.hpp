@@ -21,7 +21,10 @@ private:
 	void load_participacao(string &s);
 public:
 	Empresa(string (&nomes)[4]);
-
+	vector<Jurado *> getJurados();
+	vector<Candidato *> getCandidatos();
+	vector<Sessao *> getSessoes();
+	Candidato * remove_candidato(int id);
 	int save_files();
 };
 

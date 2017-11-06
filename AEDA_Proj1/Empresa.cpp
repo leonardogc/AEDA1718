@@ -354,3 +354,33 @@ void parse_line(string &line, stringstream &ss){
 		}
 	}
 }
+
+vector <Candidato *> Empresa::getCandidatos(){
+	return candidatos;
+}
+
+vector <Jurado *> Empresa::getJurados(){
+
+	return jurados;
+}
+
+vector <Sessao *> Empresa::getSessoes(){
+
+	return sessoes;
+}
+
+/*
+Candidato * Empresa::remove_candidato(int id){
+
+	for(unsigned int i = 0; i < getCandidatos.size(); i++){
+		if(id == getCandidatos[i]->getNumInscricao){
+
+		}
+
+	}
+
+	return -1;
+}
+
+*/
+
