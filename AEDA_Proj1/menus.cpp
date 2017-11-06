@@ -332,7 +332,7 @@ void menu_ver_candidatos(Empresa * empresa){
 	int option;
 
 	while (!done) {
-		draw_menu_ver_info();
+		draw_menu_ver_candidatos();
 		valid_input = false;
 		while (!valid_input) {
 			try {option = readMenuInput();}
@@ -375,7 +375,7 @@ void menu_ver_jurados(Empresa * empresa){
 	int option;
 
 	while (!done) {
-		draw_menu_ver_info();
+		draw_menu_ver_jurados();
 		valid_input = false;
 		while (!valid_input) {
 			try {option = readMenuInput();}
@@ -418,7 +418,7 @@ void menu_ver_sessoes(Empresa * empresa){
 	int option;
 
 	while (!done) {
-		draw_menu_ver_info();
+		draw_menu_ver_sessoes();
 		valid_input = false;
 		while (!valid_input) {
 			try {option = readMenuInput();}

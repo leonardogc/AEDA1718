@@ -1,10 +1,11 @@
 #include "Participacao.hpp"
 
 
-Participacao::Participacao(Sessao * sessao, int pontuacao, int posicao): sessao(sessao)
+Participacao::Participacao(Sessao * sessao, int pontuacao, int posicao, int fase): sessao(sessao)
 {
 	this->pontuacao=pontuacao;
 	this->posicao = posicao;
+	this->fase = fase;
 }
 const Sessao * Participacao::getSessao() const
 {

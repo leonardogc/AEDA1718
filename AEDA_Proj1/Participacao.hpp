@@ -8,10 +8,10 @@ class Participacao {
 private:
 	Sessao const * sessao; //assumindo que participacoes sao guardadas nos concorrentes
 	int pontuacao;
-	int pontucao_2_fase;
 	int posicao;
+	int fase;
 public:
-	Participacao(Sessao * sessao, int pontuacao, int posicao);
+	Participacao(Sessao * sessao, int pontuacao, int posicao, int fase);
 	const Sessao * getSessao() const;
 	void setPontuacao(int pontuacao);
 	void setPosicao(int posicao);
