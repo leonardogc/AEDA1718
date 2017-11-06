@@ -11,7 +11,7 @@ int main(){
 	changeFileName_menu(ficheiros);
 
 	try{
-	*empresa = Empresa(ficheiros);
+	empresa = new Empresa(ficheiros);
 	}
 	catch(InvalidFileException &e1){
 		clear_scrn();
