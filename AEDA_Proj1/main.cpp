@@ -2,7 +2,6 @@
 #include "Empresa.hpp"
 #include "menus.hpp"
 
-
 const string default_files[] = {"jurados.txt","sessoes.txt","candidatos.txt", "participacao.txt"};
 
 int main(){
