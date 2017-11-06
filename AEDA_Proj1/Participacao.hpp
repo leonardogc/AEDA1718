@@ -8,6 +8,7 @@ class Participacao {
 private:
 	Sessao const * sessao; //assumindo que participacoes sao guardadas nos concorrentes
 	int pontuacao;
+	int pontucao_2_fase;
 	int posicao;
 public:
 	Participacao(Sessao * sessao, int pontuacao, int posicao);
