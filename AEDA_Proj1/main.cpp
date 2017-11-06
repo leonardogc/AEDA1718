@@ -27,6 +27,7 @@ int main(){
 	main_menu(empresa);
 
 	clear_scrn();
+	delete empresa;
 	return 0;
 
 }
