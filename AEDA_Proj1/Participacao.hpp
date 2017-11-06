@@ -13,7 +13,7 @@ private:
 public:
 	Participacao(Sessao * sessao, int pontuacao[3], int posicao, int fase);
 	const Sessao * getSessao() const;
-	void setPontuacao(int pontuacao);
+	void setPontuacao(int pontuacao[4]);
 	void setPosicao(int posicao);
 	bool operator == (const Participacao &p) const;
 };

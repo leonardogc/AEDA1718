@@ -26,5 +26,6 @@ public:
 };
 
 
+void parse_line(string &line, stringstream &ss);
 
 #endif /* EMPRESA_HPP_ */

@@ -139,19 +139,19 @@ void Empresa::load_sessoes(string &s){
 			ss.str(string());
 			ss.clear();
 
-			for (int i=0; i< this->jurados.size();i++){
+			for (unsigned i=0; i< this->jurados.size();i++){
 				if(this->jurados[i]->getTelemovel() == numTelemJurado1){
 					jurados.push_back(this->jurados[i]);
 				}
 			}
 
-			for (int i=0; i< this->jurados.size();i++){
+			for (unsigned i=0; i< this->jurados.size();i++){
 				if(this->jurados[i]->getTelemovel() == numTelemJurado2){
 					jurados.push_back(this->jurados[i]);
 				}
 			}
 
-			for (int i=0; i< this->jurados.size();i++){
+			for (unsigned i=0; i< this->jurados.size();i++){
 				if(this->jurados[i]->getTelemovel() == numTelemJurado3){
 					jurados.push_back(this->jurados[i]);
 				}
@@ -312,13 +312,13 @@ void Empresa::load_participacao(string &s){
 			ss.str(string());
 			ss.clear();
 
-			for (int i = 0; i < candidatos.size(); i++){
+			for (unsigned i = 0; i < candidatos.size(); i++){
 				if(candidatos[i]->getNumInscricao() == numInscricao){
 					generoArte=candidatos[i]->getGeneroArte();
 				}
 			}
 
-			for (int i = 0; i < sessoes.size(); i++){
+			for (unsigned i = 0; i < sessoes.size(); i++){
 				if((sessoes[i]->getData()==data) && (sessoes[i]->getArtePerformativa() == generoArte)){
 					*sessao = *sessoes[i];
 				}
@@ -328,7 +328,7 @@ void Empresa::load_participacao(string &s){
 			pontuacao_array[1]=pontuacao2;
 			pontuacao_array[2]=pontuacao3;
 
-			for (int i = 0; i < candidatos.size(); i++){
+			for (unsigned i = 0; i < candidatos.size(); i++){
 				if(candidatos[i]->getNumInscricao() == numInscricao){
 					candidatos[i]->addParticipacao(new Participacao(sessao, pontuacao_array, posicao, fase));
 					break;
@@ -344,7 +344,7 @@ void Empresa::load_participacao(string &s){
 }
 
 void parse_line(string &line, stringstream &ss){
-	for (int i=0; i < line.size(); i++){
+	for (unsigned i=0; i < line.size(); i++){
 		if(line[i] != ';'){
 			ss<<line[i];
 		}
