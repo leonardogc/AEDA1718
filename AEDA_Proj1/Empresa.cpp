@@ -243,7 +243,7 @@ void Empresa::load_participacao(string &s){
 	string ficheiro = "res/"+s, data, line, generoArte;
 	int numInscricao, fase, pontuacao1, pontuacao2, pontuacao3, posicao;
 	int pontuacao_array[3];
-	Sessao* sessao;
+	int sessao;
 
 	file.open(ficheiro.c_str());
 
@@ -254,6 +254,7 @@ void Empresa::load_participacao(string &s){
 			parse_line(line, ss);
 
 			ss >> numInscricao;
+
 
 			ss.str(string());
 			ss.clear();
@@ -318,9 +319,10 @@ void Empresa::load_participacao(string &s){
 				}
 			}
 
+
 			for (unsigned i = 0; i < sessoes.size(); i++){
 				if((sessoes[i]->getData()==data) && (sessoes[i]->getArtePerformativa() == generoArte)){
-					*sessao = *sessoes[i];
+					sessao = i;
 				}
 			}
 
@@ -330,7 +332,7 @@ void Empresa::load_participacao(string &s){
 
 			for (unsigned i = 0; i < candidatos.size(); i++){
 				if(candidatos[i]->getNumInscricao() == numInscricao){
-					candidatos[i]->addParticipacao(new Participacao(sessao, pontuacao_array, posicao, fase));
+					candidatos[i]->addParticipacao(new Participacao(sessoes[sessao], pontuacao_array, posicao, fase));
 					break;
 				}
 			}

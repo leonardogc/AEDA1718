@@ -446,7 +446,7 @@ string remover_candidato(Empresa * empresa){
 	cout << "Introduza o identificador do candidato a eliminar: " << endl;
 	cin >> id;
 
-	string ide = id;
+	//string ide = id;
 	string res = "Foi removido o candidato o id ";
-	return res + ide;
+	//return res + ide;
 }
