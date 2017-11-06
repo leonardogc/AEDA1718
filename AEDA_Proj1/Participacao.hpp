@@ -7,11 +7,11 @@
 class Participacao {
 private:
 	Sessao const * sessao; //assumindo que participacoes sao guardadas nos concorrentes
-	int pontuacao;
+	int pontuacao[4]; // pontuacao "0" é a pontuacao final, "1" jurado principal , "2" e "3" os outros jurados
 	int posicao;
 	int fase;
 public:
-	Participacao(Sessao * sessao, int pontuacao, int posicao, int fase);
+	Participacao(Sessao * sessao, int pontuacao[3], int posicao, int fase);
 	const Sessao * getSessao() const;
 	void setPontuacao(int pontuacao);
 	void setPosicao(int posicao);

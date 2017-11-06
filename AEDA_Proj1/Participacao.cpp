@@ -1,9 +1,26 @@
 #include "Participacao.hpp"
 
 
-Participacao::Participacao(Sessao * sessao, int pontuacao, int posicao, int fase): sessao(sessao)
+Participacao::Participacao(Sessao * sessao, int pontuacao[3], int posicao, int fase): sessao(sessao)
 {
-	this->pontuacao=pontuacao;
+	int pontuacao_final=0;
+
+	if(fase == 1){
+		pontuacao_final+= (int)(((double)(1/3))*pontuacao[0]);
+		pontuacao_final+= (int)(((double)(1/3))*pontuacao[1]);
+		pontuacao_final+= (int)(((double)(1/3))*pontuacao[2]);
+	}
+	else if (fase == 2){
+		pontuacao_final+= (int)(((double)(2/4))*pontuacao[0]);
+		pontuacao_final+= (int)(((double)(1/4))*pontuacao[1]);
+		pontuacao_final+= (int)(((double)(1/4))*pontuacao[2]);
+	}
+
+	this->pontuacao[0]=pontuacao_final;
+	this->pontuacao[1]=pontuacao[0];
+	this->pontuacao[2]=pontuacao[1];
+	this->pontuacao[3]=pontuacao[2];
+
 	this->posicao = posicao;
 	this->fase = fase;
 }
