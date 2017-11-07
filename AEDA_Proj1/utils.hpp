@@ -24,13 +24,6 @@ int numbr_size(int numbr);
 
 bool lowerThan(string d1, string d2);
 
-class InvalidFileException
-{
-	string filename;
-public:
-	InvalidFileException(string filename) {this->filename = filename;}
-	string getFilename() {return filename;}
-};
 
 class InvalidFileNameException
 {

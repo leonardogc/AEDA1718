@@ -16,12 +16,14 @@ namespace castingspace //TO DO get a better name
 
 	enum sort_t
 	{
-		by_name,
+		by_name,			//used for
 		by_name_and_art,
-    by_age_and_art,
-    by_date_and_art
+		by_age_and_art,
+		by_date_and_art
 	};
 }
+
+
 
 class Empresa {
 private:

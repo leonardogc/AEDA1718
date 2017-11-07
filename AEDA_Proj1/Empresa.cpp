@@ -1,5 +1,6 @@
 #include "Empresa.hpp"
 
+
 using namespace castingspace;
 
 Empresa::Empresa(string (&nomes)[4]) {
@@ -30,59 +31,59 @@ void Empresa::load_files(string (&nomes)[4]){
 }
 
 void Empresa::load_jurados(string &s){
-		ifstream file;
-		stringstream ss;
-		string ficheiro="res/"+s, line, nome, morada, generoArte;
-		int telemovel;
+	ifstream file;
+	stringstream ss;
+	string ficheiro="res/"+s, line, nome, morada, generoArte;
+	int telemovel;
 
-		file.open(ficheiro.c_str());
+	file.open(ficheiro.c_str());
 
-		if(file.is_open()){
-			while(getline(file, line)){
-				//nome
+	if(file.is_open()){
+		while(getline(file, line)){
+			//nome
 
-				parse_line(line, ss);
-				nome=ss.str();
+			parse_line(line, ss);
+			nome=ss.str();
 
-				ss.str(string());
-				ss.clear();
+			ss.str(string());
+			ss.clear();
 
-				//morada
+			//morada
 
-				parse_line(line, ss);
+			parse_line(line, ss);
 
-				morada=ss.str();
+			morada=ss.str();
 
-				ss.str(string());
-				ss.clear();
+			ss.str(string());
+			ss.clear();
 
-				//telemovel
+			//telemovel
 
-				parse_line(line, ss);
+			parse_line(line, ss);
 
-				ss >> telemovel;
+			ss >> telemovel;
 
-				ss.str(string());
-				ss.clear();
+			ss.str(string());
+			ss.clear();
 
-				//generoArte
+			//generoArte
 
-				parse_line(line, ss);
+			parse_line(line, ss);
 
-				generoArte=ss.str();
+			generoArte=ss.str();
 
-				ss.str(string());
-				ss.clear();
+			ss.str(string());
+			ss.clear();
 
-				jurados.push_back(new Jurado(nome, morada, generoArte, telemovel));
-			}
-			file.close();
-
+			jurados.push_back(new Jurado(nome, morada, generoArte, telemovel));
 		}
-		else{
-			//cout<<"error opening file!"<<endl;
-			throw(InvalidFileNameException(ficheiro));
-		}
+		file.close();
+
+	}
+	else{
+		//cout<<"error opening file!"<<endl;
+		throw(InvalidFileNameException(ficheiro));
+	}
 }
 
 void Empresa::load_sessoes(string &s){
@@ -374,26 +375,25 @@ vector <Sessao *> Empresa::getSessoes(){
 
 void Empresa::sortJurados(castingspace::sort_t const & by)
 {
-switch(by)
-{
-case by_name:
-sort(this->jurados.begin(), this->jurados.end(), [](Jurado const & j1, Jurado const & j2){
-	return j1.getNome() < j2.getNome();
-});
-break;
-case by_name_and_art:
-sort(this->jurados.begin(), this->jurados.end(), [](Jurado const & j1, Jurado const & j2){
-	if(j1.getGeneroArte() == j2.getGeneroArte())
+	switch(by)
 	{
-		return j1.getNome() < j2.getNome();
+	case by_name:
+		sort(this->jurados.begin(), this->jurados.end(), [](Jurado * j1, Jurado * j2){
+			return j1->getNome() < j2->getNome();
+		});
+		break;
+	case by_name_and_art:
+		sort(this->jurados.begin(), this->jurados.end(), [](Jurado * j1, Jurado * j2){
+			if(j1->getGeneroArte() == j2->getGeneroArte())
+			{
+				return j1->getNome() < j2->getNome();
+			}
+			else return j1->getGeneroArte() < j2->getGeneroArte();
+		});
+		break;
+	default:
+		break;
 	}
-	else return j1.getGeneroArte() < j2.getGeneroArte();
-});
-break;
-default:
-//TODO thsrow somessing
-break;
-}
 }
 
 void Empresa::sortSessoes(castingspace::sort_t const & by)
@@ -401,18 +401,17 @@ void Empresa::sortSessoes(castingspace::sort_t const & by)
 	switch(by)
 	{
 	case by_date_and_art:
-	sort(this->sessoes.begin(), this->sessoes.end(), [](Sessao const & s1, Sessao const & s2){
-		if(s1.getArtePerformativa() == s2.getArtePerformativa())
-		{
-			return lowerThan(s1.getData(), s2.getData());
-		}
-		else return s1.getArtePerformativa() < s2.getArtePerformativa();
-	});
-	break;
+		sort(this->sessoes.begin(), this->sessoes.end(), [](Sessao * s1, Sessao * s2){
+			if(s1->getArtePerformativa() == s2->getArtePerformativa())
+			{
+				return lowerThan(s1->getData(), s2->getData());
+			}
+			else return s1->getArtePerformativa() < s2->getArtePerformativa();
+		});
+		break;
 	default:
-		//TODO thsrow somessing
-	break;
-}
+		break;
+	}
 }
 
 void Empresa::sortCandidatos(castingspace::sort_t const & by)
@@ -420,38 +419,37 @@ void Empresa::sortCandidatos(castingspace::sort_t const & by)
 	switch(by)
 	{
 	case by_name:
-	sort(this->candidatos.begin(), this->candidatos.end(), [](Candidato const & c1, Candidato const & c2){
-		return c1.getNome() < c2.getNome();
-	});
-break;
+		sort(this->candidatos.begin(), this->candidatos.end(), [](Candidato * c1, Candidato * c2){
+			return c1->getNome() < c2->getNome();
+		});
+		break;
 	case by_name_and_art:
-	sort(this->candidatos.begin(), this->candidatos.end(), [](Candidato const & c1, Candidato const & c2){
-		if(c1.getGeneroArte() == c2.getGeneroArte())
-		{
-			return c1.getNome() < c2.getNome();
-		}
-		else return c1.getGeneroArte() < c2.getGeneroArte();
-	});
-break;
+		sort(this->candidatos.begin(), this->candidatos.end(), [](Candidato * c1, Candidato * c2){
+			if(c1->getGeneroArte() == c2->getGeneroArte())
+			{
+				return c1->getNome() < c2->getNome();
+			}
+			else return c1->getGeneroArte() < c2->getGeneroArte();
+		});
+		break;
 	case castingspace::by_age_and_art:
-	sort(this->candidatos.begin(), this->candidatos.end(), [](Candidato const & c1, Candidato const & c2){
-		if(c1.getGeneroArte() == c2.getGeneroArte())
-		{
-			return lowerThan(c1.getDataNasc(), c2.getDataNasc());
-		}
-		else return c1.getGeneroArte() < c2.getGeneroArte();
-	});
-break;
+		sort(this->candidatos.begin(), this->candidatos.end(), [](Candidato * c1, Candidato * c2){
+			if(c1->getGeneroArte() == c2->getGeneroArte())
+			{
+				return lowerThan(c1->getDataNasc(), c2->getDataNasc());
+			}
+			else return c1->getGeneroArte() < c2->getGeneroArte();
+		});
+		break;
 	default:
-	//TODO thsrow somessing
-break;
+		break;
 	}
 }
 
 void sortBy_points_in_session(vector<Candidato *> &candidatos, string const &dataSessao)
 {
-	sort(candidatos.begin(), candidatos.end(), [&dataSessao](Candidato const & c1, Candidato const & c2){
-		return c1.getParticipacao(dataSessao)->getPontuacaoFinal() < c2.getParticipacao(dataSessao)->getPontuacaoFinal();
+	sort(candidatos.begin(), candidatos.end(), [&dataSessao](Candidato * c1, Candidato * c2){
+		return c1->getParticipacao(dataSessao)->getPontuacaoFinal() < c2->getParticipacao(dataSessao)->getPontuacaoFinal();
 	});
 }
 
@@ -469,6 +467,6 @@ Candidato * Empresa::remove_candidato(int id){
 	return -1;
 }
 
-*/
+ */
 
 

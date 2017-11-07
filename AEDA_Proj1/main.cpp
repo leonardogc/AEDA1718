@@ -12,11 +12,6 @@ int main(){
 	try{
 	empresa = new Empresa(ficheiros);
 	}
-	catch(InvalidFileException &e1){
-		clear_scrn();
-		cout << "Ficheiro Invalido: " << e1.getFilename() << endl << "Terminando o programa!";
-		return 1;
-	}
 	catch(InvalidFileNameException &e2){
 		clear_scrn();
 		cout << e2.getFilename() << ": ficheiro nao encontrado!" << endl << "Terminando o programa!";
