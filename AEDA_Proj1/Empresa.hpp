@@ -8,18 +8,25 @@
 #include "Sessao.hpp"
 #include "utils.hpp"
 
-namespace castingspace //TO DO get a better name
+namespace castingspace
 {
 	/**
 	 * Enum type used in the sorting methods
 	 */
 
-	enum sort_t
+	enum sort_t // all sorts are for Ascending order
 	{
-		by_name,			//used for
-		by_name_and_art,
-		by_age_and_art,
-		by_date_and_art
+		//name is sorted from a to z
+		by_name,			//used for jurados, candidatos
+
+		//name and art are sorted from a to z | elements are grouped by art and ordered alphabetically in the same art
+		by_name_and_art,	//used for jurados, candidatos
+
+		//age is sorted from younger to older; art is sorted from a to z | elements are grouped by art and ordered by age in the same art
+		by_age_and_art,		//used for candidatos
+
+		//date is sorted chronologically; art is sorted from a to z | elements are grouped by art and ordered chronologically in the same art
+		by_date_and_art		//used for sessoes
 	};
 }
 

@@ -432,11 +432,12 @@ void Empresa::sortCandidatos(castingspace::sort_t const & by)
 			else return c1->getGeneroArte() < c2->getGeneroArte();
 		});
 		break;
-	case castingspace::by_age_and_art:
+	case by_age_and_art:
 		sort(this->candidatos.begin(), this->candidatos.end(), [](Candidato * c1, Candidato * c2){
 			if(c1->getGeneroArte() == c2->getGeneroArte())
 			{
-				return lowerThan(c1->getDataNasc(), c2->getDataNasc());
+				return lowerThan(c2->getDataNasc(), c1->getDataNasc());
+				//younger people were born later, so birthdate is larger for the younger
 			}
 			else return c1->getGeneroArte() < c2->getGeneroArte();
 		});
