@@ -1,13 +1,14 @@
 #include "Jurado.hpp"
 
-/*Jurado::Jurado(string nome, string  morada, string  generoArte, int telemovel): Pessoa(string nome, string  morada, string  generoArte)
-{
-	this->telemovel=telemovel;
-}
-*/
 
 Jurado::Jurado(string nome, string  morada, string  generoArte, int telemovel):
 Pessoa(nome, morada, generoArte)
+{
+	this->telemovel = telemovel;
+}
+
+Jurado::Jurado(string nome, string  morada, string  generoArte, int telemovel, bool validade):
+Pessoa(nome, morada, generoArte, validade)
 {
 	this->telemovel = telemovel;
 }

@@ -8,8 +8,8 @@ Candidato::Candidato(string nome, string  morada, string  generoArte, string dat
 	this->dataNascimento = dataNascimento;
 }
 
-Candidato::Candidato(int nInscricao, string nome, string  morada, string  generoArte, string dataNascimento):
-		Pessoa(nome, morada, generoArte), numInscricao(nInscricao)
+Candidato::Candidato(int nInscricao, string nome, string  morada, string  generoArte, string dataNascimento, bool validade):
+		Pessoa(nome, morada, generoArte, validade), numInscricao(nInscricao)
 {
 	this->dataNascimento = dataNascimento;
 }

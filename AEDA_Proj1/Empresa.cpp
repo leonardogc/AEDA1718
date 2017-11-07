@@ -11,13 +11,13 @@ Empresa::Empresa(string (&nomes)[4]) {
  * Formato dos ficheiros: (pode sofrer alteração)
  *
  * jurados.txt
- * Nome;morada;telemovel;generoArte;\n
+ * Nome;morada;telemovel;generoArte;validade;\n
  *
  * Sessoes.txt
  * numTelemJurado1(responsável);numTelemJurado2;numTelemJurado3;artePerformativa;data;\n
  *
  * Candidatos.txt
- * numInscrição;nome;dataNascimento;generoArte;morada;\n
+ * numInscrição;nome;dataNascimento;generoArte;morada;validade;\n
  *
  * Participacao.txt
  * numInscrição;Fase;Data;Pontuação1(juradoResponsável);Pontuação2;Pontuação3;Posição;
@@ -35,6 +35,7 @@ void Empresa::load_jurados(string &s){
 	stringstream ss;
 	string ficheiro="res/"+s, line, nome, morada, generoArte;
 	int telemovel;
+	bool validade = false;
 
 	file.open(ficheiro.c_str());
 
@@ -75,7 +76,16 @@ void Empresa::load_jurados(string &s){
 			ss.str(string());
 			ss.clear();
 
-			jurados.push_back(new Jurado(nome, morada, generoArte, telemovel));
+			//validade
+
+			parse_line(line, ss);
+			if(ss.str() == "valid")
+				validade = true;
+
+			ss.str(string());
+			ss.clear();
+
+			jurados.push_back(new Jurado(nome, morada, generoArte, telemovel, validade));
 		}
 		file.close();
 
@@ -175,6 +185,7 @@ void Empresa::load_candidatos(string &s){
 	stringstream ss;
 	string ficheiro = "res/"+s, line, nome, dataNascimento, generoArte, morada;
 	int numInscricao;
+	bool validade = false;
 
 	file.open(ficheiro.c_str());
 
@@ -228,8 +239,16 @@ void Empresa::load_candidatos(string &s){
 			ss.str(string());
 			ss.clear();
 
+			//validade
 
-			candidatos.push_back(new Candidato(numInscricao,nome,morada,generoArte,dataNascimento));
+			parse_line(line, ss);
+			if(ss.str() == "valid")
+				validade = true;
+
+			ss.str(string());
+			ss.clear();
+
+			candidatos.push_back(new Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade));
 		}
 		file.close();
 	}

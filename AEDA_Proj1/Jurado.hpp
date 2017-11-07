@@ -11,7 +11,7 @@ private:
 public:
 	//construtor
 	Jurado(string nome, string  morada, string  generoArte, int telemovel);
-
+	Jurado(string nome, string  morada, string  generoArte, int telemovel, bool validade);
 	//métodos get
 	int getTelemovel() const;
 
