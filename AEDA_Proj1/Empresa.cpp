@@ -347,18 +347,6 @@ void Empresa::load_participacao(string &s){
 	}
 }
 
-void parse_line(string &line, stringstream &ss){
-	for (unsigned i=0; i < line.size(); i++){
-		if(line[i] != ';'){
-			ss<<line[i];
-		}
-		else if(line[i] == ';'){
-			line.erase(0,i+1);
-			break;
-		}
-	}
-}
-
 vector <Candidato *> Empresa::getCandidatos(){
 	return candidatos;
 }
@@ -372,6 +360,18 @@ vector <Sessao *> Empresa::getSessoes(){
 
 	return sessoes;
 }
+
+
+void Empresa::remove_candidato(int id){
+	for (unsigned i = 0; i < this->candidatos.size(); ++i)
+		if(this->candidatos[i]->getNumInscricao() == id)
+		{
+			this->candidatos.erase(this->candidatos.begin()+i);
+			return;
+		}
+	//TODO throw exception
+}
+
 
 void Empresa::sortJurados(castingspace::sort_t const & by)
 {
@@ -444,6 +444,18 @@ void Empresa::sortCandidatos(castingspace::sort_t const & by)
 		break;
 	default:
 		break;
+	}
+}
+
+void parse_line(string &line, stringstream &ss){
+	for (unsigned i=0; i < line.size(); i++){
+		if(line[i] != ';'){
+			ss<<line[i];
+		}
+		else if(line[i] == ';'){
+			line.erase(0,i+1);
+			break;
+		}
 	}
 }
 
