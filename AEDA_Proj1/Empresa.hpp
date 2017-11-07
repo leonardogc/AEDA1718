@@ -8,6 +8,20 @@
 #include "Sessao.hpp"
 #include "utils.hpp"
 
+namespace castingspace //TO DO get a better name
+{
+	/**
+	 * Enum type used in the sorting methods
+	 */
+
+	enum sort_t
+	{
+		by_name,
+		by_name_and_art,
+    by_age_and_art,
+    by_date_and_art
+	};
+}
 
 class Empresa {
 private:
@@ -26,8 +40,12 @@ public:
 	vector<Sessao *> getSessoes();
 	Candidato * remove_candidato(int id);
 	int save_files();
+	void sortJurados(castingspace::sort_t const & by):
+	void sortSessoes(castingspace::sort_t const & by);
+	void sortCandidatos(castingspace::sort_t const & by);
 };
 
+void sortBy_points_in_session(vector<Candidato> &candidatos, string const &dataSessao);
 
 void parse_line(string &line, stringstream &ss);
 

@@ -371,6 +371,90 @@ vector <Sessao *> Empresa::getSessoes(){
 	return sessoes;
 }
 
+void Empresa::sortJurados(castingspace::sort_t const & by)
+{
+switch(by)
+{
+case by_name:
+sort(this->jurados.begin(), this->jurados.end(), [](Jurado const & j1, Jurado const & j2){
+	return j1.getNome() < j2.getNome();
+});
+break;
+case by_name_and_art:
+sort(this->jurados.begin(), this->jurados.end(), [](Jurado const & j1, Jurado const & j2){
+	if(j1.getGeneroArte() == j2.getGeneroArte())
+	{
+		return j1.getNome() < j2.getNome();
+	}
+	else return j1.getGeneroArte() < j2.getGeneroArte();
+});
+break;
+default:
+//TODO thsrow somessing
+break;
+}
+}
+
+void Empresa::sortSessoes(castingspace::sort_t const & by)
+{
+	switch(by)
+	{
+	case by_date_and_art:
+	sort(this->sessoes.begin(), this->sessoes.end(), [](Sessao const & s1, Sessao const & s2){
+		if(s1.getGeneroArte() == s2.getGeneroArte())
+		{
+			return lowerThan(s1.getData(), s2.getData());
+		}
+		else return s1.getArtePerformativa() < s2.getArtePerformativa();
+	});
+	break;
+	default:
+		//TODO thsrow somessing
+	break;
+}
+}
+
+void Empresa::sortCandidatos(castingspace::sort_t const & by)
+{
+	switch(by)
+	{
+	case by_name:
+	sort(this->candidatos.begin(), this->candidatos.end(), [](Candidato const & c1, Candidato const & c2){
+		return c1.getNome() < c2.getNome();
+	});
+break;
+	case by_name_and_art:
+	sort(this->candidatos.begin(), this->candidatos.end(), [](Candidato const & c1, Candidato const & c2){
+		if(c1.getGeneroArte() == c2.getGeneroArte())
+		{
+			return c1.getNome() < c2.getNome();
+		}
+		else return c1.getGeneroArte() < c2.getGeneroArte();
+	});
+break;
+	case by_age_and_art:
+	sort(this->candidatos.begin(), this->candidatos.end(), [](Candidato const & c1, Candidato const & c2){
+		if(c1.getGeneroArte() == c2.getGeneroArte())
+		{
+			return lowerThan(c1.getDataNascimento(), c2.getDataNascimento());
+		}
+		else return c1.getGeneroArte() < c2.getGeneroArte();
+	});
+break;
+	default:
+	//TODO thsrow somessing
+break;
+	}
+}
+
+void sortBy_points_in_session(vector<Candidato> &candidatos, string const &dataSessao)
+{
+	sort(candidatos.begin(), candidatos.end(), [](Candidato const & c1, Candidato const & c2){
+		return c1.getParticipacao(dataSessao)->getPontuacaoFinal() < c2.getParticipacao(dataSessao)->getPontuacaoFinal();
+	});
+}
+
+
 /*
 Candidato * Empresa::remove_candidato(int id){
 
@@ -387,50 +471,3 @@ Candidato * Empresa::remove_candidato(int id){
 */
 
 
-bool lowerThan(string d1, string d2){
-	stringstream ss;
-	int data1;
-	int data2;
-
-	ss<<d1[6];
-	ss<<d1[7];
-	ss<<d1[8];
-	ss<<d1[9];
-
-	ss<<d1[3];
-	ss<<d1[4];
-
-	ss<<d1[0];
-	ss<<d1[1];
-
-	ss >> data1;
-
-	ss.str(string());
-	ss.clear();
-
-	ss<<d2[6];
-	ss<<d2[7];
-	ss<<d2[8];
-	ss<<d2[9];
-
-	ss<<d2[3];
-	ss<<d2[4];
-
-	ss<<d2[0];
-	ss<<d2[1];
-
-
-	ss >> data2;
-
-	ss.str(string());
-	ss.clear();
-
-	if(data1<data2){
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-
-}

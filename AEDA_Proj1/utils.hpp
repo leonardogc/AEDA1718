@@ -21,6 +21,7 @@ void clear_scrn();
 
 int numbr_size(int numbr);
 
+bool lowerThan(string d1, string d2);
 
 class InvalidFileException
 {

@@ -44,3 +44,7 @@ void Participacao::setPosicao(int posicao)
 {
 	this->posicao=posicao;
 }
+
+int Participacao::getPontuacaoFinal(){
+	return this->pontuacao[0];
+}

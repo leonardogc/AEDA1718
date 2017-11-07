@@ -38,6 +38,10 @@ bool Candidato::addParticipacao(Participacao * participacao)
 	this->participacoes.push_back(participacao);
 	return true;
 }
+
+/*
+ * TODO DELETE \/
+ */
 Participacao * Candidato::getParticipacao(Sessao * sessao) const
 {
 	for (unsigned i = 0; i < this->participacoes.size(); ++i)
@@ -49,7 +53,22 @@ Participacao * Candidato::getParticipacao(Sessao * sessao) const
 	}
 	return NULL;
 }
+/*
+ * TODO DELETE /\
+ */
 
+Participacao * Candidato::getParticipacao(string const &dataSessao) const
+{
+	for (unsigned i = 0; i < this->participacoes.size(); ++i)
+	{
+		if(((*this->participacoes[i]->getSessao()->getData()) == dataSessao) &&
+				((*this->participacoes[i]->getSessao()->getArtePerformativa())) == this->generoArte)
+		{
+			return participacoes[i];
+		}
+	}
+	return NULL;
+}
 bool Candidato::operator == (const Candidato &c) const {
 	return this->numInscricao == c.numInscricao;
 }

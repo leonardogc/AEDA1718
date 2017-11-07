@@ -23,7 +23,14 @@ public:
 	int getNumInscricao() const;
 	vector <Participacao *> getParticipacoes() const;
 	bool addParticipacao(Participacao * participacao);
+	/*
+	 * TODO DELETE \/
+	 */
 	Participacao * getParticipacao(Sessao * sessao) const;
+	/*
+	 * TODO DELETE /\
+	 */
+	Participacao * Candidato::getParticipacao(string const &dataSessao) const;
 	bool operator == (const Candidato &c) const;
 };
 
