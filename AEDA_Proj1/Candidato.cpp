@@ -61,8 +61,8 @@ Participacao * Candidato::getParticipacao(string const &dataSessao) const
 {
 	for (unsigned i = 0; i < this->participacoes.size(); ++i)
 	{
-		if(((*this->participacoes[i]->getSessao()->getData()) == dataSessao) &&
-				((*this->participacoes[i]->getSessao()->getArtePerformativa())) == this->generoArte)
+		if(((this->participacoes[i]->getSessao()->getData()) == dataSessao) &&
+				((this->participacoes[i]->getSessao()->getArtePerformativa())) == this->generoArte)
 		{
 			return participacoes[i];
 		}

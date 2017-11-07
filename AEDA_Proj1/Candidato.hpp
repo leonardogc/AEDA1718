@@ -30,7 +30,7 @@ public:
 	/*
 	 * TODO DELETE /\
 	 */
-	Participacao * Candidato::getParticipacao(string const &dataSessao) const;
+	Participacao * getParticipacao(string const &dataSessao) const;
 	bool operator == (const Candidato &c) const;
 };
 

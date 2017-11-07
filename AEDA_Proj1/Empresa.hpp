@@ -40,7 +40,7 @@ public:
 	vector<Sessao *> getSessoes();
 	Candidato * remove_candidato(int id);
 	int save_files();
-	void sortJurados(castingspace::sort_t const & by):
+	void sortJurados(castingspace::sort_t const & by);
 	void sortSessoes(castingspace::sort_t const & by);
 	void sortCandidatos(castingspace::sort_t const & by);
 };

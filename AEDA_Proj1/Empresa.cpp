@@ -1,5 +1,6 @@
 #include "Empresa.hpp"
 
+using namespace castingspace;
 
 Empresa::Empresa(string (&nomes)[4]) {
 	load_files(nomes);
@@ -401,7 +402,7 @@ void Empresa::sortSessoes(castingspace::sort_t const & by)
 	{
 	case by_date_and_art:
 	sort(this->sessoes.begin(), this->sessoes.end(), [](Sessao const & s1, Sessao const & s2){
-		if(s1.getGeneroArte() == s2.getGeneroArte())
+		if(s1.getArtePerformativa() == s2.getArtePerformativa())
 		{
 			return lowerThan(s1.getData(), s2.getData());
 		}
@@ -432,11 +433,11 @@ break;
 		else return c1.getGeneroArte() < c2.getGeneroArte();
 	});
 break;
-	case by_age_and_art:
+	case castingspace::by_age_and_art:
 	sort(this->candidatos.begin(), this->candidatos.end(), [](Candidato const & c1, Candidato const & c2){
 		if(c1.getGeneroArte() == c2.getGeneroArte())
 		{
-			return lowerThan(c1.getDataNascimento(), c2.getDataNascimento());
+			return lowerThan(c1.getDataNasc(), c2.getDataNasc());
 		}
 		else return c1.getGeneroArte() < c2.getGeneroArte();
 	});
@@ -449,7 +450,7 @@ break;
 
 void sortBy_points_in_session(vector<Candidato> &candidatos, string const &dataSessao)
 {
-	sort(candidatos.begin(), candidatos.end(), [](Candidato const & c1, Candidato const & c2){
+	sort(candidatos.begin(), candidatos.end(), [&dataSessao](Candidato const & c1, Candidato const & c2){
 		return c1.getParticipacao(dataSessao)->getPontuacaoFinal() < c2.getParticipacao(dataSessao)->getPontuacaoFinal();
 	});
 }
