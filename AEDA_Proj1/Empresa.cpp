@@ -448,7 +448,7 @@ break;
 	}
 }
 
-void sortBy_points_in_session(vector<Candidato> &candidatos, string const &dataSessao)
+void sortBy_points_in_session(vector<Candidato *> &candidatos, string const &dataSessao)
 {
 	sort(candidatos.begin(), candidatos.end(), [&dataSessao](Candidato const & c1, Candidato const & c2){
 		return c1.getParticipacao(dataSessao)->getPontuacaoFinal() < c2.getParticipacao(dataSessao)->getPontuacaoFinal();
