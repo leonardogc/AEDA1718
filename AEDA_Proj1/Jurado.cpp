@@ -27,3 +27,16 @@ bool Jurado::operator ==(Jurado jurado){
 		variable = true;
 	return variable;
 }
+
+
+ostream& operator <<(ostream & os, const Jurado *j){
+	os << j->nome;
+	os << "  ";
+	os << j->morada;
+	os << "  ";
+	os << j->telemovel;
+	os << "  ";
+	os << j->generoArte;
+	os << "\n";
+	return os;
+}

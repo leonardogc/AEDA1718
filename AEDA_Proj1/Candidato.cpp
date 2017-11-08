@@ -72,3 +72,19 @@ Participacao * Candidato::getParticipacao(string const &dataSessao) const
 bool Candidato::operator == (const Candidato &c) const {
 	return this->numInscricao == c.numInscricao;
 }
+
+
+ostream& operator <<(ostream & os, const Candidato *c){
+	os <<  c->numInscricao;
+	os << "  ";
+	os << c->nome;
+	os << "  ";
+	os << c->dataNascimento;
+	os << "  ";
+	os << c->generoArte;
+	os << "  ";
+	os << c->morada;
+	os << "\n";
+
+	return os;
+}

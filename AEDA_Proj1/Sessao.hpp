@@ -33,8 +33,7 @@ public:
 	//operadores
 	bool operator== (Sessao sessao) const;
 	bool operator< (Sessao sessao) const;
-
-
+	friend ostream& operator <<(ostream & os, const Sessao *s);
 };
 
 #endif /* SESSAO_HPP_ */

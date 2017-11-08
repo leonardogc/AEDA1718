@@ -79,8 +79,9 @@ void Empresa::load_jurados(string &s){
 			//validade
 
 			parse_line(line, ss);
-			if(ss.str() == "valid")
+			if(ss.str() == "valid"){
 				validade = true;
+			}
 
 			ss.str(string());
 			ss.clear();
@@ -242,8 +243,9 @@ void Empresa::load_candidatos(string &s){
 			//validade
 
 			parse_line(line, ss);
-			if(ss.str() == "valid")
+			if(ss.str() == "valid"){
 				validade = true;
+			}
 
 			ss.str(string());
 			ss.clear();

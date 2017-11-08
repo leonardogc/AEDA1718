@@ -20,6 +20,7 @@ public:
 
 	//operadores
 	bool operator== (Jurado jurado);
+	friend ostream& operator <<(ostream & os, const Jurado *j);
 };
 
 

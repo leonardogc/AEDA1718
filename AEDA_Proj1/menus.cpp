@@ -342,7 +342,6 @@ void menu_ver_candidatos(Empresa * empresa){
 
 		switch (option) {
 		case 1: //Ver todos
-
 			break;
 		case 2: //escolher candidato
 
