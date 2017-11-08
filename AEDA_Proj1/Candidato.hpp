@@ -35,4 +35,6 @@ public:
 	friend ostream& operator <<(ostream & os, const Candidato *c);
 };
 
+ostream& operator <<(ostream & os, const Candidato *c);
+
 #endif /* CANDIDATO_HPP_ */

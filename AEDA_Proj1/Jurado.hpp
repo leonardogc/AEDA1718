@@ -23,5 +23,7 @@ public:
 	friend ostream& operator <<(ostream & os, const Jurado *j);
 };
 
+ostream& operator <<(ostream & os, const Jurado *j);
+
 
 #endif /* JURADO_HPP_ */

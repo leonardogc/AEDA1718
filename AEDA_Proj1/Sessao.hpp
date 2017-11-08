@@ -36,4 +36,6 @@ public:
 	friend ostream& operator <<(ostream & os, const Sessao *s);
 };
 
+ostream& operator <<(ostream &os, const Sessao *s);
+
 #endif /* SESSAO_HPP_ */
