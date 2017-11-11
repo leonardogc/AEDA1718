@@ -487,6 +487,50 @@ void sortBy_points_in_session(vector<Candidato *> &candidatos, string const &dat
 	});
 }
 
+void Empresa::printJurados(){
+	cout << "\n\n";
+	cout << setw(30) << left << "Nome";
+	cout << setw(30) << left << "Genero de Arte";
+	cout << setw(20) << left << "Telemovel";
+	cout << setw(20) << left << "Morada";
+	cout << "\n\n";
+
+	for(unsigned i=0; i < jurados.size(); i++){
+		cout << jurados[i];
+	}
+
+	cin.ignore();
+}
+
+void Empresa::printCandidatos(){
+	cout << "\n\n";
+	cout << setw(20) << left << "Num. Inscricao";
+	cout << setw(30) << left << "Nome";
+	cout << setw(20) << left << "Data Nascimento";
+	cout << setw(30) << left << "Genero de Arte";
+	cout << setw(20) << left << "Morada";
+	cout << "\n\n";
+
+	for(unsigned i=0; i < candidatos.size(); i++){
+		cout << candidatos[i];
+	}
+
+	cin.ignore();
+}
+
+void Empresa::printSessoes(){
+	cout << "\n\n";
+	cout << setw(30) << left << "Genero de Arte";
+	cout << setw(20) << left << "Data";
+	cout << "\n\n";
+
+	for(unsigned i=0; i < sessoes.size(); i++){
+		cout << sessoes[i];
+	}
+
+	cin.ignore();
+}
+
 
 /*
 Candidato * Empresa::remove_candidato(int id){

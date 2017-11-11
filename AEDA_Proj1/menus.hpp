@@ -31,12 +31,19 @@ void menu_gerir_sessoes(Empresa * empresa);
 /****************************/
 void draw_menu_ver_candidatos();
 void menu_ver_candidatos(Empresa * empresa);
-string remover_candidato(Empresa * empresa); //retorna "Foi removido o candidato com o id " id;
 
 void draw_menu_ver_jurados();
 void menu_ver_jurados(Empresa * empresa);//
 
 void draw_menu_ver_sessoes();
 void menu_ver_sessoes(Empresa * empresa);//
+
+/****************************/
+/**       Gerir info       **/
+/****************************/
+
+
+string remover_candidato(Empresa * empresa); //retorna "Foi removido o candidato com o id " id;
+string adicionar_candidato(Empresa * empresa); //retorna "Foi removido o candidato com o id " id;
 
 #endif /* MENUS_HPP_ */

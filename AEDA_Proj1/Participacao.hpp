@@ -16,6 +16,7 @@ public:
 	void setPontuacao(int pontuacao[4]);
 	void setPosicao(int posicao);
 	int getPontuacaoFinal();
+	int getFase();
 	bool operator == (const Participacao &p) const;
 };
 

@@ -64,9 +64,8 @@ bool Sessao::operator< (Sessao sessao) const{
 }
 
 ostream& operator <<(ostream &os, const Sessao *s){
-	os << s->artePerformativa;
-	os << "  ";
-	os << s->data;
+	os << setw(30) << left << s->artePerformativa;
+	os << setw(20) << left << s->data;
 	os << "\n";
 
 	return os;

@@ -30,13 +30,10 @@ bool Jurado::operator ==(Jurado jurado){
 
 
 ostream& operator <<(ostream & os, const Jurado *j){
-	os << j->nome;
-	os << "  ";
-	os << j->morada;
-	os << "  ";
-	os << j->telemovel;
-	os << "  ";
-	os << j->generoArte;
+	os << setw(30) << left << j->nome;
+	os << setw(30) << left << j->generoArte;
+	os << setw(20) << left << j->telemovel;
+	os << setw(20) << left << j->morada;
 	os << "\n";
 	return os;
 }

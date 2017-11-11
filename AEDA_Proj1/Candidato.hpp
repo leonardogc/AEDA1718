@@ -5,12 +5,13 @@
 #include "Pessoa.hpp"
 #include "utils.hpp"
 
+
+
 class Candidato: public Pessoa {
 private:
 	string dataNascimento;
 	const int numInscricao;
 	vector <Participacao *> participacoes;
-
 	/*
 	 * se cada pessoa guardar as suas participações o vetor é mais pequeno do que se fosse guardado nas sessoes
 	 * e para sabem quem participou em cada sessão pode-se evitar percorrer todos os candidatos saltando os que não sejam da arte da sessao
@@ -32,9 +33,11 @@ public:
 	 */
 	Participacao * getParticipacao(string const &dataSessao) const;
 	bool operator == (const Candidato &c) const;
-	friend ostream& operator <<(ostream & os, const Candidato *c);
+
+	friend ostream& operator <<(ostream & os,const Candidato *c);
 };
 
 ostream& operator <<(ostream & os, const Candidato *c);
+
 
 #endif /* CANDIDATO_HPP_ */

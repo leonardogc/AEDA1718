@@ -48,6 +48,10 @@ public:
 	vector<Candidato *> getCandidatos();
 	vector<Sessao *> getSessoes();
 
+	void printJurados();
+	void printCandidatos();
+	void printSessoes();
+
 	void remove_candidato(int id);
 
 	int save_files();

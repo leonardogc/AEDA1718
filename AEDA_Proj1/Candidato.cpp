@@ -12,6 +12,7 @@ Candidato::Candidato(int nInscricao, string nome, string  morada, string  genero
 		Pessoa(nome, morada, generoArte, validade), numInscricao(nInscricao)
 {
 	this->dataNascimento = dataNascimento;
+	numCandidato++;
 }
 
 string Candidato::getDataNasc() const{
@@ -75,15 +76,11 @@ bool Candidato::operator == (const Candidato &c) const {
 
 
 ostream& operator <<(ostream & os, const Candidato *c){
-	os <<  c->numInscricao;
-	os << "  ";
-	os << c->nome;
-	os << "  ";
-	os << c->dataNascimento;
-	os << "  ";
-	os << c->generoArte;
-	os << "  ";
-	os << c->morada;
+	os << setw(20) << left << c->numInscricao;
+	os << setw(30) << left << c->nome;
+	os << setw(20) << left << c->dataNascimento;
+	os << setw(30) << left << c->generoArte;
+	os << setw(20) << left << c->morada;
 	os << "\n";
 
 	return os;

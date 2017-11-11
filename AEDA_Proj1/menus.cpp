@@ -318,7 +318,7 @@ void draw_menu_ver_candidatos(){
 	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(8, ' ') << "Ver Candidatos" << string(8, ' ') << '|' << endl;
+	cout << '|' << string(13, ' ') << "Ver Candidatos" << string(13, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout << "  1 - Ver todos\n";
 	cout << "  2 - Escolher Candidato\n";
@@ -342,6 +342,7 @@ void menu_ver_candidatos(Empresa * empresa){
 
 		switch (option) {
 		case 1: //Ver todos
+			empresa->printCandidatos();
 			break;
 		case 2: //escolher candidato
 
@@ -384,7 +385,7 @@ void menu_ver_jurados(Empresa * empresa){
 
 		switch (option) {
 		case 1: //Ver todos
-
+			empresa->printJurados();
 			break;
 		case 2: //Escolher Jurado
 
@@ -427,7 +428,7 @@ void menu_ver_sessoes(Empresa * empresa){
 
 		switch (option) {
 		case 1: //Ver todas
-
+			empresa->printSessoes();
 			break;
 		case 2: //Escolher sessao
 
@@ -440,6 +441,17 @@ void menu_ver_sessoes(Empresa * empresa){
 }
 
 string remover_candidato(Empresa * empresa){
+	//verifica se existe o candidato
+	int id;
+	cout << "Introduza o identificador do candidato a eliminar: " << endl;
+	cin >> id;
+
+	//string ide = id;
+	string res = "Foi removido o candidato o id ";
+	//return res + ide;
+}
+
+string adicionar_candidato(Empresa * empresa){
 	//verifica se existe o candidato
 	int id;
 	cout << "Introduza o identificador do candidato a eliminar: " << endl;
