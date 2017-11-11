@@ -547,4 +547,7 @@ Candidato * Empresa::remove_candidato(int id){
 
  */
 
+void Empresa::adicionar_candidato(Candidato *c){
+	candidatos.push_back(c);
+}
 

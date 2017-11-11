@@ -452,12 +452,5 @@ string remover_candidato(Empresa * empresa){
 }
 
 string adicionar_candidato(Empresa * empresa){
-	//verifica se existe o candidato
-	int id;
-	cout << "Introduza o identificador do candidato a eliminar: " << endl;
-	cin >> id;
 
-	//string ide = id;
-	string res = "Foi removido o candidato o id ";
-	//return res + ide;
 }

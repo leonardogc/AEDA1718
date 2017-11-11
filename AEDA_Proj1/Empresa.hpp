@@ -53,6 +53,7 @@ public:
 	void printSessoes();
 
 	void remove_candidato(int id);
+	void adicionar_candidato(Candidato *c);
 
 	int save_files();
 	void sortJurados(castingspace::sort_t const & by);
