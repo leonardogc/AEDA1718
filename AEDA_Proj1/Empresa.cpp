@@ -100,7 +100,7 @@ void Empresa::save_jurados(string &s){
 	}
 }
 
-numTelemJurado1(responsável);numTelemJurado2;numTelemJurado3;artePerformativa;data;\n
+//numTelemJurado1(responsável);numTelemJurado2;numTelemJurado3;artePerformativa;data;\n
 
  void Empresa::save_jurados(string &s){
  	ofstream file;
@@ -276,7 +276,7 @@ void Empresa::load_sessoes(string &s){
 				}
 			}
 
-			sessoes.push_back(new Sessao(jurados, 0, artePerformativa, data));
+			sessoes.push_back(new Sessao(jurados, artePerformativa, data));
 		}
 		file.close();
 
