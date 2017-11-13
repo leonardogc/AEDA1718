@@ -21,6 +21,7 @@ int main(){
 	main_menu(empresa);
 
 	empresa->save_files(ficheiros);
+
 	clear_scrn();
 	delete empresa;
 	return 0;

@@ -42,6 +42,7 @@ private:
 	void load_sessoes(string &s);
 	void load_candidatos(string &s);
 	void load_participacao(string &s);
+
 	void save_jurados(string &s);
 	void save_sessoes(string &s);
 	void save_candidatos(string &s);

@@ -31,11 +31,10 @@ void Empresa::load_files(string (&nomes)[4]){
 }
 
 void Empresa::save_files(string (&nomes)[4]){
-	string n= "copia.txt";
-	//save_candidatos(n);
-	//save_jurados(n);
-	//save_sessoes(n);
-	//save_participacao(n);
+	save_candidatos(nomes[2]);
+	save_jurados(nomes[0]);
+	save_sessoes(nomes[1]);
+	save_participacao(nomes[3]);
 }
 
 void Empresa::save_candidatos(string &s){
@@ -130,11 +129,10 @@ void Empresa::save_jurados(string &s){
  	}
  }
 
-
- //numInscrição;Fase;Data;Pontuação1(juradoResponsável);Pontuação2;Pontuação3;Posição;
  void Empresa::save_participacao(string &s){
   	ofstream file;
   	string ficheiro = "res/"+s;
+  	int lines=0;
 
 
   	file.open(ficheiro.c_str(), ios::out | ios::trunc);
@@ -144,6 +142,10 @@ void Empresa::save_jurados(string &s){
   		for(unsigned i = 0; i < candidatos.size(); i++){
   			for(unsigned i2 = 0; i2 < candidatos[i]->getParticipacoes().size(); i2++){
 
+  				if(lines != 0){
+  					file << "\n";
+  				}
+
   				file << candidatos[i]->getNumInscricao() << ";";
   				file << candidatos[i]->getParticipacoes()[i2]->getFase() << ";";
   				file << candidatos[i]->getParticipacoes()[i2]->getSessao()->getData() << ";";
@@ -152,7 +154,8 @@ void Empresa::save_jurados(string &s){
   				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[3] << ";";
   				file << candidatos[i]->getParticipacoes()[i2]->getPosicao() << ";";
 
-  				file << "\n";
+  				lines++;
+
   				}
   			}
 
@@ -285,6 +288,7 @@ void Empresa::load_sessoes(string &s){
 			parse_line(line, ss);
 
 			data=ss.str();
+
 
 			ss.str(string());
 			ss.clear();
