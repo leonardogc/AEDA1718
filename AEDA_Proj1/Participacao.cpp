@@ -49,6 +49,14 @@ int Participacao::getPontuacaoFinal(){
 	return this->pontuacao[0];
 }
 
+int* Participacao::getPontuacao(){
+	return this->pontuacao;
+}
+
+int Participacao::getPosicao(){
+	return this->posicao;
+}
+
 int Participacao::getFase(){
 	return this->fase;
 }

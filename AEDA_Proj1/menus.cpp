@@ -346,11 +346,7 @@ void menu_ver_candidatos(Empresa * empresa){
 			empresa->printCandidatos();
 			break;
 		case 2: //escolher candidato
-			Candidato * candidato;
-			escolher_candidato(empresa);
-			candidato = escolher_candidato(empresa);
-			draw_menu_gerir_candidato(empresa);
-			menu_gerir_candidato(empresa, candidato);
+
 			break;
 		case 3: //Exit
 			done=true;
@@ -530,7 +526,6 @@ string adicionar_sessao(Empresa * empresa){
 	//selecionar arte
 
 	string arte, data;
-	int indice;
 	vector <Jurado *> avaliadores;
 
 	cout << "Introduza o genero de arte da sessao: ";
@@ -538,7 +533,7 @@ string adicionar_sessao(Empresa * empresa){
 	cout << "Introduza a data da sessao: ";
 	cin >> data;
 
-	Sessao novaSessao(avaliadores, indice, arte, data);
+	Sessao novaSessao(avaliadores, arte, data);
 
 	string res;
 	res  = "Foi criada uma nova sessao com sucesso!";

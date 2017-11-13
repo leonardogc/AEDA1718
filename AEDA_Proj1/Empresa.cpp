@@ -34,8 +34,8 @@ void Empresa::save_files(string (&nomes)[4]){
 	string n= "copia.txt";
 	//save_candidatos(n);
 	//save_jurados(n);
-	save_sessoes(n);
-	//save_participacao(nomes[3]);
+	//save_sessoes(n);
+	//save_participacao(n);
 }
 
 void Empresa::save_candidatos(string &s){
@@ -100,27 +100,24 @@ void Empresa::save_jurados(string &s){
 	}
 }
 
-//numTelemJurado1(responsável);numTelemJurado2;numTelemJurado3;artePerformativa;data;\n
-
- void Empresa::save_jurados(string &s){
+ void Empresa::save_sessoes(string &s){
  	ofstream file;
- 	string ficheiro = "res/"+s,validade;
+ 	string ficheiro = "res/"+s;
 
 
  	file.open(ficheiro.c_str(), ios::out | ios::trunc);
 
  	if(file.is_open()){
 
- 		for(unsigned i = 0; i < jurados.size(); i++){
- 			validade= jurados[i]->getValidade() ? "valid" : "invalid";
+ 		for(unsigned i = 0; i < sessoes.size(); i++){
 
- 			file << jurados[i]->getNome() << ";";
- 			file << jurados[i]->getMorada() << ";";
- 			file << jurados[i]->getTelemovel() << ";";
- 			file << jurados[i]->getGeneroArte() << ";";
- 			file << validade << ";";
+ 			file << sessoes[i]->getJurados()[0]->getTelemovel() << ";";
+ 			file << sessoes[i]->getJurados()[1]->getTelemovel() << ";";
+ 			file << sessoes[i]->getJurados()[2]->getTelemovel() << ";";
+ 			file << sessoes[i]->getArtePerformativa() << ";";
+ 			file << sessoes[i]->getData() << ";";
 
- 			if(i != jurados.size()-1){
+ 			if(i != sessoes.size()-1){
  				file << "\n";
  			}
  		}
@@ -131,6 +128,40 @@ void Empresa::save_jurados(string &s){
  		//cout<<"error opening file!"<<endl;
  		throw(InvalidFileNameException(ficheiro));
  	}
+ }
+
+
+ //numInscrição;Fase;Data;Pontuação1(juradoResponsável);Pontuação2;Pontuação3;Posição;
+ void Empresa::save_participacao(string &s){
+  	ofstream file;
+  	string ficheiro = "res/"+s;
+
+
+  	file.open(ficheiro.c_str(), ios::out | ios::trunc);
+
+  	if(file.is_open()){
+
+  		for(unsigned i = 0; i < candidatos.size(); i++){
+  			for(unsigned i2 = 0; i2 < candidatos[i]->getParticipacoes().size(); i2++){
+
+  				file << candidatos[i]->getNumInscricao() << ";";
+  				file << candidatos[i]->getParticipacoes()[i2]->getFase() << ";";
+  				file << candidatos[i]->getParticipacoes()[i2]->getSessao()->getData() << ";";
+  				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[1] << ";";
+  				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[2] << ";";
+  				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[3] << ";";
+  				file << candidatos[i]->getParticipacoes()[i2]->getPosicao() << ";";
+
+  				file << "\n";
+  				}
+  			}
+
+  		file.close();
+  	}
+  	else{
+  		//cout<<"error opening file!"<<endl;
+  		throw(InvalidFileNameException(ficheiro));
+  	}
  }
 
 void Empresa::load_jurados(string &s){
@@ -257,6 +288,8 @@ void Empresa::load_sessoes(string &s){
 
 			ss.str(string());
 			ss.clear();
+
+			jurados.clear();
 
 			for (unsigned i=0; i< this->jurados.size();i++){
 				if(this->jurados[i]->getTelemovel() == numTelemJurado1){
