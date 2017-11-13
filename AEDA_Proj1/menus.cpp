@@ -198,12 +198,13 @@ void menu_gerir_candidatos(Empresa * empresa){
 
 		switch (option) {
 		case 1: //adicionar
-
+			adicionar_candidato(empresa);
 			break;
 		case 2: //remover
-
+			remover_candidato(empresa);
 			break;
 		case 3: //alterar
+			// já há uma função escolher_candidato que pede o id e verifica se existe o candidato ou não
 
 			break;
 		case 4: //Exit
@@ -245,10 +246,10 @@ void menu_gerir_jurados(Empresa * empresa){
 
 		switch (option) {
 		case 1: //adicionar
-
+			adicionar_jurado(empresa);
 			break;
 		case 2: //remover
-
+			remover_jurado(empresa);
 			break;
 		case 3: //alterar
 
@@ -292,7 +293,7 @@ void menu_gerir_sessoes(Empresa * empresa){
 
 		switch (option) {
 		case 1: //adicionar
-
+			adicionar_sessao(empresa);
 			break;
 		case 2: //remover
 
@@ -345,7 +346,11 @@ void menu_ver_candidatos(Empresa * empresa){
 			empresa->printCandidatos();
 			break;
 		case 2: //escolher candidato
-
+			Candidato * candidato;
+			escolher_candidato(empresa);
+			candidato = escolher_candidato(empresa);
+			draw_menu_gerir_candidato(empresa);
+			menu_gerir_candidato(empresa, candidato);
 			break;
 		case 3: //Exit
 			done=true;
@@ -440,17 +445,114 @@ void menu_ver_sessoes(Empresa * empresa){
 	}
 }
 
-string remover_candidato(Empresa * empresa){
-	//verifica se existe o candidato
+Candidato * escolher_candidato(Empresa * empresa){
+	clear_scrn();
 	int id;
-	cout << "Introduza o identificador do candidato a eliminar: " << endl;
-	cin >> id;
+	bool verifica = false;
 
-	//string ide = id;
-	string res = "Foi removido o candidato o id ";
-	//return res + ide;
+	cout << "Introduza o id do candidato: " << endl;
+	cin >> id;
+	do{
+	for(unsigned int i = 0; i < empresa->getCandidatos().size(); i++){
+		if(empresa->getCandidatos().at(i)->getNumInscricao() == id){
+			cout << "O candidato e valido!" << endl;
+			verifica = true;
+			return empresa->getCandidatos().at(i);
+		}
+		else
+			cout << "Introduziu um id que nao existe!" << endl;
+	}}while(verifica == false);
+}
+
+Jurado * escolher_jurado(Empresa * empresa){
+	clear_scrn();
+	int telemovel;
+	bool verifica = false;
+	do{
+	cout << "Introduza o numero de telemovel do jurado: " << endl;
+	cin >> telemovel;
+
+	for(unsigned int i = 0; i < empresa->getJurados().size(); i++){
+		if(empresa->getJurados().at(i)->getTelemovel() == telemovel){
+			cout << "O jurado e valido!" << endl;
+			verifica = true;
+			return empresa->getJurados().at(i);
+		}
+		else
+		cout << "Introduziu um telemovel que nao existe!" << endl;
+	}
+	}while(verifica == false);
 }
 
 string adicionar_candidato(Empresa * empresa){
+	string nome, dataNascimento, generoArte, morada;
 
+	cout << "Introduza o nome do candidato: ";
+	cin >> nome;
+	cout << "Introduza a data de nascimento no formato dd/mm/aaaa: ";
+	cin >> dataNascimento;
+	cout << "Introduza o genero de arte: ";
+	cin >> generoArte;
+	cout << "Introduza a sua cidade de morada: ";
+	cin >> morada;
+
+	Candidato novoCandidato(nome, morada, generoArte, dataNascimento);
+	empresa->getCandidatos().push_back(&novoCandidato);
+	string res;
+
+	res  = "Foi introduzido um novo candidato com sucesso!";
+	return res;
+}
+
+string adicionar_jurado(Empresa * empresa){
+	string nome, generoArte, morada;
+	int  telemovel;
+	cout << "Introduza o nome do candidato: ";
+	cin >> nome;
+	cout << "Introduza o genero de arte: ";
+	cin >> generoArte;
+	cout << "Introduza a cidade de morada: ";
+	cin >> morada;
+	cout << "Introduza o numero de telemovel: ";
+	cin >> telemovel;
+
+	Jurado novoJurado(nome, morada, generoArte, telemovel);
+	empresa->getJurados().push_back(&novoJurado);
+
+	string res;
+	res  = "Foi introduzido um novo jurado com sucesso!";
+	return res;
+}
+
+string adicionar_sessao(Empresa * empresa){
+//Selecionar tres jurados em que o primeiro é o responsável
+	//selecionar data
+	//selecionar arte
+
+	string arte, data;
+	int indice;
+	vector <Jurado *> avaliadores;
+
+	cout << "Introduza o genero de arte da sessao: ";
+	cin >> arte;
+	cout << "Introduza a data da sessao: ";
+	cin >> data;
+
+	Sessao novaSessao(avaliadores, indice, arte, data);
+
+	string res;
+	res  = "Foi criada uma nova sessao com sucesso!";
+	return res;
+}
+
+string remover_jurado(Empresa * empresa){
+	Jurado * jurado = escolher_jurado(empresa);
+	jurado->setValid(false);
+	return "O jurado foi removido com sucesso!";
+}
+
+string remover_candidato(Empresa * empresa){
+	Candidato * candidato = escolher_candidato(empresa);
+	candidato->setValid(false);
+	return "O candidato foi removido com sucesso!";
 }
