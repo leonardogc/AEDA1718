@@ -346,11 +346,6 @@ void menu_ver_candidatos(Empresa * empresa){
 			empresa->printCandidatos();
 			break;
 		case 2: //escolher candidato
-			Candidato * candidato;
-			escolher_candidato(empresa);
-			candidato = escolher_candidato(empresa);
-			draw_menu_gerir_candidato(empresa);
-			menu_gerir_candidato(empresa, candidato);
 			break;
 		case 3: //Exit
 			done=true;
@@ -507,15 +502,23 @@ string adicionar_candidato(Empresa * empresa){
 string adicionar_jurado(Empresa * empresa){
 	string nome, generoArte, morada;
 	int  telemovel;
-	cout << "Introduza o nome do candidato: ";
-	cin >> nome;
-	cout << "Introduza o genero de arte: ";
-	cin >> generoArte;
-	cout << "Introduza a cidade de morada: ";
-	cin >> morada;
-	cout << "Introduza o numero de telemovel: ";
-	cin >> telemovel;
 
+	cout << "Introduza o nome do jurado: ";
+	getline(cin, nome);
+	cout << "Introduza o genero de arte: ";
+	getline(cin, generoArte);
+	cout << "Introduza a cidade de morada: ";
+	getline(cin, morada);
+	cout << "Introduza o numero de telemovel: ";
+	do{
+	try{
+		telemovel = readMenuInput();
+	}
+	catch(invalid_argument &e){
+		cout << "Introduziu um numero de telemovel invalido! Introduza novamente: ";
+		continue;}
+	break;
+	}while(true);
 	Jurado novoJurado(nome, morada, generoArte, telemovel);
 	empresa->getJurados().push_back(&novoJurado);
 
@@ -530,15 +533,15 @@ string adicionar_sessao(Empresa * empresa){
 	//selecionar arte
 
 	string arte, data;
-	int indice;
+
 	vector <Jurado *> avaliadores;
 
 	cout << "Introduza o genero de arte da sessao: ";
-	cin >> arte;
+	getline(cin, arte);
 	cout << "Introduza a data da sessao: ";
-	cin >> data;
+	getline(cin, arte);
 
-	Sessao novaSessao(avaliadores, indice, arte, data);
+	Sessao novaSessao(avaliadores, arte, data);
 
 	string res;
 	res  = "Foi criada uma nova sessao com sucesso!";
