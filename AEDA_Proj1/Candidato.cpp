@@ -76,11 +76,14 @@ bool Candidato::operator == (const Candidato &c) const {
 
 
 ostream& operator <<(ostream & os, const Candidato *c){
+	string validade= c->validade ? "valido" : "invalido";
+
 	os << setw(20) << left << c->numInscricao;
 	os << setw(30) << left << c->nome;
 	os << setw(20) << left << c->dataNascimento;
 	os << setw(30) << left << c->generoArte;
 	os << setw(20) << left << c->morada;
+	os << setw(20) << left << validade;
 	os << "\n";
 
 	return os;

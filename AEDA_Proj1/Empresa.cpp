@@ -30,6 +30,109 @@ void Empresa::load_files(string (&nomes)[4]){
 	load_participacao(nomes[3]);
 }
 
+void Empresa::save_files(string (&nomes)[4]){
+	string n= "copia.txt";
+	//save_candidatos(n);
+	//save_jurados(n);
+	save_sessoes(n);
+	//save_participacao(nomes[3]);
+}
+
+void Empresa::save_candidatos(string &s){
+	ofstream file;
+	string ficheiro = "res/"+s,validade;
+
+	file.open(ficheiro.c_str(), ios::out | ios::trunc);
+
+
+	if(file.is_open()){
+
+		for(unsigned i = 0; i < candidatos.size(); i++){
+			validade= candidatos[i]->getValidade() ? "valid" : "invalid";
+
+			file << candidatos[i]->getNumInscricao() << ";";
+			file << candidatos[i]->getNome() << ";";
+			file << candidatos[i]->getDataNasc() << ";";
+			file << candidatos[i]->getGeneroArte() << ";";
+			file << candidatos[i]->getMorada() << ";";
+			file << validade << ";";
+
+			if(i != candidatos.size()-1){
+				file << "\n";
+			}
+		}
+
+		file.close();
+	}
+	else{
+		//cout<<"error opening file!"<<endl;
+		throw(InvalidFileNameException(ficheiro));
+	}
+}
+
+void Empresa::save_jurados(string &s){
+	ofstream file;
+	string ficheiro = "res/"+s,validade;
+
+	file.open(ficheiro.c_str(), ios::out | ios::trunc);
+
+	if(file.is_open()){
+
+		for(unsigned i = 0; i < jurados.size(); i++){
+			validade= jurados[i]->getValidade() ? "valid" : "invalid";
+
+			file << jurados[i]->getNome() << ";";
+			file << jurados[i]->getMorada() << ";";
+			file << jurados[i]->getTelemovel() << ";";
+			file << jurados[i]->getGeneroArte() << ";";
+			file << validade << ";";
+
+			if(i != jurados.size()-1){
+				file << "\n";
+			}
+		}
+
+		file.close();
+	}
+	else{
+		//cout<<"error opening file!"<<endl;
+		throw(InvalidFileNameException(ficheiro));
+	}
+}
+
+numTelemJurado1(responsável);numTelemJurado2;numTelemJurado3;artePerformativa;data;\n
+
+ void Empresa::save_jurados(string &s){
+ 	ofstream file;
+ 	string ficheiro = "res/"+s,validade;
+
+
+ 	file.open(ficheiro.c_str(), ios::out | ios::trunc);
+
+ 	if(file.is_open()){
+
+ 		for(unsigned i = 0; i < jurados.size(); i++){
+ 			validade= jurados[i]->getValidade() ? "valid" : "invalid";
+
+ 			file << jurados[i]->getNome() << ";";
+ 			file << jurados[i]->getMorada() << ";";
+ 			file << jurados[i]->getTelemovel() << ";";
+ 			file << jurados[i]->getGeneroArte() << ";";
+ 			file << validade << ";";
+
+ 			if(i != jurados.size()-1){
+ 				file << "\n";
+ 			}
+ 		}
+
+ 		file.close();
+ 	}
+ 	else{
+ 		//cout<<"error opening file!"<<endl;
+ 		throw(InvalidFileNameException(ficheiro));
+ 	}
+ }
+
 void Empresa::load_jurados(string &s){
 	ifstream file;
 	stringstream ss;
@@ -81,6 +184,9 @@ void Empresa::load_jurados(string &s){
 			parse_line(line, ss);
 			if(ss.str() == "valid"){
 				validade = true;
+			}
+			else{
+				validade = false;
 			}
 
 			ss.str(string());
@@ -245,6 +351,9 @@ void Empresa::load_candidatos(string &s){
 			parse_line(line, ss);
 			if(ss.str() == "valid"){
 				validade = true;
+			}
+			else{
+				validade = false;
 			}
 
 			ss.str(string());
@@ -493,6 +602,7 @@ void Empresa::printJurados(){
 	cout << setw(30) << left << "Genero de Arte";
 	cout << setw(20) << left << "Telemovel";
 	cout << setw(20) << left << "Morada";
+	cout << setw(20) << left << "Validade";
 	cout << "\n\n";
 
 	for(unsigned i=0; i < jurados.size(); i++){
@@ -509,6 +619,7 @@ void Empresa::printCandidatos(){
 	cout << setw(20) << left << "Data Nascimento";
 	cout << setw(30) << left << "Genero de Arte";
 	cout << setw(20) << left << "Morada";
+	cout << setw(20) << left << "Validade";
 	cout << "\n\n";
 
 	for(unsigned i=0; i < candidatos.size(); i++){

@@ -4,10 +4,6 @@ vector<Jurado *> Sessao::getJurados() const{
 	return this->jurados;
 }
 
-int Sessao::getIndiceResponsavel() const{
-	return this->indiceResponsavel;
-}
-
 string Sessao::getArtePerformativa() const{
 	return this->artePerformativa;
 }
@@ -20,10 +16,6 @@ void Sessao::setJurados(vector <Jurado *> jur){
 
 }
 
-void Sessao::setIndiceResponsavel(int indiceResponsavel){
-	this->indiceResponsavel = indiceResponsavel;
-}
-
 void Sessao::setArtePerformativa(string artePerformativa){
 	this->artePerformativa = artePerformativa;
 }
@@ -32,9 +24,8 @@ void Sessao::setData(string data){
 	this->data = data;
 }
 
-Sessao::Sessao(vector<Jurado *> jurados, int indiceResponsavel,string artePerformativa, string data){
+Sessao::Sessao(vector<Jurado *> jurados,string artePerformativa, string data){
 	this->jurados = jurados;
-	this->indiceResponsavel = indiceResponsavel;
 	this->artePerformativa = artePerformativa;
 	this->data = data;
 }

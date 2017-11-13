@@ -42,6 +42,10 @@ private:
 	void load_sessoes(string &s);
 	void load_candidatos(string &s);
 	void load_participacao(string &s);
+	void save_jurados(string &s);
+	void save_sessoes(string &s);
+	void save_candidatos(string &s);
+	void save_participacao(string &s);
 public:
 	Empresa(string (&nomes)[4]);
 	vector<Jurado *> getJurados();
@@ -55,7 +59,8 @@ public:
 	void remove_candidato(int id);
 	void adicionar_candidato(Candidato *c);
 
-	int save_files();
+	void save_files(string (&nomes)[4]);
+
 	void sortJurados(castingspace::sort_t const & by);
 	void sortSessoes(castingspace::sort_t const & by);
 	void sortCandidatos(castingspace::sort_t const & by);
