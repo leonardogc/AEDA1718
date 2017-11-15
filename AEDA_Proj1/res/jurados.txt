@@ -8,3 +8,4 @@ Tomas Crespim;Regua;934297164;Artes Circenses;valid;
 Marta Monteiro;Moncao;912576317;Musica;valid;
 Belmira Marques;Faro;925689754;Danca;valid;
 Eva Ribeiro;Tavira;936578415;Artes Circences;valid;
+Ricardo "Cinnamon" Carvalho;Las Vegas;966969696;Pole Dancing;valid;
