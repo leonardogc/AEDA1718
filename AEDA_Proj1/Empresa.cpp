@@ -730,13 +730,13 @@ string  Empresa::adicionar_candidato(){
 	string nome, dataNascimento, generoArte, morada;
 
 	cout << "Introduza o nome do candidato: ";
-	cin >> nome;
+	getline(cin, nome);
 	cout << "Introduza a data de nascimento no formato dd/mm/aaaa: ";
-	cin >> dataNascimento;
+	getline(cin, dataNascimento);
 	cout << "Introduza o genero de arte: ";
-	cin >> generoArte;
+	getline(cin, generoArte);
 	cout << "Introduza a sua cidade de morada: ";
-	cin >> morada;
+	getline(cin, morada);
 
 	Candidato novoCandidato(nome, morada, generoArte, dataNascimento);
 	this->adicionar_candidato(&novoCandidato);
