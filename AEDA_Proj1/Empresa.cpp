@@ -679,22 +679,6 @@ void Empresa::printSessoes(){
 	cin.ignore();
 }
 
-
-/*
-Candidato * Empresa::remove_candidato(int id){
-
-	for(unsigned int i = 0; i < getCandidatos.size(); i++){
-		if(id == getCandidatos[i]->getNumInscricao){
-
-		}
-
-	}
-
-	return -1;
-}
-
- */
-
 void Empresa::adicionar_candidato(Candidato *c){
 	candidatos.push_back(c);
 }
