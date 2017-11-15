@@ -492,11 +492,9 @@ string adicionar_candidato(Empresa * empresa){
 	cin >> morada;
 
 	Candidato novoCandidato(nome, morada, generoArte, dataNascimento);
-	empresa->getCandidatos().push_back(&novoCandidato);
-	string res;
+	empresa->adicionar_candidato(&novoCandidato);
 
-	res  = "Foi introduzido um novo candidato com sucesso!";
-	return res;
+	return "Foi introduzido um novo candidato com sucesso!";
 }
 
 string adicionar_jurado(Empresa * empresa){
