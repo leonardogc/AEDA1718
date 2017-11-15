@@ -2,6 +2,8 @@
 
 unsigned int Candidato::numCandidato = 1;
 
+using namespace castingspace;
+
 Candidato::Candidato(string nome, string  morada, string  generoArte, string dataNascimento):
 		Pessoa(nome, morada, generoArte), numInscricao(numCandidato++)
 {
@@ -87,4 +89,8 @@ ostream& operator <<(ostream & os, const Candidato *c){
 	os << "\n";
 
 	return os;
+}
+
+void Candidato::sortParticipacoes(sort_t const & by){
+
 }
