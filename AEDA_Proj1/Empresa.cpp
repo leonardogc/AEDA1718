@@ -687,3 +687,120 @@ void Empresa::adicionar_jurado(Jurado *j){
 	candidatos.push_back(j);
 }
 
+Candidato *  Empresa::escolher_candidato(){
+	clear_scrn();
+	int id;
+	bool verifica = false;
+
+	cout << "Introduza o id do candidato: " << endl;
+	cin >> id;
+	do{
+	for(unsigned int i = 0; i < empresa->getCandidatos().size(); i++){
+		if(empresa->getCandidatos().at(i)->getNumInscricao() == id){
+			cout << "O candidato e valido!" << endl;
+			verifica = true;
+			return empresa->getCandidatos().at(i);
+		}
+		else
+			cout << "Introduziu um id que nao existe!" << endl;
+	}}while(verifica == false);
+}
+
+Jurado *  Empresa::escolher_jurado(){
+	clear_scrn();
+	int telemovel;
+	bool verifica = false;
+	do{
+	cout << "Introduza o numero de telemovel do jurado: " << endl;
+	cin >> telemovel;
+
+	for(unsigned int i = 0; i < empresa->getJurados().size(); i++){
+		if(empresa->getJurados().at(i)->getTelemovel() == telemovel){
+			cout << "O jurado e valido!" << endl;
+			verifica = true;
+			return empresa->getJurados().at(i);
+		}
+		else
+		cout << "Introduziu um telemovel que nao existe!" << endl;
+	}
+	}while(verifica == false);
+}
+
+string  Empresa::adicionar_candidato(){
+	string nome, dataNascimento, generoArte, morada;
+
+	cout << "Introduza o nome do candidato: ";
+	cin >> nome;
+	cout << "Introduza a data de nascimento no formato dd/mm/aaaa: ";
+	cin >> dataNascimento;
+	cout << "Introduza o genero de arte: ";
+	cin >> generoArte;
+	cout << "Introduza a sua cidade de morada: ";
+	cin >> morada;
+
+	Candidato novoCandidato(nome, morada, generoArte, dataNascimento);
+	empresa->adicionar_candidato(&novoCandidato);
+
+	return "Foi introduzido um novo candidato com sucesso!";
+}
+
+string  Empresa::adicionar_jurado(){
+	string nome, generoArte, morada;
+	int  telemovel;
+
+	cout << "Introduza o nome do jurado: ";
+	getline(cin, nome);
+	cout << "Introduza o genero de arte: ";
+	getline(cin, generoArte);
+	cout << "Introduza a cidade de morada: ";
+	getline(cin, morada);
+	cout << "Introduza o numero de telemovel: ";
+	do{
+	try{
+		telemovel = readMenuInput();
+	}
+	catch(invalid_argument &e){
+		cout << "Introduziu um numero de telemovel invalido! Introduza novamente: ";
+		continue;}
+	break;
+	}while(true);
+	Jurado novoJurado(nome, morada, generoArte, telemovel);
+
+	empresa->adicionar_jurado(&novoJurado);
+
+	return "Foi introduzido um novo jurado com sucesso!";
+}
+
+string  Empresa::adicionar_sessao(){
+//Selecionar tres jurados em que o primeiro é o responsável
+	//selecionar data
+	//selecionar arte
+
+	string arte, data;
+	vector <Jurado *> avaliadores;
+
+	cout << "Introduza o genero de arte da sessao: ";
+	getline(cin, arte);
+	cout << "Introduza a data da sessao: ";
+	getline(cin, arte);
+
+	Sessao novaSessao(avaliadores, arte, data);
+
+	string res;
+	res  = "Foi criada uma nova sessao com sucesso!";
+	return res;
+}
+
+string  Empresa::remover_jurado(){
+	Jurado * jurado = escolher_jurado(empresa);
+	jurado->setValid(false);
+	return "O jurado foi removido com sucesso!";
+}
+
+string Empresa::remover_candidato(){
+	Candidato * candidato = escolher_candidato(empresa);
+	candidato->setValid(false);
+	return "O candidato foi removido com sucesso!";
+}
+
+

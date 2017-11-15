@@ -45,6 +45,14 @@ public:
 	void sortJurados(castingspace::sort_t const & by);
 	void sortSessoes(castingspace::sort_t const & by);
 	void sortCandidatos(castingspace::sort_t const & by);
+
+	Candidato* escolher_candidato();
+	Jurado*  escolher_jurado();
+	string adicionar_candidato();
+	string adicionar_jurado();
+	string adicionar_sessao();
+	string remover_jurado();
+	string remover_candidato();
 };
 
 void sortBy_points_in_session(vector<Candidato> &candidatos, string const &dataSessao);
