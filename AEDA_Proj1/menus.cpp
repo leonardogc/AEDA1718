@@ -198,10 +198,10 @@ void menu_gerir_candidatos(Empresa * empresa){
 
 		switch (option) {
 		case 1: //adicionar
-			adicionar_candidato(empresa);
+			empresa->adicionar_candidato();
 			break;
 		case 2: //remover
-			remover_candidato(empresa);
+			empresa->remover_candidato();
 			break;
 		case 3: //alterar
 			// já há uma função escolher_candidato que pede o id e verifica se existe o candidato ou não
@@ -246,10 +246,10 @@ void menu_gerir_jurados(Empresa * empresa){
 
 		switch (option) {
 		case 1: //adicionar
-			adicionar_jurado(empresa);
+			empresa->adicionar_jurado();
 			break;
 		case 2: //remover
-			remover_jurado(empresa);
+			empresa->remover_jurado();
 			break;
 		case 3: //alterar
 
@@ -293,7 +293,7 @@ void menu_gerir_sessoes(Empresa * empresa){
 
 		switch (option) {
 		case 1: //adicionar
-			adicionar_sessao(empresa);
+			empresa->adicionar_sessao();
 			break;
 		case 2: //remover
 

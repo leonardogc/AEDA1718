@@ -684,7 +684,7 @@ void Empresa::adicionar_candidato(Candidato *c){
 }
 
 void Empresa::adicionar_jurado(Jurado *j){
-	candidatos.push_back(j);
+	jurados.push_back(j);
 }
 
 Candidato *  Empresa::escolher_candidato(){
@@ -695,11 +695,11 @@ Candidato *  Empresa::escolher_candidato(){
 	cout << "Introduza o id do candidato: " << endl;
 	cin >> id;
 	do{
-	for(unsigned int i = 0; i < empresa->getCandidatos().size(); i++){
-		if(empresa->getCandidatos().at(i)->getNumInscricao() == id){
+	for(unsigned int i = 0; i < candidatos.size(); i++){
+		if(candidatos.at(i)->getNumInscricao() == id){
 			cout << "O candidato e valido!" << endl;
 			verifica = true;
-			return empresa->getCandidatos().at(i);
+			return candidatos.at(i);
 		}
 		else
 			cout << "Introduziu um id que nao existe!" << endl;
@@ -714,11 +714,11 @@ Jurado *  Empresa::escolher_jurado(){
 	cout << "Introduza o numero de telemovel do jurado: " << endl;
 	cin >> telemovel;
 
-	for(unsigned int i = 0; i < empresa->getJurados().size(); i++){
-		if(empresa->getJurados().at(i)->getTelemovel() == telemovel){
+	for(unsigned int i = 0; i < jurados.size(); i++){
+		if(jurados.at(i)->getTelemovel() == telemovel){
 			cout << "O jurado e valido!" << endl;
 			verifica = true;
-			return empresa->getJurados().at(i);
+			return jurados.at(i);
 		}
 		else
 		cout << "Introduziu um telemovel que nao existe!" << endl;
@@ -739,7 +739,7 @@ string  Empresa::adicionar_candidato(){
 	cin >> morada;
 
 	Candidato novoCandidato(nome, morada, generoArte, dataNascimento);
-	empresa->adicionar_candidato(&novoCandidato);
+	this->adicionar_candidato(&novoCandidato);
 
 	return "Foi introduzido um novo candidato com sucesso!";
 }
@@ -766,7 +766,7 @@ string  Empresa::adicionar_jurado(){
 	}while(true);
 	Jurado novoJurado(nome, morada, generoArte, telemovel);
 
-	empresa->adicionar_jurado(&novoJurado);
+	this->adicionar_jurado(&novoJurado);
 
 	return "Foi introduzido um novo jurado com sucesso!";
 }
@@ -792,13 +792,13 @@ string  Empresa::adicionar_sessao(){
 }
 
 string  Empresa::remover_jurado(){
-	Jurado * jurado = escolher_jurado(empresa);
+	Jurado * jurado = this->escolher_jurado();
 	jurado->setValid(false);
 	return "O jurado foi removido com sucesso!";
 }
 
 string Empresa::remover_candidato(){
-	Candidato * candidato = escolher_candidato(empresa);
+	Candidato * candidato = escolher_candidato();
 	candidato->setValid(false);
 	return "O candidato foi removido com sucesso!";
 }
