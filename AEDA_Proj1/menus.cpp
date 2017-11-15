@@ -2,7 +2,15 @@
 
 const string titulo="Castings TV";
 
+using namespace castingspace;
+
 const int size = 40;
+
+
+
+//===========================//
+//      Change File Name     //
+//===========================//
 
 void draw_changeFileName_menu(string (&nomes)[4]) {
 	clear_scrn();
@@ -64,6 +72,12 @@ void changeFileName (string &ficheiro) {
 	ficheiro=nome;
 }
 
+
+
+//===========================//
+//         Main Menu         //
+//===========================//
+
 void draw_main_menu(){
 	clear_scrn();
 	cout << ' ' << string(size, '_') << endl;
@@ -73,11 +87,10 @@ void draw_main_menu(){
 	cout << '|' << string(size, ' ') << '|' << endl;
 	cout << '|' << string(15, ' ') << "Main Menu" << string(16, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
-	cout << "  1 - Ver Informacao\n";
-	cout << "  2 - Gerir Candidatos\n";
-	cout << "  3 - Gerir Jurados\n";
-	cout << "  4 - Gerir Sessoes\n";
-	cout << "  5 - Exit\n";
+	cout << "  1 - Gerir Candidatos\n";
+	cout << "  2 - Gerir Jurados\n";
+	cout << "  3 - Gerir Sessoes\n";
+	cout << "  4 - Exit\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -96,68 +109,14 @@ void main_menu(Empresa * empresa){
 		}
 
 		switch (option) {
-		case 1: //Ver Informacao
-			menu_ver_info(empresa);
-			break;
-		case 2: //Gerir Candidatos
+		case 1: //Gerir Candidatos
 			menu_gerir_candidatos(empresa);
 			break;
-		case 3: //Gerir Jurados
+		case 2: //Gerir Jurados
 			menu_gerir_jurados(empresa);
 			break;
-		case 4: //Gerir Sessoes
+		case 3: //Gerir Sessoes
 			menu_gerir_sessoes(empresa);
-			break;
-		case 5: //Exit
-			done=true;
-			break;
-		}
-	}
-}
-
-/****************************/
-/**       Main Menu        **/
-/****************************/
-
-void draw_menu_ver_info(){
-	clear_scrn();
-	cout << ' ' << string(size, '_') << endl;
-	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
-	cout << '|' << string(size, '_') << '|' << endl;
-	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(13, ' ') << "Ver Informacao" << string(13, ' ') << '|' << endl;
-	cout << '|' << string(size, '_') << '|' << endl;
-	cout << "  1 - Ver candidatos\n";
-	cout << "  2 - Ver jurados\n";
-	cout << "  3 - Ver sessoes\n";
-	cout << "  4 - Return\n";
-	cout << ' ' << string(size, '-') << endl;
-	cout << "Escolha opcao: ";
-}
-
-void menu_ver_info(Empresa * empresa){
-	bool valid_input, done = false;
-	int option;
-
-	while (!done) {
-		draw_menu_ver_info();
-		valid_input = false;
-		while (!valid_input) {
-			try {option = read_number_Input();}
-			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
-			valid_input = true;
-		}
-
-		switch (option) {
-		case 1: //ver candidatos
-			menu_ver_candidatos(empresa);
-			break;
-		case 2: //ver jurados
-			menu_ver_jurados(empresa);
-			break;
-		case 3: //ver sessoes
-			menu_ver_sessoes(empresa);
 			break;
 		case 4: //Exit
 			done=true;
@@ -165,6 +124,12 @@ void menu_ver_info(Empresa * empresa){
 		}
 	}
 }
+
+
+
+//===========================//
+//         Candidatos        //
+//===========================//
 
 void draw_menu_gerir_candidatos(){
 	clear_scrn();
@@ -175,10 +140,12 @@ void draw_menu_gerir_candidatos(){
 	cout << '|' << string(size, ' ') << '|' << endl;
 	cout << '|' << string(12, ' ') << "Gerir Candidatos" << string(12, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
-	cout << "  1 - Adicionar\n";
-	cout << "  2 - Remover\n";
-	cout << "  3 - Alterar\n";
-	cout << "  4 - Return\n";
+	cout << "  1 - Ver todos\n";
+	cout << "  2 - Escolher Candidato\n";
+	cout << "  3 - Adicionar\n";
+	cout << "  4 - Remover\n";
+	cout << "  5 - Ordenar\n";
+	cout << "  6 - Return\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -197,22 +164,94 @@ void menu_gerir_candidatos(Empresa * empresa){
 		}
 
 		switch (option) {
-		case 1: //adicionar
+		case 1: //Ver todos
+			empresa->printCandidatos();
+			break;
+		case 2: //Escolher Candidato
+			menu_candidato(empresa->escolher_candidato());
+			break;
+		case 3: //adicionar
 			empresa->adicionar_candidato();
 			break;
-		case 2: //remover
+		case 4: //remover
 			empresa->remover_candidato();
 			break;
-		case 3: //alterar
-			// já há uma função escolher_candidato que pede o id e verifica se existe o candidato ou não
-
+		case 5: //Ordenar
+			//menu_ordenar_candidatos();
 			break;
-		case 4: //Exit
+		case 6: //Return
 			done=true;
 			break;
 		}
 	}
 }
+
+
+void draw_menu_candidato(Candidato * candidato){
+	clear_scrn();
+	cout << ' ' << string(size, '_') << endl;
+	cout << '|' << string(size, ' ') << '|' << endl;
+	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
+	cout << '|' << string(size, '_') << '|' << endl;
+	cout << '|' << string(size, ' ') << '|' << endl;
+	cout << '|' << string(15, ' ') << "Candidato" << string(16, ' ') << '|' << endl;
+	cout << '|' << string(size, '_') << '|' << endl;
+	cout << "Numero de Inscricao: "<< candidato->getNumInscricao() << "Arte: " << candidato->getGeneroArte() << endl;
+	cout << "Nome: " << candidato->getNome() << "Data Nascimento: " << candidato->getDataNasc() << endl;
+	cout << "Morada: " << candidato->getMorada() << endl;
+	cout << "Estado de inscricao: " << (candidato->getValidade() ? "valida" : "invalida") << endl;
+
+	cout << "  1 - Ver Participacoes\n";
+	cout << "  2 - Alterar nome\n";
+	cout << "  3 - Alterar morada\n";
+	cout << "  4 - ?\n";
+	cout << "  5 - ?\n";
+	cout << "  6 - Return\n";
+	cout << ' ' << string(size, '-') << endl;
+	cout << "Escolha opcao: ";
+}
+
+void menu_candidato(Candidato * candidato){
+	bool valid_input, done = false;
+	int option;
+
+	while (!done) {
+		draw_menu_candidato(candidato);
+		valid_input = false;
+		while (!valid_input) {
+			try {option = read_number_Input();}
+			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
+			valid_input = true;
+		}
+
+		switch (option) {
+		case 1: //Ver Participacoes
+
+			break;
+		case 2: //Alterar nome
+
+			break;
+		case 3: //Alterar morada
+
+			break;
+		case 4: //?
+
+			break;
+		case 5: //?
+
+			break;
+		case 6: //Return
+			done=true;
+			break;
+		}
+	}
+}
+
+
+
+//===========================//
+//          Jurados          //
+//===========================//
 
 void draw_menu_gerir_jurados(){
 	clear_scrn();
@@ -223,10 +262,12 @@ void draw_menu_gerir_jurados(){
 	cout << '|' << string(size, ' ') << '|' << endl;
 	cout << '|' << string(13, ' ') << "Gerir Jurados" << string(14, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
-	cout << "  1 - Adicionar\n";
-	cout << "  2 - Remover\n";
-	cout << "  3 - Alterar\n";
-	cout << "  4 - Return\n";
+	cout << "  1 - Ver todos\n";
+	cout << "  2 - Escolher Jurado\n";
+	cout << "  3 - Adicionar\n";
+	cout << "  4 - Remover\n";
+	cout << "  5 - Ordenar\n";
+	cout << "  6 - Return\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -245,21 +286,95 @@ void menu_gerir_jurados(Empresa * empresa){
 		}
 
 		switch (option) {
-		case 1: //adicionar
+		case 1: //Ver todos
+			empresa->printJurados();
+			break;
+		case 2: //Escolher Jurado
+			menu_jurado(empresa->escolher_jurado());
+			break;
+		case 3: //adicionar
 			empresa->adicionar_jurado();
 			break;
-		case 2: //remover
+		case 4: //remover
 			empresa->remover_jurado();
 			break;
-		case 3: //alterar
+		case 5: //Ordenar
+			//menu_ordenar_jurados();
+			break;
+		case 6: //Return
+			done=true;
+			break;
+		}
+
+	}
+}
+
+
+void draw_menu_jurado(Jurado * jurado){
+	clear_scrn();
+	cout << ' ' << string(size, '_') << endl;
+	cout << '|' << string(size, ' ') << '|' << endl;
+	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
+	cout << '|' << string(size, '_') << '|' << endl;
+	cout << '|' << string(size, ' ') << '|' << endl;
+	cout << '|' << string(15, ' ') << "Candidato" << string(16, ' ') << '|' << endl;
+	cout << '|' << string(size, '_') << '|' << endl;
+	cout  << "Arte: " << jurado->getGeneroArte() << endl;
+	cout << "Nome: " << jurado->getNome() << "Telemovel: " << jurado->getTelemovel() << endl;
+	cout << "Morada: " << jurado->getMorada() << endl;
+	cout << "Estado do contrato: " << (jurado->getValidade() ? "valida" : "invalida") << endl;
+
+	cout << "  1 - ?\n";
+	cout << "  2 - Alterar nome\n";
+	cout << "  3 - Alterar morada\n";
+	cout << "  4 - Alterar telemovel\n";
+	cout << "  5 - ?\n";
+	cout << "  6 - Return\n";
+	cout << ' ' << string(size, '-') << endl;
+	cout << "Escolha opcao: ";
+}
+
+void menu_jurado(Jurado * jurado){
+	bool valid_input, done = false;
+	int option;
+
+	while (!done) {
+		draw_menu_jurado(jurado);
+		valid_input = false;
+		while (!valid_input) {
+			try {option = read_number_Input();}
+			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
+			valid_input = true;
+		}
+
+		switch (option) {
+		case 1: //?
 
 			break;
-		case 4: //Exit
+		case 2: //Alterar nome
+
+			break;
+		case 3: //Alterar morada
+
+			break;
+		case 4: //Alterar telemovel
+
+			break;
+		case 5: //?
+
+			break;
+		case 6: //Return
 			done=true;
 			break;
 		}
 	}
 }
+
+
+
+//===========================//
+//          Sessoes          //
+//===========================//
 
 void draw_menu_gerir_sessoes(){
 	clear_scrn();
@@ -270,10 +385,12 @@ void draw_menu_gerir_sessoes(){
 	cout << '|' << string(size, ' ') << '|' << endl;
 	cout << '|' << string(13, ' ') << "Gerir Sessoes" << string(14, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
-	cout << "  1 - Adicionar\n";
-	cout << "  2 - Remover\n";
-	cout << "  3 - Alterar\n";
-	cout << "  4 - Return\n";
+	cout << "  1 - Ver todas\n";
+	cout << "  2 - Escolher Sessao\n";
+	cout << "  3 - Adicionar\n";
+	cout << "  4 - Remover\n";
+	cout << "  5 - Ordenar por data e arte\n";
+	cout << "  6 - Return\n";
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -292,150 +409,87 @@ void menu_gerir_sessoes(Empresa * empresa){
 		}
 
 		switch (option) {
-		case 1: //adicionar
-			empresa->adicionar_sessao();
-			break;
-		case 2: //remover
-
-			break;
-		case 3: //alterar
-
-			break;
-		case 4: //Exit
-			done=true;
-			break;
-		}
-	}
-}
-
-/****************************/
-/**       Ver info         **/
-/****************************/
-
-void draw_menu_ver_candidatos(){
-	clear_scrn();
-	cout << ' ' << string(size, '_') << endl;
-	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
-	cout << '|' << string(size, '_') << '|' << endl;
-	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(13, ' ') << "Ver Candidatos" << string(13, ' ') << '|' << endl;
-	cout << '|' << string(size, '_') << '|' << endl;
-	cout << "  1 - Ver todos\n";
-	cout << "  2 - Escolher Candidato\n";
-	cout << "  3 - Return\n";
-	cout << ' ' << string(size, '-') << endl;
-	cout << "Escolha opcao: ";
-}
-
-void menu_ver_candidatos(Empresa * empresa){
-	bool valid_input, done = false;
-	int option;
-
-	while (!done) {
-		draw_menu_ver_candidatos();
-		valid_input = false;
-		while (!valid_input) {
-			try {option = read_number_Input();}
-			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
-			valid_input = true;
-		}
-
-		switch (option) {
-		case 1: //Ver todos
-			empresa->printCandidatos();
-			break;
-		case 2: //escolher candidato
-			break;
-		case 3: //Exit
-			done=true;
-			break;
-		}
-	}
-}
-
-void draw_menu_ver_jurados(){
-	clear_scrn();
-	cout << ' ' << string(size, '_') << endl;
-	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
-	cout << '|' << string(size, '_') << '|' << endl;
-	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(14, ' ') << "Ver Jurados" << string(15, ' ') << '|' << endl;
-	cout << '|' << string(size, '_') << '|' << endl;
-	cout << "  1 - Ver todos\n";
-	cout << "  2 - Escolher Jurado\n";
-	cout << "  3 - Return\n";
-	cout << ' ' << string(size, '-') << endl;
-	cout << "Escolha opcao: ";
-}
-
-void menu_ver_jurados(Empresa * empresa){
-	bool valid_input, done = false;
-	int option;
-
-	while (!done) {
-		draw_menu_ver_jurados();
-		valid_input = false;
-		while (!valid_input) {
-			try {option = read_number_Input();}
-			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
-			valid_input = true;
-		}
-
-		switch (option) {
-		case 1: //Ver todos
-			empresa->printJurados();
-			break;
-		case 2: //Escolher Jurado
-
-			break;
-		case 3: //Exit
-			done=true;
-			break;
-		}
-	}
-}
-
-void draw_menu_ver_sessoes(){
-	clear_scrn();
-	cout << ' ' << string(size, '_') << endl;
-	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
-	cout << '|' << string(size, '_') << '|' << endl;
-	cout << '|' << string(size, ' ') << '|' << endl;
-	cout << '|' << string(14, ' ') << "Ver Sessoes" << string(15, ' ') << '|' << endl;
-	cout << '|' << string(size, '_') << '|' << endl;
-	cout << "  1 - Ver todas\n";
-	cout << "  2 - Escolher Sessao\n";
-	cout << "  3 - Return\n";
-	cout << ' ' << string(size, '-') << endl;
-	cout << "Escolha opcao: ";
-}
-
-void menu_ver_sessoes(Empresa * empresa){
-	bool valid_input, done = false;
-	int option;
-
-	while (!done) {
-		draw_menu_ver_sessoes();
-		valid_input = false;
-		while (!valid_input) {
-			try {option = read_number_Input();}
-			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
-			valid_input = true;
-		}
-
-		switch (option) {
 		case 1: //Ver todas
 			empresa->printSessoes();
 			break;
-		case 2: //Escolher sessao
-
+		case 2: //Escolher Sessao
+			//menu_sessao(empresa->escolher_sessao());
 			break;
-		case 3: //Exit
+		case 3: //adicionar
+			empresa->adicionar_sessao();
+			break;
+		case 4: //remover
+			//empresa->remover_sessao();
+			break;
+		case 5: //Ordenar por data e arte
+			empresa->sortSessoes(by_date_and_art);
+			break;
+		case 6: //Return
 			done=true;
 			break;
 		}
 	}
 }
+
+
+void draw_menu_sessao(Sessao * sessao){
+	clear_scrn();
+	cout << ' ' << string(size, '_') << endl;
+	cout << '|' << string(size, ' ') << '|' << endl;
+	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
+	cout << '|' << string(size, '_') << '|' << endl;
+	cout << '|' << string(size, ' ') << '|' << endl;
+	cout << '|' << string(15, ' ') << "Candidato" << string(16, ' ') << '|' << endl;
+	cout << '|' << string(size, '_') << '|' << endl;
+	cout  << "Arte: " << sessao->getArtePerformativa() << endl;
+	cout << "Jurado responsavel: " << sessao->getJurados()[0]->getNome() << "Telemovel: " << sessao->getJurados()[0]->getTelemovel() << endl;
+	cout << "Jurado: " << sessao->getJurados()[1]->getNome() << "Telemovel: " << sessao->getJurados()[1]->getTelemovel() << endl;
+	cout << "Jurado: " << sessao->getJurados()[2]->getNome() << "Telemovel: " << sessao->getJurados()[2]->getTelemovel() << endl;
+	cout << "Data: " << sessao->getData() << endl;
+
+	cout << "  1 - Gerar Primeira Fase\n"; //TODO tornar menu dinâmico para sessoes validas/invalidas
+	cout << "  2 - Gerar Segunda Fase\n";
+	cout << "  3 - Adicionar Candidato\n";
+	cout << "  4 - Remover Candidato\n";
+	cout << "  5 - Alterar data\n";
+	cout << "  6 - Return\n";
+	cout << ' ' << string(size, '-') << endl;
+	cout << "Escolha opcao: ";
+}
+
+void menu_sessao(Sessao * sessao){
+	bool valid_input, done = false;
+	int option;
+
+	while (!done) {
+		draw_menu_sessao(sessao);
+		valid_input = false;
+		while (!valid_input) {
+			try {option = read_number_Input();}
+			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
+			valid_input = true;
+		}
+
+		switch (option) {
+		case 1: //Gerar Primeira Fase
+
+			break;
+		case 2: //Gerar Segunda Fase
+
+			break;
+		case 3: //Adicionar Candidato
+
+			break;
+		case 4: //Remover Candidato
+
+			break;
+		case 5: //Alterar data
+
+			break;
+		case 6: //Return
+			done=true;
+			break;
+		}
+	}
+}
+
