@@ -177,7 +177,7 @@ void menu_gerir_candidatos(Empresa * empresa){
 			empresa->remover_candidato();
 			break;
 		case 5: //Ordenar
-			//menu_ordenar_candidatos();
+			menu_ordenar_candidatos(empresa);
 			break;
 		case 6: //Return
 			done=true;
@@ -248,6 +248,57 @@ void menu_candidato(Candidato * candidato){
 }
 
 
+void draw_menu_ordenar_candidatos(){
+	clear_scrn();
+	cout << ' ' << string(size, '_') << endl;
+	cout << '|' << string(size, ' ') << '|' << endl;
+	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
+	cout << '|' << string(size, '_') << '|' << endl;
+	cout << '|' << string(size, ' ') << '|' << endl;
+	cout << '|' << string(11, ' ') << "Ordenar Candidatos" << string(11, ' ') << '|' << endl;
+	cout << '|' << string(size, '_') << '|' << endl;
+	cout << "  1 - Por nome\n";
+	cout << "  2 - Por nome e arte\n";
+	cout << "  3 - Por idade e arte\n";
+	cout << "  4 - Return\n";
+	cout << ' ' << string(size, '-') << endl;
+	cout << "Escolha opcao: ";
+}
+
+void menu_ordenar_candidatos(Empresa * empresa){
+	bool valid_input, done = false;
+	int option;
+
+	while (!done) {
+		draw_menu_gerir_candidatos();
+		valid_input = false;
+		while (!valid_input) {
+			try {option = read_number_Input();}
+			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
+			valid_input = true;
+		}
+
+		switch (option) {
+		case 1: //Por nome
+			empresa->sortCandidatos(by_name);
+			done=true;
+			break;
+		case 2: //Por nome e arte
+			empresa->sortCandidatos(by_name_and_art);
+			done=true;
+			break;
+		case 3: //Por idade e arte
+			empresa->sortCandidatos(by_age_and_art);
+			done=true;
+			break;
+		case 4: //Return
+			done=true;
+			break;
+		}
+	}
+}
+
+
 
 //===========================//
 //          Jurados          //
@@ -299,7 +350,7 @@ void menu_gerir_jurados(Empresa * empresa){
 			empresa->remover_jurado();
 			break;
 		case 5: //Ordenar
-			//menu_ordenar_jurados();
+			menu_ordenar_jurados(empresa);
 			break;
 		case 6: //Return
 			done=true;
@@ -367,6 +418,53 @@ void menu_jurado(Jurado * jurado){
 			done=true;
 			break;
 		}
+	}
+}
+
+
+void draw_menu_ordenar_jurados(){
+	clear_scrn();
+	cout << ' ' << string(size, '_') << endl;
+	cout << '|' << string(size, ' ') << '|' << endl;
+	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
+	cout << '|' << string(size, '_') << '|' << endl;
+	cout << '|' << string(size, ' ') << '|' << endl;
+	cout << '|' << string(12, ' ') << "Ordenar Jurados" << string(13, ' ') << '|' << endl;
+	cout << '|' << string(size, '_') << '|' << endl;
+	cout << "  1 - Por nome\n";
+	cout << "  2 - Por nome e arte\n";
+	cout << "  3 - Return\n";
+	cout << ' ' << string(size, '-') << endl;
+	cout << "Escolha opcao: ";
+}
+
+void menu_ordenar_jurados(Empresa * empresa){
+	bool valid_input, done = false;
+	int option;
+
+	while (!done) {
+		draw_menu_gerir_jurados();
+		valid_input = false;
+		while (!valid_input) {
+			try {option = read_number_Input();}
+			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
+			valid_input = true;
+		}
+
+		switch (option) {
+		case 1: //Por nome
+			empresa->sortJurados(by_name);
+			done=true;
+			break;
+		case 2: //Por nome e arte
+			empresa->sortJurados(by_name_and_art);
+			done=true;
+			break;
+		case 3: //Return
+			done=true;
+			break;
+		}
+
 	}
 }
 

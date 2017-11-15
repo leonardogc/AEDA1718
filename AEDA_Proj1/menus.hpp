@@ -32,6 +32,9 @@ void menu_gerir_candidatos(Empresa * empresa);
 void draw_menu_candidato(Candidato * candidato);
 void menu_candidato(Candidato * candidato);
 
+void draw_menu_ordenar_candidatos();
+void menu_ordenar_candidatos(Empresa * empresa);
+
 
 //===========================//
 //          Jurados          //
@@ -43,6 +46,8 @@ void menu_gerir_jurados(Empresa * empresa);
 void draw_menu_jurado(Jurado * jurado);
 void menu_jurado(Jurado * jurado);
 
+void draw_menu_ordenar_jurados();
+void menu_ordenar_jurados(Empresa * empresa);
 
 //===========================//
 //          Sessoes          //
