@@ -829,7 +829,7 @@ void Empresa::remover_jurado(){
 }
 
 void Empresa::remover_candidato(){
-	Candidato * candidato = escolher_candidato();
+	Candidato * candidato = this->escolher_candidato();
 	candidato->setValid(false);
 	cout << "O candidato foi removido com sucesso!";
 	cin.ignore();
