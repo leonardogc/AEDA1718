@@ -30,7 +30,7 @@ void changeFileName_menu(string (&ficheiros)[4]) {
 		draw_changeFileName_menu(ficheiros);
 		valid_input = false;
 		while (!valid_input) {
-			try {option = readMenuInput();}
+			try {option = read_number_Input();}
 			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
 			valid_input = true;
 		}
@@ -90,7 +90,7 @@ void main_menu(Empresa * empresa){
 		draw_main_menu();
 		valid_input = false;
 		while (!valid_input) {
-			try {option = readMenuInput();}
+			try {option = read_number_Input();}
 			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
 			valid_input = true;
 		}
@@ -144,7 +144,7 @@ void menu_ver_info(Empresa * empresa){
 		draw_menu_ver_info();
 		valid_input = false;
 		while (!valid_input) {
-			try {option = readMenuInput();}
+			try {option = read_number_Input();}
 			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
 			valid_input = true;
 		}
@@ -191,7 +191,7 @@ void menu_gerir_candidatos(Empresa * empresa){
 		draw_menu_gerir_candidatos();
 		valid_input = false;
 		while (!valid_input) {
-			try {option = readMenuInput();}
+			try {option = read_number_Input();}
 			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
 			valid_input = true;
 		}
@@ -239,7 +239,7 @@ void menu_gerir_jurados(Empresa * empresa){
 		draw_menu_gerir_jurados();
 		valid_input = false;
 		while (!valid_input) {
-			try {option = readMenuInput();}
+			try {option = read_number_Input();}
 			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
 			valid_input = true;
 		}
@@ -286,7 +286,7 @@ void menu_gerir_sessoes(Empresa * empresa){
 		draw_menu_gerir_sessoes();
 		valid_input = false;
 		while (!valid_input) {
-			try {option = readMenuInput();}
+			try {option = read_number_Input();}
 			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
 			valid_input = true;
 		}
@@ -336,7 +336,7 @@ void menu_ver_candidatos(Empresa * empresa){
 		draw_menu_ver_candidatos();
 		valid_input = false;
 		while (!valid_input) {
-			try {option = readMenuInput();}
+			try {option = read_number_Input();}
 			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
 			valid_input = true;
 		}
@@ -378,7 +378,7 @@ void menu_ver_jurados(Empresa * empresa){
 		draw_menu_ver_jurados();
 		valid_input = false;
 		while (!valid_input) {
-			try {option = readMenuInput();}
+			try {option = read_number_Input();}
 			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
 			valid_input = true;
 		}
@@ -421,7 +421,7 @@ void menu_ver_sessoes(Empresa * empresa){
 		draw_menu_ver_sessoes();
 		valid_input = false;
 		while (!valid_input) {
-			try {option = readMenuInput();}
+			try {option = read_number_Input();}
 			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
 			valid_input = true;
 		}

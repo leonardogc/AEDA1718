@@ -8,7 +8,7 @@ bool is_number(const std::string& s)
     return !s.empty() && it == s.end();
 }
 
-int readMenuInput() {
+int read_number_Input() {
 	string input;
 	int option;
 	getline(cin, input);

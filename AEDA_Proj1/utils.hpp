@@ -39,7 +39,7 @@ namespace castingspace
 
 extern const string default_files[4];
 
-int readMenuInput();
+int read_number_Input();
 
 void clear_scrn();
 

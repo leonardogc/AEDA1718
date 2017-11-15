@@ -683,20 +683,33 @@ void Empresa::printSessoes(){
 Candidato *  Empresa::escolher_candidato(){
 	clear_scrn();
 	int id;
-	bool verifica = false;
 
-	cout << "Introduza o id do candidato: " << endl;
-	cin >> id;
-	do{
-	for(unsigned int i = 0; i < candidatos.size(); i++){
-		if(candidatos.at(i)->getNumInscricao() == id){
-			cout << "O candidato e valido!" << endl;
-			verifica = true;
-			return candidatos.at(i);
+	while(true){
+		printCandidatos();
+
+		cout << "Introduza o id do candidato: " << endl;
+
+		while(true){
+			try{
+				id = read_number_Input();
+			}
+			catch(invalid_argument &e){
+				cout << "Introduziu um numero invalido! \nIntroduza novamente: ";
+				continue;
+			}
+			break;
 		}
-		else
-			cout << "Introduziu um id que nao existe!" << endl;
-	}}while(verifica == false);
+
+
+		for(unsigned int i = 0; i < candidatos.size(); i++){
+			if(candidatos[i]->getNumInscricao() == id){
+				cout << "O candidato e valido!" << endl;
+				return candidatos[i];
+			}
+		}
+
+		cout << "Introduziu um id que nao existe!" << endl;
+	}
 }
 
 Jurado *  Empresa::escolher_jurado(){
@@ -710,7 +723,7 @@ Jurado *  Empresa::escolher_jurado(){
 		while(true)
 		{
 			try{
-				telemovel = readMenuInput();
+				telemovel = read_number_Input();
 			}
 			catch(invalid_argument &e){
 				cout << "Introduziu um numero de telemovel invalido! \nIntroduza novamente: ";
@@ -767,7 +780,7 @@ void Empresa::adicionar_jurado(){
 	while(true)
 	{
 		try{
-			telemovel = readMenuInput();
+			telemovel = read_number_Input();
 		}
 		catch(invalid_argument &e){
 			cout << "Introduziu um numero de telemovel invalido! Introduza novamente: ";
