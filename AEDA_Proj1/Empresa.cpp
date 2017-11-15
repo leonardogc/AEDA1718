@@ -702,21 +702,35 @@ Candidato *  Empresa::escolher_candidato(){
 Jurado *  Empresa::escolher_jurado(){
 	clear_scrn();
 	int telemovel;
-	bool verifica = false;
-	do{
-	cout << "Introduza o numero de telemovel do jurado: " << endl;
-	cin >> telemovel;
 
-	for(unsigned int i = 0; i < jurados.size(); i++){
-		if(jurados.at(i)->getTelemovel() == telemovel){
-			cout << "O jurado e valido!" << endl;
-			verifica = true;
-			return jurados.at(i);
+	while(true){
+		printJurados();
+		cout << "Introduza o numero de telemovel do jurado: " << endl;
+
+		while(true)
+		{
+			try{
+				telemovel = readMenuInput();
+			}
+			catch(invalid_argument &e){
+				cout << "Introduziu um numero de telemovel invalido! \nIntroduza novamente: ";
+				continue;
+			}
+			if(numbr_size(telemovel) != 9){
+				cout << "Introduziu um numero de telemovel invalido! \nIntroduza novamente: ";
+				continue;
+			}
+			break;
 		}
-		else
-		cout << "Introduziu um telemovel que nao existe!" << endl;
+
+		for(unsigned int i = 0; i < jurados.size(); i++){
+			if(jurados[i]->getTelemovel() == telemovel){
+				cout << "O jurado e valido!" << endl;
+				return jurados[i];
+			}
+		}
+			cout << "Introduziu um telemovel que nao existe!" << endl;
 	}
-	}while(verifica == false);
 }
 
 void Empresa::adicionar_candidato(){
