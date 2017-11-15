@@ -679,13 +679,6 @@ void Empresa::printSessoes(){
 	cin.ignore();
 }
 
-void Empresa::adicionar_candidato(Candidato *c){
-	candidatos.push_back(c);
-}
-
-void Empresa::adicionar_jurado(Jurado *j){
-	jurados.push_back(j);
-}
 
 Candidato *  Empresa::escolher_candidato(){
 	clear_scrn();
@@ -726,7 +719,7 @@ Jurado *  Empresa::escolher_jurado(){
 	}while(verifica == false);
 }
 
-string  Empresa::adicionar_candidato(){
+void Empresa::adicionar_candidato(){
 	string nome, dataNascimento, generoArte, morada;
 
 	cout << "Introduza o nome do candidato: ";
@@ -738,13 +731,14 @@ string  Empresa::adicionar_candidato(){
 	cout << "Introduza a sua cidade de morada: ";
 	getline(cin, morada);
 
-	Candidato novoCandidato(nome, morada, generoArte, dataNascimento);
-	this->adicionar_candidato(&novoCandidato);
+	candidatos.push_back(new Candidato(nome, morada, generoArte, dataNascimento));
 
-	return "Foi introduzido um novo candidato com sucesso!";
+	cout << "Foi introduzido um novo candidato com sucesso!";
+
+	cin.ignore();
 }
 
-string  Empresa::adicionar_jurado(){
+void Empresa::adicionar_jurado(){
 	string nome, generoArte, morada;
 	int  telemovel;
 
@@ -755,23 +749,31 @@ string  Empresa::adicionar_jurado(){
 	cout << "Introduza a cidade de morada: ";
 	getline(cin, morada);
 	cout << "Introduza o numero de telemovel: ";
-	do{
-	try{
-		telemovel = readMenuInput();
+
+	while(true)
+	{
+		try{
+			telemovel = readMenuInput();
+		}
+		catch(invalid_argument &e){
+			cout << "Introduziu um numero de telemovel invalido! Introduza novamente: ";
+			continue;
+		}
+		if(numbr_size(telemovel) != 9){
+			cout << "Introduziu um numero de telemovel invalido! Introduza novamente: ";
+			continue;
+		}
+		break;
 	}
-	catch(invalid_argument &e){
-		cout << "Introduziu um numero de telemovel invalido! Introduza novamente: ";
-		continue;}
-	break;
-	}while(true);
-	Jurado novoJurado(nome, morada, generoArte, telemovel);
 
-	this->adicionar_jurado(&novoJurado);
+	jurados.push_back(new Jurado (nome, morada, generoArte, telemovel));
 
-	return "Foi introduzido um novo jurado com sucesso!";
+	cout << "Foi introduzido um novo jurado com sucesso!";
+
+	cin.ignore();
 }
 
-string  Empresa::adicionar_sessao(){
+void Empresa::adicionar_sessao(){
 //Selecionar tres jurados em que o primeiro é o responsável
 	//selecionar data
 	//selecionar arte
@@ -791,13 +793,13 @@ string  Empresa::adicionar_sessao(){
 	return res;
 }
 
-string  Empresa::remover_jurado(){
+void Empresa::remover_jurado(){
 	Jurado * jurado = this->escolher_jurado();
 	jurado->setValid(false);
 	return "O jurado foi removido com sucesso!";
 }
 
-string Empresa::remover_candidato(){
+void Empresa::remover_candidato(){
 	Candidato * candidato = escolher_candidato();
 	candidato->setValid(false);
 	return "O candidato foi removido com sucesso!";

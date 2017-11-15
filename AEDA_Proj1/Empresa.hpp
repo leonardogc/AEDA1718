@@ -37,8 +37,6 @@ public:
 	void printSessoes();
 
 	void remove_candidato(int id);
-	void adicionar_candidato(Candidato *c);
-	void adicionar_jurado(Jurado *j);
 
 	void save_files(string (&nomes)[4]);
 
@@ -48,11 +46,11 @@ public:
 
 	Candidato* escolher_candidato();
 	Jurado*  escolher_jurado();
-	string adicionar_candidato();
-	string adicionar_jurado();
-	string adicionar_sessao();
-	string remover_jurado();
-	string remover_candidato();
+	void adicionar_candidato();
+	void adicionar_jurado();
+	void adicionar_sessao();
+	void remover_jurado();
+	void remover_candidato();
 };
 
 void sortBy_points_in_session(vector<Candidato> &candidatos, string const &dataSessao);
