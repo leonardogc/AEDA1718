@@ -788,21 +788,24 @@ void Empresa::adicionar_sessao(){
 
 	Sessao novaSessao(avaliadores, arte, data);
 
-	string res;
-	res  = "Foi criada uma nova sessao com sucesso!";
-	return res;
+
+	cout << "Foi criada uma nova sessao com sucesso!";
+
+	cin.ignore();
 }
 
 void Empresa::remover_jurado(){
 	Jurado * jurado = this->escolher_jurado();
 	jurado->setValid(false);
-	return "O jurado foi removido com sucesso!";
+	cout << "O jurado foi removido com sucesso!";
+	cin.ignore();
 }
 
 void Empresa::remover_candidato(){
 	Candidato * candidato = escolher_candidato();
 	candidato->setValid(false);
-	return "O candidato foi removido com sucesso!";
+	cout << "O candidato foi removido com sucesso!";
+	cin.ignore();
 }
 
 
