@@ -33,9 +33,6 @@ namespace castingspace
 
 		//date is sorted chronologically; art is sorted from a to z | elements are grouped by art and ordered chronologically in the same art
 		by_date_and_art,	//used for sessoes
-
-		//
-		by_phase_and_position //used for participacoes
 	};
 }
 
