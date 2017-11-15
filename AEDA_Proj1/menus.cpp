@@ -518,11 +518,10 @@ string adicionar_jurado(Empresa * empresa){
 	break;
 	}while(true);
 	Jurado novoJurado(nome, morada, generoArte, telemovel);
-	empresa->getJurados().push_back(&novoJurado);
 
-	string res;
-	res  = "Foi introduzido um novo jurado com sucesso!";
-	return res;
+	empresa->adicionar_jurado(&novoJurado);
+
+	return "Foi introduzido um novo jurado com sucesso!";
 }
 
 string adicionar_sessao(Empresa * empresa){

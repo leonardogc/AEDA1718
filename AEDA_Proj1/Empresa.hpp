@@ -38,6 +38,7 @@ public:
 
 	void remove_candidato(int id);
 	void adicionar_candidato(Candidato *c);
+	void adicionar_jurado(Jurado *j);
 
 	void save_files(string (&nomes)[4]);
 

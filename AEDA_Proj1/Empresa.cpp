@@ -683,3 +683,7 @@ void Empresa::adicionar_candidato(Candidato *c){
 	candidatos.push_back(c);
 }
 
+void Empresa::adicionar_jurado(Jurado *j){
+	candidatos.push_back(j);
+}
+
