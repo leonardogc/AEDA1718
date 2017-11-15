@@ -540,7 +540,7 @@ void Empresa::remove_candidato(int id){
 }
 
 
-void Empresa::sortJurados(castingspace::sort_t const & by)
+void Empresa::sortJurados(sort_t const & by)
 {
 	switch(by)
 	{
@@ -563,7 +563,7 @@ void Empresa::sortJurados(castingspace::sort_t const & by)
 	}
 }
 
-void Empresa::sortSessoes(castingspace::sort_t const & by)
+void Empresa::sortSessoes(sort_t const & by)
 {
 	switch(by)
 	{
@@ -581,7 +581,7 @@ void Empresa::sortSessoes(castingspace::sort_t const & by)
 	}
 }
 
-void Empresa::sortCandidatos(castingspace::sort_t const & by)
+void Empresa::sortCandidatos(sort_t const & by)
 {
 	switch(by)
 	{

@@ -91,6 +91,3 @@ ostream& operator <<(ostream & os, const Candidato *c){
 	return os;
 }
 
-void Candidato::sortParticipacoes(sort_t const & by){
-
-}

@@ -35,8 +35,6 @@ public:
 	bool operator == (const Candidato &c) const;
 
 	friend ostream& operator <<(ostream & os,const Candidato *c);
-
-	void sortParticipacoes(castingspace::sort_t const & by);
 };
 
 ostream& operator <<(ostream & os, const Candidato *c);
