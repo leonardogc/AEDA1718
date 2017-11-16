@@ -512,8 +512,8 @@ void menu_gerir_sessoes(Empresa * empresa){
 		case 1: //Ver todas
 			empresa->printSessoes();
 			break;
-		case 2: //TODO empresa->Escolher Sessao
-			//menu_sessao(empresa->escolher_sessao());
+		case 2: //empresa->Escolher Sessao
+			menu_sessao(empresa->escolher_sessao());
 			break;
 		case 3: //Adicionar Sessao
 			empresa->adicionar_sessao();
@@ -541,11 +541,11 @@ void draw_menu_sessao(Sessao * sessao){
 	cout << '|' << string(size, ' ') << '|' << endl;
 	cout << '|' << string(15, ' ') << "Candidato" << string(16, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
-	cout  << "Arte: " << sessao->getArtePerformativa() << endl;
-	cout << "Jurado responsavel: " << sessao->getJurados()[0]->getNome() << "Telemovel: " << sessao->getJurados()[0]->getTelemovel() << endl;
-	cout << "Jurado: " << sessao->getJurados()[1]->getNome() << "Telemovel: " << sessao->getJurados()[1]->getTelemovel() << endl;
-	cout << "Jurado: " << sessao->getJurados()[2]->getNome() << "Telemovel: " << sessao->getJurados()[2]->getTelemovel() << endl;
-	cout << "Data: " << sessao->getData() << endl;
+	cout  << "\nArte: " << sessao->getArtePerformativa() << endl;
+	cout << "Jurado responsavel: " << sessao->getJurados()[0]->getNome() << "      Telemovel: " << sessao->getJurados()[0]->getTelemovel() << endl;
+	cout << "Jurado: " << sessao->getJurados()[1]->getNome() << "      Telemovel: " << sessao->getJurados()[1]->getTelemovel() << endl;
+	cout << "Jurado: " << sessao->getJurados()[2]->getNome() << "      Telemovel: " << sessao->getJurados()[2]->getTelemovel() << endl;
+	cout << "Data: " << sessao->getData() << "\n\n";
 
 	cout << "  1 - Gerar Primeira Fase\n"; //TODO tornar menu dinâmico para sessoes validas/invalidas
 	cout << "  2 - Gerar Segunda Fase\n";

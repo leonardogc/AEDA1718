@@ -660,6 +660,7 @@ void Empresa::printJurados(){
 		cout << jurados[i];
 	}
 
+	cout << "\n\nPressione alguma tecla para continuar...\n";
 	cin.ignore();
 }
 
@@ -677,6 +678,7 @@ void Empresa::printCandidatos(){
 		cout << candidatos[i];
 	}
 
+	cout << "\n\nPressione alguma tecla para continuar...\n";
 	cin.ignore();
 }
 
@@ -690,15 +692,16 @@ void Empresa::printSessoes(){
 		cout << sessoes[i];
 	}
 
+	cout << "\n\nPressione alguma tecla para continuar...\n";
 	cin.ignore();
 }
 
 
 Candidato *  Empresa::escolher_candidato(){
-	clear_scrn();
 	int id;
 
 	while(true){
+		clear_scrn();
 		printCandidatos();
 
 		cout << "Introduza o id do candidato: " << endl;
@@ -726,11 +729,58 @@ Candidato *  Empresa::escolher_candidato(){
 	}
 }
 
+Sessao *  Empresa::escolher_sessao(){
+	string arte;
+	bool found = false;
+	string data;
+
+	while(!found){
+		clear_scrn();
+		printSessoes();
+
+		cout << "Introduza o género de arte: " << endl;
+
+		getline(cin, arte);
+
+
+		for(unsigned int i = 0; i < sessoes.size(); i++){
+			if(sessoes[i]->getArtePerformativa() == arte){
+				cout << "O genero de arte e valido!" << endl;
+				found = true;
+			}
+		}
+
+		if(!found){
+			cout << "genero de arte invalido" << endl;
+		}
+	}
+
+		found = false;
+
+		while(!found){
+			cout << "Introduza a data: " << endl;
+
+			getline(cin, data);
+
+			for(unsigned int i = 0; i < sessoes.size(); i++){
+				if((sessoes[i]->getArtePerformativa() == arte) && (sessoes[i]->getData() == data)){
+					cout << "A sessao e valido!" << endl;
+					found = true;
+					return sessoes[i];
+				}
+			}
+
+			if(!found){
+				cout << "data invalida" << endl;
+			}
+		}
+}
+
 Jurado *  Empresa::escolher_jurado(){
-	clear_scrn();
 	int telemovel;
 
 	while(true){
+		clear_scrn();
 		printJurados();
 		cout << "Introduza o numero de telemovel do jurado: " << endl;
 
@@ -776,6 +826,8 @@ void Empresa::adicionar_candidato(){
 
 	cout << "Foi introduzido um novo candidato com sucesso!";
 
+	cout << "\n\nPressione alguma tecla para continuar...\n";
+
 	cin.ignore();
 }
 
@@ -811,6 +863,8 @@ void Empresa::adicionar_jurado(){
 
 	cout << "Foi introduzido um novo jurado com sucesso!";
 
+	cout << "\n\nPressione alguma tecla para continuar...\n";
+
 	cin.ignore();
 }
 
@@ -832,6 +886,7 @@ void Empresa::adicionar_sessao(){
 
 	cout << "Foi criada uma nova sessao com sucesso!";
 
+	cout << "\n\nPressione alguma tecla para continuar...\n";
 	cin.ignore();
 }
 
@@ -839,6 +894,7 @@ void Empresa::remover_jurado(){
 	Jurado * jurado = this->escolher_jurado();
 	jurado->setValid(false);
 	cout << "O jurado foi removido com sucesso!";
+	cout << "\n\nPressione alguma tecla para continuar...\n";
 	cin.ignore();
 }
 
@@ -846,6 +902,7 @@ void Empresa::remover_candidato(){
 	Candidato * candidato = this->escolher_candidato();
 	candidato->setValid(false);
 	cout << "O candidato foi removido com sucesso!";
+	cout << "\n\nPressione alguma tecla para continuar...\n";
 	cin.ignore();
 }
 

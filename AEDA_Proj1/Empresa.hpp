@@ -66,6 +66,7 @@ public:
 
 	Candidato* escolher_candidato();
 	Jurado*  escolher_jurado();
+	Sessao *  escolher_sessao();
 	void adicionar_candidato();
 	void adicionar_jurado();
 	void adicionar_sessao();
