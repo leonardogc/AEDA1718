@@ -89,3 +89,35 @@ void Candidato::printParticipacoes(){
 		cin.ignore();
 }
 
+void Candidato::alterarMorada(){
+
+		string morada;
+
+		while(true)
+		{
+			clear_scrn();
+			cout << "Introduza uma nova morada: ";
+
+			getline(cin, morada);
+
+			if(morada.size() > 0){
+				break;
+			}
+			else{
+				cout << "Introduziu uma morada invalida!";
+
+				cout << "\n\nPressione alguma tecla para continuar...\n";
+
+				cin.ignore();
+				continue;
+			}
+		}
+
+		this->morada = morada;
+		cout << "A morada foi alterada com sucesso!";
+
+		cout << "\n\nPressione alguma tecla para continuar...\n";
+
+		cin.ignore();
+}
+

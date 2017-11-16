@@ -30,6 +30,8 @@ public:
 
 	void printParticipacoes();
 
+	void alterarMorada();
+
 	friend ostream& operator <<(ostream & os,const Candidato *c);
 };
 

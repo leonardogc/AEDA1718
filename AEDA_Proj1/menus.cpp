@@ -233,8 +233,8 @@ void menu_candidato(Candidato * candidato){
 		case 2: //TODO pessoa->Alterar nome
 
 			break;
-		case 3: //TODO pessoa->Alterar morada
-
+		case 3: //pessoa->Alterar morada
+			candidato->alterarMorada();
 			break;
 		case 4: //?
 
