@@ -404,11 +404,11 @@ void menu_jurado(Jurado * jurado){
 		case 1: //?
 
 			break;
-		case 2: //TODO pessoa->Alterar nome
+		case 2: //TODO juri->Alterar nome
 
 			break;
-		case 3: //TODO pessoa->Alterar morada
-
+		case 3: //juri->Alterar morada
+			jurado->alterarMorada();
 			break;
 		case 4: //juri->Alterar telemovel
 			jurado->alterarTelemovel();

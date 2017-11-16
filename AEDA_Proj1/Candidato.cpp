@@ -85,6 +85,7 @@ void Candidato::printParticipacoes(){
 			cout << participacoes[i];
 		}
 
+		cout << "\n\nPressione alguma tecla para continuar...\n";
 		cin.ignore();
 }
 

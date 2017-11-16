@@ -30,7 +30,7 @@ bool Jurado::operator ==(Jurado jurado){
 
 void Jurado::alterarTelemovel(){
 
-		int  telemovel;
+		int telemovel;
 
 		while(true)
 		{
@@ -60,6 +60,42 @@ void Jurado::alterarTelemovel(){
 
 		this->telemovel = telemovel;
 		cout << "O numero de telemovel foi alterado com sucesso!";
+
+		cout << "\n\nPressione alguma tecla para continuar...\n";
+
+		cin.ignore();
+}
+
+void Jurado::alterarMorada(){
+
+		string morada;
+
+		while(true)
+		{
+			clear_scrn();
+			cout << "Introduza uma nova morada: ";
+
+			getline(cin, morada);
+
+			if(morada.size() > 0){
+				break;
+			}
+			else{
+				cout << "Introduziu uma morada invalida!";
+
+				cout << "\n\nPressione alguma tecla para continuar...\n";
+
+				cin.ignore();
+				continue;
+			}
+		}
+
+		this->morada = morada;
+		cout << "A morada foi alterada com sucesso!";
+
+		cout << "\n\nPressione alguma tecla para continuar...\n";
+
+		cin.ignore();
 }
 
 
