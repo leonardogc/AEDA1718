@@ -12,6 +12,10 @@ string Sessao::getData() const{
 	return this->data;
 }
 
+bool Sessao::getStatus() const{
+	return this->changeable;
+}
+
 void Sessao::setJurados(vector <Jurado *> jur){
 
 }
@@ -24,10 +28,15 @@ void Sessao::setData(string data){
 	this->data = data;
 }
 
-Sessao::Sessao(vector<Jurado *> jurados,string artePerformativa, string data){
+void Sessao::setStatus(bool status){
+	this->changeable = status;
+}
+
+Sessao::Sessao(vector<Jurado *> jurados,string artePerformativa, string data, bool changeable){
 	this->jurados = jurados;
 	this->artePerformativa = artePerformativa;
 	this->data = data;
+	this->changeable = changeable;
 }
 
 bool Sessao::operator== (Sessao sessao) const{

@@ -11,24 +11,24 @@
 
 namespace castingspace
 {
-	/**
-	 * Enum type used in the sorting methods
-	 */
+/**
+ * Enum type used in the sorting methods
+ */
 
-	enum sort_t // all sorts are for Ascending order
-	{
-		//name is sorted from a to z
-		by_name,			//used for jurados, candidatos
+enum sort_t // all sorts are for Ascending order
+{
+	//name is sorted from a to z
+	by_name,			//used for jurados, candidatos
 
-		//name and art are sorted from a to z | elements are grouped by art and ordered alphabetically in the same art
-		by_name_and_art,	//used for jurados, candidatos
+	//name and art are sorted from a to z | elements are grouped by art and ordered alphabetically in the same art
+	by_name_and_art,	//used for jurados, candidatos
 
-		//age is sorted from younger to older; art is sorted from a to z | elements are grouped by art and ordered by age in the same art
-		by_age_and_art,		//used for candidatos
+	//age is sorted from younger to older; art is sorted from a to z | elements are grouped by art and ordered by age in the same art
+	by_age_and_art,		//used for candidatos
 
-		//date is sorted chronologically; art is sorted from a to z | elements are grouped by art and ordered chronologically in the same art
-		by_date_and_art,	//used for sessoes
-	};
+	//date is sorted chronologically; art is sorted from a to z | elements are grouped by art and ordered chronologically in the same art
+	by_date_and_art,	//used for sessoes
+};
 }
 
 class Empresa {

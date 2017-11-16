@@ -8,7 +8,7 @@ Pessoa(nome, morada, generoArte)
 }
 
 Jurado::Jurado(string nome, string  morada, string  generoArte, int telemovel, bool validade):
-Pessoa(nome, morada, generoArte, validade)
+		Pessoa(nome, morada, generoArte, validade)
 {
 	this->telemovel = telemovel;
 }

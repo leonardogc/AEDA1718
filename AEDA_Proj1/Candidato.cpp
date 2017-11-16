@@ -4,13 +4,13 @@ unsigned int Candidato::numCandidato = 1;
 
 
 Candidato::Candidato(string nome, string  morada, string  generoArte, string dataNascimento):
-		Pessoa(nome, morada, generoArte), numInscricao(numCandidato++)
+				Pessoa(nome, morada, generoArte), numInscricao(numCandidato++)
 {
 	this->dataNascimento = dataNascimento;
 }
 
 Candidato::Candidato(int nInscricao, string nome, string  morada, string  generoArte, string dataNascimento, bool validade):
-		Pessoa(nome, morada, generoArte, validade), numInscricao(nInscricao)
+				Pessoa(nome, morada, generoArte, validade), numInscricao(nInscricao)
 {
 	this->dataNascimento = dataNascimento;
 	numCandidato++;

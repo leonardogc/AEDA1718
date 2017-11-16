@@ -28,6 +28,7 @@ const Sessao * Participacao::getSessao() const
 {
 	return this->sessao;
 }
+
 bool Participacao::operator== (const Participacao &p) const
 {
 	return ((* (this->sessao)) == (*(p.sessao)) && (this->fase == p.fase));

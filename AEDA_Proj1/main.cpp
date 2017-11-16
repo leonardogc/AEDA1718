@@ -10,7 +10,7 @@ int main(){
 	changeFileName_menu(ficheiros);
 
 	try{
-	empresa = new Empresa(ficheiros);
+		empresa = new Empresa(ficheiros);
 	}
 	catch(InvalidFileNameException &e2){
 		clear_scrn();

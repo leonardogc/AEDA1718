@@ -99,73 +99,73 @@ void Empresa::save_jurados(string &s){
 	}
 }
 
- void Empresa::save_sessoes(string &s){
- 	ofstream file;
- 	string ficheiro = "res/"+s;
+void Empresa::save_sessoes(string &s){
+	ofstream file;
+	string ficheiro = "res/"+s;
 
 
- 	file.open(ficheiro.c_str(), ios::out | ios::trunc);
+	file.open(ficheiro.c_str(), ios::out | ios::trunc);
 
- 	if(file.is_open()){
+	if(file.is_open()){
 
- 		for(unsigned i = 0; i < sessoes.size(); i++){
+		for(unsigned i = 0; i < sessoes.size(); i++){
 
- 			file << sessoes[i]->getJurados()[0]->getTelemovel() << ";";
- 			file << sessoes[i]->getJurados()[1]->getTelemovel() << ";";
- 			file << sessoes[i]->getJurados()[2]->getTelemovel() << ";";
- 			file << sessoes[i]->getArtePerformativa() << ";";
- 			file << sessoes[i]->getData() << ";";
+			file << sessoes[i]->getJurados()[0]->getTelemovel() << ";";
+			file << sessoes[i]->getJurados()[1]->getTelemovel() << ";";
+			file << sessoes[i]->getJurados()[2]->getTelemovel() << ";";
+			file << sessoes[i]->getArtePerformativa() << ";";
+			file << sessoes[i]->getData() << ";";
 
- 			if(i != sessoes.size()-1){
- 				file << "\n";
- 			}
- 		}
+			if(i != sessoes.size()-1){
+				file << "\n";
+			}
+		}
 
- 		file.close();
- 	}
- 	else{
- 		//cout<<"error opening file!"<<endl;
- 		throw(InvalidFileNameException(ficheiro));
- 	}
- }
+		file.close();
+	}
+	else{
+		//cout<<"error opening file!"<<endl;
+		throw(InvalidFileNameException(ficheiro));
+	}
+}
 
- void Empresa::save_participacao(string &s){
-  	ofstream file;
-  	string ficheiro = "res/"+s;
-  	int lines=0;
+void Empresa::save_participacao(string &s){
+	ofstream file;
+	string ficheiro = "res/"+s;
+	int lines=0;
 
 
-  	file.open(ficheiro.c_str(), ios::out | ios::trunc);
+	file.open(ficheiro.c_str(), ios::out | ios::trunc);
 
-  	if(file.is_open()){
+	if(file.is_open()){
 
-  		for(unsigned i = 0; i < candidatos.size(); i++){
-  			for(unsigned i2 = 0; i2 < candidatos[i]->getParticipacoes().size(); i2++){
+		for(unsigned i = 0; i < candidatos.size(); i++){
+			for(unsigned i2 = 0; i2 < candidatos[i]->getParticipacoes().size(); i2++){
 
-  				if(lines != 0){
-  					file << "\n";
-  				}
+				if(lines != 0){
+					file << "\n";
+				}
 
-  				file << candidatos[i]->getNumInscricao() << ";";
-  				file << candidatos[i]->getParticipacoes()[i2]->getFase() << ";";
-  				file << candidatos[i]->getParticipacoes()[i2]->getSessao()->getData() << ";";
-  				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[1] << ";";
-  				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[2] << ";";
-  				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[3] << ";";
-  				file << candidatos[i]->getParticipacoes()[i2]->getPosicao() << ";";
+				file << candidatos[i]->getNumInscricao() << ";";
+				file << candidatos[i]->getParticipacoes()[i2]->getFase() << ";";
+				file << candidatos[i]->getParticipacoes()[i2]->getSessao()->getData() << ";";
+				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[1] << ";";
+				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[2] << ";";
+				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[3] << ";";
+				file << candidatos[i]->getParticipacoes()[i2]->getPosicao() << ";";
 
-  				lines++;
+				lines++;
 
-  				}
-  			}
+			}
+		}
 
-  		file.close();
-  	}
-  	else{
-  		//cout<<"error opening file!"<<endl;
-  		throw(InvalidFileNameException(ficheiro));
-  	}
- }
+		file.close();
+	}
+	else{
+		//cout<<"error opening file!"<<endl;
+		throw(InvalidFileNameException(ficheiro));
+	}
+}
 
 void Empresa::load_jurados(string &s){
 	ifstream file;
@@ -243,6 +243,7 @@ void Empresa::load_sessoes(string &s){
 	string ficheiro = "res/"+s, line, artePerformativa, data;
 	vector<Jurado *> jurados;
 	int numTelemJurado1, numTelemJurado2, numTelemJurado3;
+	bool changeable;
 
 	file.open(ficheiro.c_str());
 
@@ -293,6 +294,19 @@ void Empresa::load_sessoes(string &s){
 			ss.str(string());
 			ss.clear();
 
+			//changeable
+
+			parse_line(line, ss);
+			if(ss.str() == "changeable"){
+				changeable = true;
+			}
+			else{
+				changeable = false;
+			}
+
+			ss.str(string());
+			ss.clear();
+
 			jurados.clear();
 
 			for (unsigned i=0; i< this->jurados.size();i++){
@@ -313,7 +327,7 @@ void Empresa::load_sessoes(string &s){
 				}
 			}
 
-			sessoes.push_back(new Sessao(jurados, artePerformativa, data));
+			sessoes.push_back(new Sessao(jurados, artePerformativa, data, changeable));
 		}
 		file.close();
 
@@ -742,7 +756,7 @@ Jurado *  Empresa::escolher_jurado(){
 				return jurados[i];
 			}
 		}
-			cout << "Introduziu um telemovel que nao existe!" << endl;
+		cout << "Introduziu um telemovel que nao existe!" << endl;
 	}
 }
 
@@ -801,7 +815,7 @@ void Empresa::adicionar_jurado(){
 }
 
 void Empresa::adicionar_sessao(){
-//Selecionar tres jurados em que o primeiro é o responsável
+	//Selecionar tres jurados em que o primeiro é o responsável
 	//selecionar data
 	//selecionar arte
 
@@ -813,7 +827,7 @@ void Empresa::adicionar_sessao(){
 	cout << "Introduza a data da sessao: ";
 	getline(cin, arte);
 
-	Sessao novaSessao(avaliadores, arte, data);
+	Sessao novaSessao(avaliadores, arte, data, true);
 
 
 	cout << "Foi criada uma nova sessao com sucesso!";

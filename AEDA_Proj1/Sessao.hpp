@@ -13,20 +13,22 @@ private:
 	vector<Jurado *> jurados; // maximo de 3 jurados
 	string artePerformativa;
 	string data; //simple string dd/mm/aaaa
-
+	bool changeable; //cangeable sessions can be changed because no phase has been generated
 public:
 	//construtor
-	Sessao(vector<Jurado *> jurados,string artePerformativa, string data);
+	Sessao(vector<Jurado *> jurados,string artePerformativa, string data, bool changeable);
 
 	//métodos get
 	vector<Jurado *> getJurados() const;
 	string getArtePerformativa() const;
 	string getData() const;
+	bool getStatus() const;
 
 	//metodos set
 	void setJurados(vector <Jurado *> jur);
 	void setArtePerformativa(string artePerformativa);
 	void setData(string data);
+	void setStatus(bool status);
 
 	//operadores
 	bool operator== (Sessao sessao) const;
