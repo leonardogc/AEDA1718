@@ -35,6 +35,6 @@ public:
 };
 
 
-bool isValidDate(string date);
+bool isValidDate(string date); //TODO use on date stuff...
 
 #endif /* UTILS_HPP_ */

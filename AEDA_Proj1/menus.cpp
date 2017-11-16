@@ -225,13 +225,13 @@ void menu_candidato(Candidato * candidato){
 		}
 
 		switch (option) {
-		case 1: //Ver Participacoes
+		case 1: //TODO candidato->Ver Participacoes
 
 			break;
-		case 2: //Alterar nome
+		case 2: //TODO pessoa->Alterar nome
 
 			break;
-		case 3: //Alterar morada
+		case 3: //TODO pessoa->Alterar morada
 
 			break;
 		case 4: //?
@@ -402,13 +402,13 @@ void menu_jurado(Jurado * jurado){
 		case 1: //?
 
 			break;
-		case 2: //Alterar nome
+		case 2: //TODO pessoa->Alterar nome
 
 			break;
-		case 3: //Alterar morada
+		case 3: //TODO pessoa->Alterar morada
 
 			break;
-		case 4: //Alterar telemovel
+		case 4: //TODO juri->Alterar telemovel
 
 			break;
 		case 5: //?
@@ -510,13 +510,13 @@ void menu_gerir_sessoes(Empresa * empresa){
 		case 1: //Ver todas
 			empresa->printSessoes();
 			break;
-		case 2: //Escolher Sessao
+		case 2: //TODO empresa->Escolher Sessao
 			//menu_sessao(empresa->escolher_sessao());
 			break;
-		case 3: //adicionar
+		case 3: //Adicionar Sessao
 			empresa->adicionar_sessao();
 			break;
-		case 4: //remover
+		case 4: //TODO empresa->Remover Sessao
 			//empresa->remover_sessao();
 			break;
 		case 5: //Ordenar por data e arte
@@ -569,19 +569,19 @@ void menu_sessao(Sessao * sessao){
 		}
 
 		switch (option) {
-		case 1: //Gerar Primeira Fase
+		case 1: //TODO sessao->Gerar Primeira Fase
 
 			break;
-		case 2: //Gerar Segunda Fase
+		case 2: //TODO sessao->Gerar Segunda Fase
 
 			break;
-		case 3: //Adicionar Candidato
+		case 3: //TODO sessao->Adicionar Candidato
 
 			break;
-		case 4: //Remover Candidato
+		case 4: //TODO sessao->Remover Candidato
 
 			break;
-		case 5: //Alterar data
+		case 5: //TODO sessao->Alterar data
 
 			break;
 		case 6: //Return
