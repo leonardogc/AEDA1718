@@ -2,7 +2,6 @@
 
 unsigned int Candidato::numCandidato = 1;
 
-using namespace castingspace;
 
 Candidato::Candidato(string nome, string  morada, string  generoArte, string dataNascimento):
 		Pessoa(nome, morada, generoArte), numInscricao(numCandidato++)
@@ -41,24 +40,6 @@ bool Candidato::addParticipacao(Participacao * participacao)
 	this->participacoes.push_back(participacao);
 	return true;
 }
-
-/*
- * TODO DELETE \/
- */
-Participacao * Candidato::getParticipacao(Sessao * sessao) const
-{
-	for (unsigned i = 0; i < this->participacoes.size(); ++i)
-	{
-		if((*this->participacoes[i]->getSessao()) == (* sessao))
-		{
-			return participacoes[i];
-		}
-	}
-	return NULL;
-}
-/*
- * TODO DELETE /\
- */
 
 Participacao * Candidato::getParticipacao(string const &dataSessao) const
 {
