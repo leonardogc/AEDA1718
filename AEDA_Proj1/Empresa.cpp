@@ -706,15 +706,15 @@ Candidato *  Empresa::escolher_candidato(){
 
 		cout << "Introduza o id do candidato: " << endl;
 
-		while(true){
-			try{
-				id = read_number_Input();
-			}
-			catch(invalid_argument &e){
-				cout << "Introduziu um numero invalido! \nIntroduza novamente: ";
-				continue;
-			}
-			break;
+
+		try{
+			id = read_number_Input();
+		}
+		catch(invalid_argument &e){
+			cout << "Introduziu um numero invalido!";
+			cout << "\n\nPressione alguma tecla para continuar...\n";
+			cin.ignore();
+			continue;
 		}
 
 
@@ -726,6 +726,8 @@ Candidato *  Empresa::escolher_candidato(){
 		}
 
 		cout << "Introduziu um id que nao existe!" << endl;
+		cout << "\n\nPressione alguma tecla para continuar...\n";
+		cin.ignore();
 	}
 }
 
@@ -752,6 +754,8 @@ Sessao *  Empresa::escolher_sessao(){
 
 		if(!found){
 			cout << "genero de arte invalido" << endl;
+			cout << "\n\nPressione alguma tecla para continuar...\n";
+			cin.ignore();
 		}
 	}
 
@@ -772,6 +776,8 @@ Sessao *  Empresa::escolher_sessao(){
 
 			if(!found){
 				cout << "data invalida" << endl;
+				cout << "\n\nPressione alguma tecla para continuar...\n";
+				cin.ignore();
 			}
 		}
 }
@@ -790,11 +796,15 @@ Jurado *  Empresa::escolher_jurado(){
 				telemovel = read_number_Input();
 			}
 			catch(invalid_argument &e){
-				cout << "Introduziu um numero de telemovel invalido! \nIntroduza novamente: ";
+				cout << "Introduziu um numero de telemovel invalido!";
+				cout << "\n\nPressione alguma tecla para continuar...\n";
+				cin.ignore();
 				continue;
 			}
 			if(numbr_size(telemovel) != 9){
-				cout << "Introduziu um numero de telemovel invalido! \nIntroduza novamente: ";
+				cout << "Introduziu um numero de telemovel invalido!";
+				cout << "\n\nPressione alguma tecla para continuar...\n";
+				cin.ignore();
 				continue;
 			}
 			break;
@@ -807,6 +817,8 @@ Jurado *  Empresa::escolher_jurado(){
 			}
 		}
 		cout << "Introduziu um telemovel que nao existe!" << endl;
+		cout << "\n\nPressione alguma tecla para continuar...\n";
+		cin.ignore();
 	}
 }
 
@@ -841,19 +853,24 @@ void Empresa::adicionar_jurado(){
 	getline(cin, generoArte);
 	cout << "Introduza a cidade de morada: ";
 	getline(cin, morada);
-	cout << "Introduza o numero de telemovel: ";
 
 	while(true)
 	{
+		cout << "Introduza o numero de telemovel: ";
+
 		try{
 			telemovel = read_number_Input();
 		}
 		catch(invalid_argument &e){
-			cout << "Introduziu um numero de telemovel invalido! Introduza novamente: ";
+			cout << "Introduziu um numero de telemovel invalido!";
+			cout << "\n\nPressione alguma tecla para continuar...\n\n";
+			cin.ignore();
 			continue;
 		}
 		if(numbr_size(telemovel) != 9){
-			cout << "Introduziu um numero de telemovel invalido! Introduza novamente: ";
+			cout << "Introduziu um numero de telemovel invalido!";
+			cout << "\n\nPressione alguma tecla para continuar...\n\n";
+			cin.ignore();
 			continue;
 		}
 		break;

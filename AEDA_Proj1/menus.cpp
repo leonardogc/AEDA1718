@@ -230,8 +230,8 @@ void menu_candidato(Candidato * candidato){
 		case 1: //candidato->Ver Participacoes
 			candidato->printParticipacoes();
 			break;
-		case 2: //TODO pessoa->Alterar nome
-
+		case 2: //pessoa->Alterar nome
+			candidato->alterarNome();
 			break;
 		case 3: //pessoa->Alterar morada
 			candidato->alterarMorada();
@@ -404,8 +404,8 @@ void menu_jurado(Jurado * jurado){
 		case 1: //?
 
 			break;
-		case 2: //TODO juri->Alterar nome
-
+		case 2: //juri->Alterar nome
+			jurado->alterarNome();
 			break;
 		case 3: //juri->Alterar morada
 			jurado->alterarMorada();

@@ -31,6 +31,7 @@ public:
 	void printParticipacoes();
 
 	void alterarMorada();
+	void alterarNome();
 
 	friend ostream& operator <<(ostream & os,const Candidato *c);
 };

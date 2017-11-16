@@ -19,6 +19,7 @@ public:
 	void setTelemovel(int telemovel);
 	void alterarTelemovel();
 	void alterarMorada();
+	void alterarNome();
 
 	//operadores
 	bool operator== (Jurado jurado);

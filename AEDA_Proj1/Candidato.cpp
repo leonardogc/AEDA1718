@@ -121,3 +121,35 @@ void Candidato::alterarMorada(){
 		cin.ignore();
 }
 
+void Candidato::alterarNome(){
+
+		string nome;
+
+		while(true)
+		{
+			clear_scrn();
+			cout << "Introduza o novo nome: ";
+
+			getline(cin, nome);
+
+			if(nome.size() > 0){
+				break;
+			}
+			else{
+				cout << "Introduziu um nome invalido!";
+
+				cout << "\n\nPressione alguma tecla para continuar...\n";
+
+				cin.ignore();
+				continue;
+			}
+		}
+
+		this->nome = nome;
+		cout << "O nome foi alterado com sucesso!";
+
+		cout << "\n\nPressione alguma tecla para continuar...\n";
+
+		cin.ignore();
+}
+
