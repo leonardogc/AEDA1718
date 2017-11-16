@@ -373,7 +373,7 @@ void draw_menu_jurado(Jurado * jurado){
 	cout << '|' << string(15, ' ') << "Candidato" << string(16, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
 	cout  << "Arte: " << jurado->getGeneroArte() << endl;
-	cout << "Nome: " << jurado->getNome() << "Telemovel: " << jurado->getTelemovel() << endl;
+	cout << "Nome: " << jurado->getNome() << "    Telemovel: " << jurado->getTelemovel() << endl;
 	cout << "Morada: " << jurado->getMorada() << endl;
 	cout << "Estado do contrato: " << (jurado->getValidade() ? "valida" : "invalida") << endl;
 
@@ -410,8 +410,8 @@ void menu_jurado(Jurado * jurado){
 		case 3: //TODO pessoa->Alterar morada
 
 			break;
-		case 4: //TODO juri->Alterar telemovel
-
+		case 4: //juri->Alterar telemovel
+			jurado->alterarTelemovel();
 			break;
 		case 5: //?
 

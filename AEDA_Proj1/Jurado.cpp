@@ -28,6 +28,40 @@ bool Jurado::operator ==(Jurado jurado){
 	return variable;
 }
 
+void Jurado::alterarTelemovel(){
+
+		int  telemovel;
+
+		while(true)
+		{
+			clear_scrn();
+			cout << "Introduza o numero de telemovel: ";
+			try{
+				telemovel = read_number_Input();
+			}
+			catch(invalid_argument &e){
+				cout << "Introduziu um numero de telemovel invalido!";
+				cout << "\n\nPressione alguma tecla para continuar...\n";
+
+				cin.ignore();
+				continue;
+			}
+
+			if(numbr_size(telemovel) != 9){
+				cout << "Introduziu um numero de telemovel invalido!";
+
+				cout << "\n\nPressione alguma tecla para continuar...\n";
+
+				cin.ignore();
+				continue;
+			}
+			break;
+		}
+
+		this->telemovel = telemovel;
+		cout << "O numero de telemovel foi alterado com sucesso!";
+}
+
 
 ostream& operator <<(ostream & os, const Jurado *j){
 	string validade= j->validade ? "valido" : "invalido";

@@ -17,6 +17,7 @@ public:
 
 	//metodos set
 	void setTelemovel(int telemovel);
+	void alterarTelemovel();
 
 	//operadores
 	bool operator== (Jurado jurado);
