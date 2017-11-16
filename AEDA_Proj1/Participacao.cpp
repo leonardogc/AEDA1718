@@ -61,3 +61,12 @@ int Participacao::getPosicao(){
 int Participacao::getFase(){
 	return this->fase;
 }
+
+ostream& operator <<(ostream &os, const Participacao *p){
+		os << setw(20) << left << p->posicao;
+		os << setw(20) << left << p->fase;
+		os << setw(20) << left << p->pontuacao[0];
+		os << p->sessao;
+
+		return os;
+	}

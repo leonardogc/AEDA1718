@@ -72,3 +72,19 @@ ostream& operator <<(ostream & os, const Candidato *c){
 	return os;
 }
 
+void Candidato::printParticipacoes(){
+		cout << "\n\n";
+		cout << setw(20) << left << "Posicao";
+		cout << setw(20) << left << "Fase";
+		cout << setw(20) << left << "Pontuacao";
+		cout << setw(30) << left << "Genero de Arte";
+		cout << setw(20) << left << "Data";
+		cout << "\n\n";
+
+		for(unsigned i=0; i < participacoes.size(); i++){
+			cout << participacoes[i];
+		}
+
+		cin.ignore();
+}
+

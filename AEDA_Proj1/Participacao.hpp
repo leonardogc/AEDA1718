@@ -20,6 +20,9 @@ public:
 	int* getPontuacao();
 	int getFase();
 	bool operator == (const Participacao &p) const;
+	friend ostream& operator <<(ostream &os, const Participacao *p);
 };
+
+ostream& operator <<(ostream &os, const Participacao *p);
 
 #endif /* PARTICIPACAO_HPP_ */

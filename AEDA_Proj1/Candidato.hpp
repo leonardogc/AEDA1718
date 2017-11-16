@@ -28,6 +28,8 @@ public:
 	Participacao * getParticipacao(string const &dataSessao) const;
 	bool operator == (const Candidato &c) const;
 
+	void printParticipacoes();
+
 	friend ostream& operator <<(ostream & os,const Candidato *c);
 };
 

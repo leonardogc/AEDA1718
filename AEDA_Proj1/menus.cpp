@@ -196,10 +196,12 @@ void draw_menu_candidato(Candidato * candidato){
 	cout << '|' << string(size, ' ') << '|' << endl;
 	cout << '|' << string(15, ' ') << "Candidato" << string(16, ' ') << '|' << endl;
 	cout << '|' << string(size, '_') << '|' << endl;
-	cout << "Numero de Inscricao: "<< candidato->getNumInscricao() << "Arte: " << candidato->getGeneroArte() << endl;
-	cout << "Nome: " << candidato->getNome() << "Data Nascimento: " << candidato->getDataNasc() << endl;
+	cout << "\nNumero de Inscricao: "<< candidato->getNumInscricao()<< endl;
+	cout <<	"Arte: " << candidato->getGeneroArte() << endl;
+	cout << "Nome: " << candidato->getNome() << endl;
+	cout << "Data Nascimento: " << candidato->getDataNasc() << endl;
 	cout << "Morada: " << candidato->getMorada() << endl;
-	cout << "Estado de inscricao: " << (candidato->getValidade() ? "valida" : "invalida") << endl;
+	cout << "Estado de inscricao: " << (candidato->getValidade() ? "valida" : "invalida") << "\n\n";
 
 	cout << "  1 - Ver Participacoes\n";
 	cout << "  2 - Alterar nome\n";
@@ -225,8 +227,8 @@ void menu_candidato(Candidato * candidato){
 		}
 
 		switch (option) {
-		case 1: //TODO candidato->Ver Participacoes
-
+		case 1: //candidato->Ver Participacoes
+			candidato->printParticipacoes();
 			break;
 		case 2: //TODO pessoa->Alterar nome
 
