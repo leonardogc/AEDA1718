@@ -73,3 +73,68 @@ bool lowerThan(string d1, string d2){
 		return false;
 	}
 }
+
+
+bool isValidDate(string date){
+	stringstream ss, auxiliar;
+	string line; int day, month, year;
+	bool leapYear;
+	ss << date;
+
+	//Parse date to integers
+	getline(ss, line, '/');
+	auxiliar << line;
+	auxiliar >> day;
+	auxiliar.clear();
+
+	getline(ss, line, '/');
+	auxiliar << line;
+	auxiliar >> month;
+	auxiliar.clear();
+
+	getline(ss, line, '/');
+	auxiliar << line;
+	auxiliar >> year;
+
+
+	//Check validity
+
+	if(day <= 0 || month <= 0 || year <= 0) return false;
+	if(year%4 == 0)
+	{
+		if( year%100 == 0)
+		{
+			// year is divisible by 400, hence the year is a leap year
+			if ( year%400 == 0)
+				leapYear = true;
+			else
+				leapYear = false;
+		}
+		else
+			leapYear = true;
+	}
+	else
+		leapYear = false;
+
+	switch(month){
+	case 2:
+		if(leapYear) return day < 29;
+		else return day < 28;
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		return day < 31;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		return day < 30;
+	default:
+		return false;
+	}
+}
+

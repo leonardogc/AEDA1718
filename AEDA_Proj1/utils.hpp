@@ -34,4 +34,7 @@ public:
 	string getFilename() {return filename;}
 };
 
+
+bool isValidDate(string date);
+
 #endif /* UTILS_HPP_ */
