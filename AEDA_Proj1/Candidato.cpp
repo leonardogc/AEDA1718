@@ -153,3 +153,22 @@ void Candidato::alterarNome(){
 		cin.ignore();
 }
 
+bool Candidato::removeParticipacao(Participacao * participacao){
+	bool verifica = false;
+
+	if(participacao->getSessao()->getStatus() == false){
+		verifica = false;
+		cout << "Nao e possivel remover o candidato! A sessao ja comecou!";
+	}
+	else{
+		for(unsigned int i = 0; i < participacoes.size(); i++){
+			if(participacao == participacoes[i]){
+				participacoes.erase(participacoes.begin()+i);
+				verifica = true;
+				break;
+			}
+		}
+	}
+
+	return verifica;
+}

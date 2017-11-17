@@ -923,4 +923,26 @@ void Empresa::remover_candidato(){
 	cin.ignore();
 }
 
+void Empresa::adicionar_candidato_sessao(Sessao * sessao){
+	//para adicionar um candidato a sessao tem que escolher dos já existentes
+
+	Candidato * candidato = this->escolher_candidato();
+
+	candidato->addParticipacao(new Participacao(sessao, {0,0,0,0}, 0, 1));//sao 3 ou 4 0 no array?
+
+	cout << "O candidato foi adicionado a sessao com sucesso!\n" << endl;
+
+	cin.ignore();
+
+}
+
+void Empresa::remover_candidato_sessao(Sessao * sessao){
+	Candidato * candidato = this->escolher_candidato();
+
+	if(sessao->getStatus() == true){
+		candidato->removeParticipacao(new Participacao(sessao, {0,0,0,0}, 0, 1));//sao 3 ou 4 0 no array?
+	}
+
+
+}
 

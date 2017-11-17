@@ -34,6 +34,9 @@ public:
 	bool operator== (Sessao sessao) const;
 	bool operator< (Sessao sessao) const;
 	friend ostream& operator <<(ostream & os, const Sessao *s);
+
+	//outros
+	void alterarData();
 };
 
 ostream& operator <<(ostream &os, const Sessao *s);
