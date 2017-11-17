@@ -518,7 +518,7 @@ void menu_gerir_sessoes(Empresa * empresa){
 		case 3: //Adicionar Sessao
 			empresa->adicionar_sessao();
 			break;
-		case 4: //TODO empresa->Remover Sessao -> testar ;)
+		case 4: //TODO (testar) empresa->Remover Sessao
 			empresa->remover_sessao();
 			break;
 		case 5: //Ordenar por data e arte
@@ -581,8 +581,8 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 		if(sessao->getStatus())
 		{
 			switch (option) {
-			case 1: //TODO empresa->ver detalhes sessao (candidatos por ordem de pontuação / fase)
-				//
+			case 1: //TODO (testar) empresa->ver detalhes sessao (candidatos por ordem de pontuação / fase)
+				empresa->printDetalhesSessao(sessao);
 				break;
 			case 2: //TODO sessao->Gerar Primeira Fase comecado e mais ou menos estruturado
 				empresa->gerarPrimeiraFase(sessao);
@@ -590,13 +590,13 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 			case 3: //TODO sessao->Gerar Segunda Fase
 
 				break;
-			case 4: //TODO sessao->Adicionar Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
+			case 4: //TODO (testar) sessao->Adicionar Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
 				empresa->adicionar_candidato_sessao(sessao);
 				break;
-			case 5: //TODO sessao->Remover Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
+			case 5: //TODO (testar) sessao->Remover Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
 				empresa->remover_candidato_sessao(sessao);
 				break;
-			case 6: //TODO sessao->Alterar data Testar a ver se funciona (o pc da Verónica não gosta de aeda) feita depois da meia noite, nao prometo nada xD
+			case 6: //TODO (testar) sessao->Alterar data Testar a ver se funciona (o pc da Verónica não gosta de aeda) feita depois da meia noite, nao prometo nada xD
 				sessao->alterarData();
 				break;
 			case 7: //Return
@@ -608,8 +608,8 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 		else
 		{
 			switch (option) {
-			case 1: //TODO empresa->ver detalhes sessao (candidatos por ordem de pontuação / fase)
-				//
+			case 1: //TODO (testar) empresa->ver detalhes sessao (candidatos por ordem de pontuação / fase)
+				empresa->printDetalhesSessao(sessao);
 				break;
 			case 2: //Return
 				done=true;

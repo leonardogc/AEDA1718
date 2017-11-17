@@ -4,7 +4,7 @@
 
 const string default_files[] = {"jurados.txt","sessoes.txt","candidatos.txt", "participacao.txt"};
 
-int main(){
+int main(){	//TODO destrutores para assegurar que tudo é apagado (ricardo is on it XD)
 	string ficheiros[] = {"jurados.txt","sessoes.txt","candidatos.txt", "participacao.txt"};
 	Empresa *empresa;
 	changeFileName_menu(ficheiros);

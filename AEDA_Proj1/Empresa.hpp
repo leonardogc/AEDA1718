@@ -55,6 +55,7 @@ public:
 	void printJurados();
 	void printCandidatos();
 	void printSessoes();
+	void printDetalhesSessao(Sessao * sessao);
 
 	void save_files(string (&nomes)[4]);
 
@@ -71,13 +72,14 @@ public:
 	void remover_jurado();
 	void remover_candidato();
 	void remover_sessao();
+
 	//outros metodos
 	void adicionar_candidato_sessao(Sessao * sessao);
 	void remover_candidato_sessao(Sessao * sessao);
 	void gerarPrimeiraFase(Sessao * sessao);
 };
 
-void sortBy_points_in_session(vector<Candidato> &candidatos, string const &dataSessao);
+void sortBy_points_in_session(vector<Candidato> &candidatos, string const &dataSessao, int fase);
 
 void parse_line(string &line, stringstream &ss);
 

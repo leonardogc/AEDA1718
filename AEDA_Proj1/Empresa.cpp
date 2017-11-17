@@ -621,28 +621,30 @@ void parse_line(string &line, stringstream &ss){
 	}
 }
 
-void sortBy_points_in_session(vector<Candidato *> &candidatos, string const &dataSessao)
+void sortBy_points_in_session(vector<Candidato *> &candidatos, string const &dataSessao, int fase)
 {
-	sort(candidatos.begin(), candidatos.end(), [&dataSessao](Candidato * c1, Candidato * c2){
+	sort(candidatos.begin(), candidatos.end(), [&dataSessao, fase](Candidato * c1, Candidato * c2){
 		int pontC1 = 0, pontC2 = 0;
 		pair<Participacao *, Participacao *> partC1 = c1->getParticipacao(dataSessao);
 		pair<Participacao *, Participacao *> partC2 = c2->getParticipacao(dataSessao);
 
-		if(partC1.second == NULL)
-		{	if(partC1.first != NULL)
-			pontC1 = partC1.first->getPontuacaoFinal();
+		if(fase == 1)
+		{
+			if(partC1.first != NULL)
+				pontC1 = partC1.first->getPontuacaoFinal();
+			if(partC2.first != NULL)
+				pontC2 = partC2.first->getPontuacaoFinal();
 		}
 		else
-			pontC1 = partC1.second->getPontuacaoFinal();
+			if(fase == 2)
+			{
+				if(partC1.second != NULL)
+					pontC1 = partC1.second->getPontuacaoFinal();
+				if(partC2.second != NULL)
+					pontC2 = partC2.second->getPontuacaoFinal();
+			}
 
-		if(partC2.second == NULL)
-		{	if(partC2.first != NULL)
-			pontC2 = partC2.first->getPontuacaoFinal();
-		}
-		else
-			pontC2 = partC2.second->getPontuacaoFinal();
-
-		return pontC1 < pontC2;
+		return pontC1 > pontC2;
 	});
 }
 
@@ -692,6 +694,66 @@ void Empresa::printSessoes(){
 	waitEnterToContinue();
 }
 
+void Empresa::printDetalhesSessao(Sessao * sessao){
+	int pos = 0, pontuacao = 0;
+	map<Candidato, pair<Participacao *,Participacao *>> info;
+	vector<Candidato> candidatosOrdenar; candidatosOrdenar.clear();
+	for(unsigned i = 0; i < candidatos.size(); ++i)
+		{
+			pair<Participacao *,Participacao *> infoCandidato = candidatos[i]->getParticipacao(sessao->getData());
+			if(infoCandidato.first != NULL)
+			{
+				info[*(candidatos[i])] = infoCandidato;
+				candidatosOrdenar.push_back(*(candidatos[i]));
+			}
+		}
+
+	cout << "\n\n";
+	cout << setw(40) << left << "Genero de Arte: " << sessao->getArtePerformativa();
+	cout << setw(20) << left << " Data: " << sessao->getData();
+
+	cout << "\n\nJurados:\n\n";
+
+	cout << setw(40) << left << "Nome: " << sessao->getJurados()[0]->getNome();
+	cout << setw(10) << left << " Contacto: " << sessao->getJurados()[0]->getTelemovel();
+	cout << "\n\n";
+	cout << setw(40) << left << "Nome: " << sessao->getJurados()[1]->getNome();
+	cout << setw(10) << left << " Contacto: " << sessao->getJurados()[1]->getTelemovel();
+	cout << "\n\n";
+	cout << setw(40) << left << "Nome: " << sessao->getJurados()[2]->getNome();
+	cout << setw(10) << left << " Contacto: " << sessao->getJurados()[2]->getTelemovel();
+
+
+
+
+	for(unsigned counter = 1; counter < 3; counter++)
+	{
+		sortBy_points_in_session(candidatosOrdenar, sessao->getData(), counter);
+		cout << "\n\n\n" << "Fase" << counter <<":\n\n";
+
+		for(unsigned i = 0; i < candidatosOrdenar.size(); ++i)
+		{
+			if(counter == 1)
+			{
+				pos = info[candidatosOrdenar[i]].first->getPosicao();
+				pontuacao = info[candidatosOrdenar[i]].first->getPontuacaoFinal();
+			}
+			else
+			{
+				pos = info[candidatosOrdenar[i]].second->getPosicao();
+				pontuacao = info[candidatosOrdenar[i]].second->getPontuacaoFinal();
+			}
+
+			cout << setw(3) << left << pos;
+			cout << setw(30) << left << candidatosOrdenar[i].getNome();
+			cout << setw(10) << left << candidatosOrdenar[i].getNumInscricao();
+			cout << setw(3) << left << pontuacao;
+			cout << "\n\n";
+		}
+	}
+
+	waitEnterToContinue();
+}
 
 Candidato *  Empresa::escolher_candidato(){
 	int id;
