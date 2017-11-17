@@ -64,7 +64,6 @@ void Empresa::save_candidatos(string &s){
 		file.close();
 	}
 	else{
-		//cout<<"error opening file!"<<endl;
 		throw(InvalidFileNameException(ficheiro));
 	}
 }
@@ -94,7 +93,6 @@ void Empresa::save_jurados(string &s){
 		file.close();
 	}
 	else{
-		//cout<<"error opening file!"<<endl;
 		throw(InvalidFileNameException(ficheiro));
 	}
 }
@@ -124,7 +122,6 @@ void Empresa::save_sessoes(string &s){
 		file.close();
 	}
 	else{
-		//cout<<"error opening file!"<<endl;
 		throw(InvalidFileNameException(ficheiro));
 	}
 }
@@ -162,7 +159,6 @@ void Empresa::save_participacao(string &s){
 		file.close();
 	}
 	else{
-		//cout<<"error opening file!"<<endl;
 		throw(InvalidFileNameException(ficheiro));
 	}
 }
@@ -232,7 +228,6 @@ void Empresa::load_jurados(string &s){
 
 	}
 	else{
-		//cout<<"error opening file!"<<endl;
 		throw(InvalidFileNameException(ficheiro));
 	}
 }
@@ -333,7 +328,6 @@ void Empresa::load_sessoes(string &s){
 
 	}
 	else{
-		//cout<<"error opening file!"<<endl;
 		throw(InvalidFileNameException(ficheiro));
 	}
 }
@@ -415,7 +409,6 @@ void Empresa::load_candidatos(string &s){
 		file.close();
 	}
 	else{
-		//cout<<"error opening file!"<<endl;
 		throw(InvalidFileNameException(ficheiro));
 	}
 }
@@ -523,7 +516,6 @@ void Empresa::load_participacao(string &s){
 		file.close();
 	}
 	else{
-		//cout<<"error opening file!"<<endl;
 		throw(InvalidFileNameException(ficheiro));
 	}
 }
@@ -541,17 +533,6 @@ vector <Sessao *> Empresa::getSessoes(){
 
 	return sessoes;
 }
-
-
-/*void Empresa::remove_candidato(int id){
-	for (unsigned i = 0; i < this->candidatos.size(); ++i)
-		if(this->candidatos[i]->getNumInscricao() == id)
-		{
-			this->candidatos.erase(this->candidatos.begin()+i);
-			return;
-		}
-	//TODO throw exception
-}*/
 
 
 void Empresa::sortJurados(sort_t const & by)

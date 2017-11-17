@@ -56,8 +56,6 @@ public:
 	void printCandidatos();
 	void printSessoes();
 
-	//void remove_candidato(int id);
-
 	void save_files(string (&nomes)[4]);
 
 	void sortJurados(castingspace::sort_t const & by);
