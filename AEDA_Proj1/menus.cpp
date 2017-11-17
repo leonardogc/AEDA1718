@@ -571,8 +571,8 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 		}
 
 		switch (option) {
-		case 1: //TODO sessao->Gerar Primeira Fase
-
+		case 1: //TODO sessao->Gerar Primeira Fase comecado e mais ou menos estruturado
+			empresa->gerarPrimeiraFase(sessao);
 			break;
 		case 2: //TODO sessao->Gerar Segunda Fase
 

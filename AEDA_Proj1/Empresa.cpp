@@ -943,6 +943,22 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 		candidato->removeParticipacao(new Participacao(sessao, {0,0,0,0}, 0, 1));//sao 3 ou 4 0 no array?
 	}
 
-
 }
 
+void Empresa::gerarPrimeiraFase(Sessao * sessao){
+	//a sessao passada como parametro ja esta escolhida, e validada
+
+	//colocar o status a false, para não se poder alterar mais a sessao
+	sessao->setStatus(false);
+
+	//funcao que percorre as participacoes do candidato para saber se ele pertence a esta sessao ou nao
+
+	for(unsigned int i = 0; i < candidatos.size(); i++){
+		//verificar se o candidato tem participacao nessa sessao
+		//talvez criar um vetor para os candidatos da sessao
+		//ate para depois se fazerem os prints dos que apuram e das pontuacoes gerais e assim
+		if(candidatos[i]->getParticipacao(sessao->getData())){
+
+		}
+	}
+}
