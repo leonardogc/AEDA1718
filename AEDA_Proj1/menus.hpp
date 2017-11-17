@@ -56,7 +56,7 @@ void menu_ordenar_jurados(Empresa * empresa);
 void draw_menu_gerir_sessoes();
 void menu_gerir_sessoes(Empresa * empresa);
 void draw_menu_sessao(Sessao * sessao);
-void menu_sessao(Sessao * sessao);
+void menu_sessao(Sessao * sessao, Empresa * empresa);
 
 
 #endif /* MENUS_HPP_ */

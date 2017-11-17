@@ -79,7 +79,7 @@ void Sessao::alterarData(){
 		verifica = true;
 	}
 	else{
-		cout << "A data que introduziu nao esta correta! Tente novamente: "
+		cout << "A data que introduziu nao esta correta! Tente novamente: ";
 		verifica = false;
 	}
 	}while(verifica == false);

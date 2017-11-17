@@ -41,18 +41,33 @@ bool Candidato::addParticipacao(Participacao * participacao)
 	return true;
 }
 
-Participacao * Candidato::getParticipacao(string const &dataSessao) const
+pair<Participacao *, Participacao *> Candidato::getParticipacao(string const &dataSessao) const
 {
+	int first = -1, second = -1;
 	for (unsigned i = 0; i < this->participacoes.size(); ++i)
 	{
 		if(((this->participacoes[i]->getSessao()->getData()) == dataSessao) &&
 				((this->participacoes[i]->getSessao()->getArtePerformativa())) == this->generoArte)
 		{
-			return participacoes[i];
+			if(participacoes[i]->getFase() == 1)
+				first = i;
+			else
+				second = i;
 		}
 	}
-	return NULL;
+	if(first < 0)
+	{
+		if(second < 0)
+			return pair<Participacao *, Participacao *>(NULL, NULL);
+		else return pair<Participacao *, Participacao *>(NULL, participacoes[second]);
+	}
+	else
+		if(second < 0)
+			return pair<Participacao *, Participacao *>(participacoes[first], NULL);
+		else
+			return pair<Participacao *, Participacao *>(participacoes[first], participacoes[second]);
 }
+
 bool Candidato::operator == (const Candidato &c) const {
 	return this->numInscricao == c.numInscricao;
 }
@@ -144,22 +159,23 @@ void Candidato::alterarNome(){
 		waitEnterToContinue();
 }
 
-bool Candidato::removeParticipacao(Participacao * participacao){
+bool Candidato::removeParticipacao(Sessao * sessao){
 	bool verifica = false;
 
-	if(participacao->getSessao()->getStatus() == false){
-		verifica = false;
+	if(sessao->getStatus() == false){
+
 		cout << "Nao e possivel remover o candidato! A sessao ja comecou!";
+		return false;
 	}
 	else{
 		for(unsigned int i = 0; i < participacoes.size(); i++){
-			if(participacao == participacoes[i]){
+			if((*sessao == *(participacoes[i]->getSessao())) &&
+					(participacoes[i]->getFase() == 1)){
 				participacoes.erase(participacoes.begin()+i);
-				verifica = true;
-				break;
+				return true;
 			}
 		}
 	}
 
-	return verifica;
+	return false;
 }

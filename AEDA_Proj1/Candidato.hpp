@@ -24,9 +24,9 @@ public:
 	int getNumInscricao() const;
 	vector <Participacao *> getParticipacoes() const;
 	bool addParticipacao(Participacao * participacao);
-	bool removeParticipacao(Participacao * participacao);
+	bool removeParticipacao(Sessao * sessao);
 
-	Participacao * getParticipacao(string const &dataSessao) const;
+	pair<Participacao *, Participacao *> getParticipacao(string const &dataSessao) const;
 	bool operator == (const Candidato &c) const;
 
 	void printParticipacoes();

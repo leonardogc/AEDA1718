@@ -643,7 +643,25 @@ void parse_line(string &line, stringstream &ss){
 void sortBy_points_in_session(vector<Candidato *> &candidatos, string const &dataSessao)
 {
 	sort(candidatos.begin(), candidatos.end(), [&dataSessao](Candidato * c1, Candidato * c2){
-		return c1->getParticipacao(dataSessao)->getPontuacaoFinal() < c2->getParticipacao(dataSessao)->getPontuacaoFinal();
+		int pontC1 = 0, pontC2 = 0;
+		pair<Participacao *, Participacao *> partC1 = c1->getParticipacao(dataSessao);
+		pair<Participacao *, Participacao *> partC2 = c2->getParticipacao(dataSessao);
+
+		if(partC1.second == NULL)
+		{	if(partC1.first != NULL)
+			pontC1 = partC1.first->getPontuacaoFinal();
+		}
+		else
+			pontC1 = partC1.second->getPontuacaoFinal();
+
+		if(partC2.second == NULL)
+		{	if(partC2.first != NULL)
+			pontC2 = partC2.first->getPontuacaoFinal();
+		}
+		else
+			pontC2 = partC2.second->getPontuacaoFinal();
+
+		return pontC1 < pontC2;
 	});
 }
 
@@ -908,18 +926,21 @@ void Empresa::remover_sessao(){
 	bool found = false;
 
 	Sessao * sessao = this->escolher_sessao();
-	string arte = sessao->getArtePerformativa();
 
 	if(!(sessao->getStatus()))
 	{
 		cout << "Não é possivel remover uma sessao que já tenha acontecido!";
-
+		waitEnterToContinue();
+		return;
 	}
+
+	string arte = sessao->getArtePerformativa();
+
 	this->sortCandidatos(by_name_and_art);
 	vector<Candidato *> candidatos;
 	candidatos.clear();
 
- 	for (unsigned i = 0; i < this->candidatos.size(); ++i)
+	for (unsigned i = 0; i < this->candidatos.size(); ++i)
 	{
 		if(this->candidatos[i]->getGeneroArte() != arte)
 		{
@@ -937,18 +958,18 @@ void Empresa::remover_sessao(){
 
 	for (unsigned i = 0; i < candidatos.size(); ++i)
 	{
-		candidatos[i]->removeParticipacao(new Participacao(sessao, {0, 0, 0}, 0, 1));
+		candidatos[i]->removeParticipacao(sessao);
 	}
 
 
 	for (unsigned i = 0; i < this->sessoes.size(); ++i)
- {
-	 if(*(this->sessoes[i]) == *sessao)
-	 {
-		 this->sessoes.erase(this->sessoes.begin() + i);
-		 break;
-	 }
- }
+	{
+		if(*(this->sessoes[i]) == *sessao)
+		{
+			this->sessoes.erase(this->sessoes.begin() + i);
+			break;
+		}
+	}
 
 	cout << "A sessao foi removida com sucesso!";
 	waitEnterToContinue();
@@ -959,7 +980,8 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 
 	Candidato * candidato = this->escolher_candidato();
 
-	candidato->addParticipacao(new Participacao(sessao, {0,0,0,0}, 0, 1));//sao 3 ou 4 0 no array?
+	int points[3] = {0,0,0};
+	candidato->addParticipacao(new Participacao(sessao, points, 0, 1));
 
 	cout << "O candidato foi adicionado a sessao com sucesso!\n" << endl;
 
@@ -970,8 +992,8 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 void Empresa::remover_candidato_sessao(Sessao * sessao){
 	Candidato * candidato = this->escolher_candidato();
 
-	if(sessao->getStatus() == true){
-		candidato->removeParticipacao(new Participacao(sessao, {0,0,0,0}, 0, 1));//sao 3 ou 4 0 no array?
+	if(sessao->getStatus()){
+		candidato->removeParticipacao(sessao);
 	}
 
 }
@@ -988,7 +1010,7 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 		//verificar se o candidato tem participacao nessa sessao
 		//talvez criar um vetor para os candidatos da sessao
 		//ate para depois se fazerem os prints dos que apuram e das pontuacoes gerais e assim
-		if(candidatos[i]->getParticipacao(sessao->getData())){
+		if(candidatos[i]->getParticipacao(sessao->getData()).first /*esta é agora a primeira fase...*/ ){
 
 		}
 	}
