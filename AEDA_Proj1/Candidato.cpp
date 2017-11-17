@@ -171,6 +171,7 @@ bool Candidato::removeParticipacao(Sessao * sessao){
 		for(unsigned int i = 0; i < participacoes.size(); i++){
 			if((*sessao == *(participacoes[i]->getSessao())) &&
 					(participacoes[i]->getFase() == 1)){
+				delete participacoes[i];
 				participacoes.erase(participacoes.begin()+i);
 				return true;
 			}

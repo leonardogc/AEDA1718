@@ -56,7 +56,7 @@ public:
 	void printCandidatos();
 	void printSessoes();
 
-	void remove_candidato(int id);
+	//void remove_candidato(int id);
 
 	void save_files(string (&nomes)[4]);
 

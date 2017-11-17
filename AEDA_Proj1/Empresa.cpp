@@ -543,7 +543,7 @@ vector <Sessao *> Empresa::getSessoes(){
 }
 
 
-void Empresa::remove_candidato(int id){
+/*void Empresa::remove_candidato(int id){
 	for (unsigned i = 0; i < this->candidatos.size(); ++i)
 		if(this->candidatos[i]->getNumInscricao() == id)
 		{
@@ -551,7 +551,7 @@ void Empresa::remove_candidato(int id){
 			return;
 		}
 	//TODO throw exception
-}
+}*/
 
 
 void Empresa::sortJurados(sort_t const & by)
@@ -967,6 +967,7 @@ void Empresa::remover_sessao(){
 		if(*(this->sessoes[i]) == *sessao)
 		{
 			this->sessoes.erase(this->sessoes.begin() + i);
+			delete sessao;
 			break;
 		}
 	}
