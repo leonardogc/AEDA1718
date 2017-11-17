@@ -72,7 +72,7 @@ public:
 	void adicionar_sessao();
 	void remover_jurado();
 	void remover_candidato();
-
+	void remover_sessao();
 	//outros metodos
 	void adicionar_candidato_sessao(Sessao * sessao);
 	void remover_candidato_sessao(Sessao * sessao);

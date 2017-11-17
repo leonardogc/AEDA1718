@@ -518,8 +518,8 @@ void menu_gerir_sessoes(Empresa * empresa){
 		case 3: //Adicionar Sessao
 			empresa->adicionar_sessao();
 			break;
-		case 4: //TODO empresa->Remover Sessao
-			//empresa->remover_sessao();
+		case 4: //TODO empresa->Remover Sessao -> testar ;)
+			empresa->remover_sessao();
 			break;
 		case 5: //Ordenar por data e arte
 			empresa->sortSessoes(by_date_and_art);

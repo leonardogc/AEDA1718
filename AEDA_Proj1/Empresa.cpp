@@ -923,6 +923,52 @@ void Empresa::remover_candidato(){
 	cin.ignore();
 }
 
+void Empresa::remover_sessao(){
+	bool found = false;
+
+	Sessao * sessao = this->escolher_sessao();
+	string arte = sessao->getArtePerformativa();
+
+	this->sortCandidatos(by_name_and_art);
+	vector<Candidato *> candidatos;
+	candidatos.clear();
+
+ 	for (unsigned i = 0; i < this->candidatos.size(); ++i)
+	{
+		if(this->candidatos[i]->getGeneroArte() != arte)
+		{
+			if(found)
+				break;
+			else
+				continue;
+		}
+		else
+		{
+			found = true;
+			candidatos.push_back(this->candidatos[i]);
+		}
+	}
+
+	for (unsigned i = 0; i < candidatos.size(); ++i)
+	{
+		candidatos[i]->removeParticipacao(new Participacao(sessao, {0, 0, 0}, 0, 1));
+	}
+
+
+	for (unsigned i = 0; i < this->sessoes.size(); ++i)
+ {
+	 if(*(this->sessoes[i]) == *sessao)
+	 {
+		 this->sessoes.erase(this->sessoes.begin() + i);
+		 break;
+	 }
+ }
+
+	cout << "A sessao foi removida com sucesso!";
+	cout << "\n\nPressione alguma tecla para continuar...\n";
+	cin.ignore();
+}
+
 void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 	//para adicionar um candidato a sessao tem que escolher dos já existentes
 
