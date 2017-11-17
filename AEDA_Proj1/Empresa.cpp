@@ -660,8 +660,7 @@ void Empresa::printJurados(){
 		cout << jurados[i];
 	}
 
-	cout << "\n\nPressione alguma tecla para continuar...\n";
-	cin.ignore();
+	waitEnterToContinue();
 }
 
 void Empresa::printCandidatos(){
@@ -678,8 +677,7 @@ void Empresa::printCandidatos(){
 		cout << candidatos[i];
 	}
 
-	cout << "\n\nPressione alguma tecla para continuar...\n";
-	cin.ignore();
+	waitEnterToContinue();
 }
 
 void Empresa::printSessoes(){
@@ -692,8 +690,7 @@ void Empresa::printSessoes(){
 		cout << sessoes[i];
 	}
 
-	cout << "\n\nPressione alguma tecla para continuar...\n";
-	cin.ignore();
+	waitEnterToContinue();
 }
 
 
@@ -712,8 +709,7 @@ Candidato *  Empresa::escolher_candidato(){
 		}
 		catch(invalid_argument &e){
 			cout << "Introduziu um numero invalido!";
-			cout << "\n\nPressione alguma tecla para continuar...\n";
-			cin.ignore();
+			waitEnterToContinue();
 			continue;
 		}
 
@@ -726,8 +722,7 @@ Candidato *  Empresa::escolher_candidato(){
 		}
 
 		cout << "Introduziu um id que nao existe!" << endl;
-		cout << "\n\nPressione alguma tecla para continuar...\n";
-		cin.ignore();
+		waitEnterToContinue();
 	}
 }
 
@@ -754,8 +749,7 @@ Sessao *  Empresa::escolher_sessao(){
 
 		if(!found){
 			cout << "genero de arte invalido" << endl;
-			cout << "\n\nPressione alguma tecla para continuar...\n";
-			cin.ignore();
+			waitEnterToContinue();
 		}
 	}
 
@@ -776,8 +770,7 @@ Sessao *  Empresa::escolher_sessao(){
 
 			if(!found){
 				cout << "data invalida" << endl;
-				cout << "\n\nPressione alguma tecla para continuar...\n";
-				cin.ignore();
+				waitEnterToContinue();
 			}
 		}
 }
@@ -797,14 +790,12 @@ Jurado *  Empresa::escolher_jurado(){
 			}
 			catch(invalid_argument &e){
 				cout << "Introduziu um numero de telemovel invalido!";
-				cout << "\n\nPressione alguma tecla para continuar...\n";
-				cin.ignore();
+				waitEnterToContinue();
 				continue;
 			}
 			if(numbr_size(telemovel) != 9){
 				cout << "Introduziu um numero de telemovel invalido!";
-				cout << "\n\nPressione alguma tecla para continuar...\n";
-				cin.ignore();
+				waitEnterToContinue();
 				continue;
 			}
 			break;
@@ -817,8 +808,7 @@ Jurado *  Empresa::escolher_jurado(){
 			}
 		}
 		cout << "Introduziu um telemovel que nao existe!" << endl;
-		cout << "\n\nPressione alguma tecla para continuar...\n";
-		cin.ignore();
+		waitEnterToContinue();
 	}
 }
 
@@ -838,9 +828,7 @@ void Empresa::adicionar_candidato(){
 
 	cout << "Foi introduzido um novo candidato com sucesso!";
 
-	cout << "\n\nPressione alguma tecla para continuar...\n";
-
-	cin.ignore();
+	waitEnterToContinue();
 }
 
 void Empresa::adicionar_jurado(){
@@ -863,14 +851,12 @@ void Empresa::adicionar_jurado(){
 		}
 		catch(invalid_argument &e){
 			cout << "Introduziu um numero de telemovel invalido!";
-			cout << "\n\nPressione alguma tecla para continuar...\n\n";
-			cin.ignore();
+			waitEnterToContinue();
 			continue;
 		}
 		if(numbr_size(telemovel) != 9){
 			cout << "Introduziu um numero de telemovel invalido!";
-			cout << "\n\nPressione alguma tecla para continuar...\n\n";
-			cin.ignore();
+			waitEnterToContinue();
 			continue;
 		}
 		break;
@@ -880,9 +866,7 @@ void Empresa::adicionar_jurado(){
 
 	cout << "Foi introduzido um novo jurado com sucesso!";
 
-	cout << "\n\nPressione alguma tecla para continuar...\n";
-
-	cin.ignore();
+	waitEnterToContinue();
 }
 
 void Empresa::adicionar_sessao(){
@@ -903,24 +887,21 @@ void Empresa::adicionar_sessao(){
 
 	cout << "Foi criada uma nova sessao com sucesso!";
 
-	cout << "\n\nPressione alguma tecla para continuar...\n";
-	cin.ignore();
+	waitEnterToContinue();
 }
 
 void Empresa::remover_jurado(){
 	Jurado * jurado = this->escolher_jurado();
 	jurado->setValid(false);
 	cout << "O jurado foi removido com sucesso!";
-	cout << "\n\nPressione alguma tecla para continuar...\n";
-	cin.ignore();
+	waitEnterToContinue();
 }
 
 void Empresa::remover_candidato(){
 	Candidato * candidato = this->escolher_candidato();
 	candidato->setValid(false);
 	cout << "O candidato foi removido com sucesso!";
-	cout << "\n\nPressione alguma tecla para continuar...\n";
-	cin.ignore();
+	waitEnterToContinue();
 }
 
 void Empresa::remover_sessao(){
@@ -929,6 +910,11 @@ void Empresa::remover_sessao(){
 	Sessao * sessao = this->escolher_sessao();
 	string arte = sessao->getArtePerformativa();
 
+	if(!(sessao->getStatus()))
+	{
+		cout << "Não é possivel remover uma sessao que já tenha acontecido!";
+
+	}
 	this->sortCandidatos(by_name_and_art);
 	vector<Candidato *> candidatos;
 	candidatos.clear();
@@ -965,8 +951,7 @@ void Empresa::remover_sessao(){
  }
 
 	cout << "A sessao foi removida com sucesso!";
-	cout << "\n\nPressione alguma tecla para continuar...\n";
-	cin.ignore();
+	waitEnterToContinue();
 }
 
 void Empresa::adicionar_candidato_sessao(Sessao * sessao){
@@ -978,7 +963,7 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 
 	cout << "O candidato foi adicionado a sessao com sucesso!\n" << endl;
 
-	cin.ignore();
+	waitEnterToContinue();
 
 }
 

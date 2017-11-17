@@ -41,18 +41,15 @@ void Jurado::alterarTelemovel(){
 			}
 			catch(invalid_argument &e){
 				cout << "Introduziu um numero de telemovel invalido!";
-				cout << "\n\nPressione alguma tecla para continuar...\n";
 
-				cin.ignore();
+				waitEnterToContinue();
 				continue;
 			}
 
 			if(numbr_size(telemovel) != 9){
 				cout << "Introduziu um numero de telemovel invalido!";
 
-				cout << "\n\nPressione alguma tecla para continuar...\n";
-
-				cin.ignore();
+				waitEnterToContinue();
 				continue;
 			}
 			break;
@@ -61,9 +58,7 @@ void Jurado::alterarTelemovel(){
 		this->telemovel = telemovel;
 		cout << "O numero de telemovel foi alterado com sucesso!";
 
-		cout << "\n\nPressione alguma tecla para continuar...\n";
-
-		cin.ignore();
+		waitEnterToContinue();
 }
 
 void Jurado::alterarMorada(){
@@ -83,9 +78,7 @@ void Jurado::alterarMorada(){
 			else{
 				cout << "Introduziu uma morada invalida!";
 
-				cout << "\n\nPressione alguma tecla para continuar...\n";
-
-				cin.ignore();
+				waitEnterToContinue();
 				continue;
 			}
 		}
@@ -93,9 +86,7 @@ void Jurado::alterarMorada(){
 		this->morada = morada;
 		cout << "A morada foi alterada com sucesso!";
 
-		cout << "\n\nPressione alguma tecla para continuar...\n";
-
-		cin.ignore();
+		waitEnterToContinue();
 }
 
 void Jurado::alterarNome(){
@@ -115,9 +106,7 @@ void Jurado::alterarNome(){
 			else{
 				cout << "Introduziu um nome invalido!";
 
-				cout << "\n\nPressione alguma tecla para continuar...\n";
-
-				cin.ignore();
+				waitEnterToContinue();
 				continue;
 			}
 		}
@@ -125,9 +114,7 @@ void Jurado::alterarNome(){
 		this->nome = nome;
 		cout << "O nome foi alterado com sucesso!";
 
-		cout << "\n\nPressione alguma tecla para continuar...\n";
-
-		cin.ignore();
+		waitEnterToContinue();
 }
 
 

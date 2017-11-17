@@ -85,8 +85,7 @@ void Candidato::printParticipacoes(){
 			cout << participacoes[i];
 		}
 
-		cout << "\n\nPressione alguma tecla para continuar...\n";
-		cin.ignore();
+		waitEnterToContinue();
 }
 
 void Candidato::alterarMorada(){
@@ -106,9 +105,7 @@ void Candidato::alterarMorada(){
 			else{
 				cout << "Introduziu uma morada invalida!";
 
-				cout << "\n\nPressione alguma tecla para continuar...\n";
-
-				cin.ignore();
+				waitEnterToContinue();
 				continue;
 			}
 		}
@@ -116,9 +113,7 @@ void Candidato::alterarMorada(){
 		this->morada = morada;
 		cout << "A morada foi alterada com sucesso!";
 
-		cout << "\n\nPressione alguma tecla para continuar...\n";
-
-		cin.ignore();
+		waitEnterToContinue();
 }
 
 void Candidato::alterarNome(){
@@ -138,9 +133,7 @@ void Candidato::alterarNome(){
 			else{
 				cout << "Introduziu um nome invalido!";
 
-				cout << "\n\nPressione alguma tecla para continuar...\n";
-
-				cin.ignore();
+				waitEnterToContinue();
 				continue;
 			}
 		}
@@ -148,9 +141,7 @@ void Candidato::alterarNome(){
 		this->nome = nome;
 		cout << "O nome foi alterado com sucesso!";
 
-		cout << "\n\nPressione alguma tecla para continuar...\n";
-
-		cin.ignore();
+		waitEnterToContinue();
 }
 
 bool Candidato::removeParticipacao(Participacao * participacao){

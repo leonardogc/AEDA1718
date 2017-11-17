@@ -138,3 +138,9 @@ bool isValidDate(string date){
 	}
 }
 
+void waitEnterToContinue()
+{
+	cout << "\n\nPressione alguma tecla para continuar...\n";
+	cin.ignore();
+}
+

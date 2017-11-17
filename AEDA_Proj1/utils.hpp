@@ -37,4 +37,6 @@ public:
 
 bool isValidDate(string date); //TODO use on date stuff...
 
+void waitEnterToContinue();
+
 #endif /* UTILS_HPP_ */

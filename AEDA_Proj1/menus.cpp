@@ -547,12 +547,20 @@ void draw_menu_sessao(Sessao * sessao){
 	cout << "Jurado: " << sessao->getJurados()[2]->getNome() << "      Telemovel: " << sessao->getJurados()[2]->getTelemovel() << endl;
 	cout << "Data: " << sessao->getData() << "\n\n";
 
-	cout << "  1 - Gerar Primeira Fase\n"; //TODO tornar menu dinâmico para sessoes validas/invalidas
-	cout << "  2 - Gerar Segunda Fase\n";
-	cout << "  3 - Adicionar Candidato\n";
-	cout << "  4 - Remover Candidato\n";
-	cout << "  5 - Alterar data\n";
-	cout << "  6 - Return\n";
+	cout << "  1 - Ver detalhes\n";
+	if(sessao->getStatus())
+	{//TODO tornar menu dinâmico para sessoes validas/invalidas
+		cout << "  2 - Gerar Primeira Fase\n";
+		cout << "  3 - Gerar Segunda Fase\n";
+		cout << "  4 - Adicionar Candidato\n";
+		cout << "  5 - Remover Candidato\n";
+		cout << "  6 - Alterar data\n";
+		cout << "  7 - Return\n";
+	}
+	else
+	{
+		cout << "  2 - Return\n";
+	}
 	cout << ' ' << string(size, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -569,26 +577,43 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
 			valid_input = true;
 		}
+		if(sessao->getStatus())
+		{
+			switch (option) {
+			case 1: //TODO empresa->ver detalhes (candidatos por ordem de pontuação / fase)
+				//
+				break;
+			case 2: //TODO sessao->Gerar Primeira Fase comecado e mais ou menos estruturado
+				empresa->gerarPrimeiraFase(sessao);
+				break;
+			case 3: //TODO sessao->Gerar Segunda Fase
 
-		switch (option) {
-		case 1: //TODO sessao->Gerar Primeira Fase comecado e mais ou menos estruturado
-			empresa->gerarPrimeiraFase(sessao);
-			break;
-		case 2: //TODO sessao->Gerar Segunda Fase
+				break;
+			case 4: //TODO sessao->Adicionar Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
+				empresa->adicionar_candidato_sessao(sessao);
+				break;
+			case 5: //TODO sessao->Remover Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
+				empresa->remover_candidato_sessao(sessao);
+				break;
+			case 6: //TODO sessao->Alterar data Testar a ver se funciona (o pc da Verónica não gosta de aeda) feita depois da meia noite, nao prometo nada xD
+				sessao->alterarData();
+				break;
+			case 7: //Return
+				done=true;
+				break;
 
-			break;
-		case 3: //TODO sessao->Adicionar Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
-			empresa->adicionar_candidato_sessao(sessao);
-			break;
-		case 4: //TODO sessao->Remover Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
-			empresa->remover_candidato_sessao(sessao);
-			break;
-		case 5: //TODO sessao->Alterar data Testar a ver se funciona (o pc da Verónica não gosta de aeda) feita depois da meia noite, nao prometo nada xD
-			sessao->alterarData();
-			break;
-		case 6: //Return
-			done=true;
-			break;
+			}
+		}
+		else
+		{
+			switch (option) {
+			case 1: //TODO empresa->ver detalhes (candidatos por ordem de pontuação / fase)
+				//
+				break;
+			case 2: //Return
+				done=true;
+				break;
+			}
 		}
 	}
 }
