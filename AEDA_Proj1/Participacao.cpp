@@ -24,6 +24,13 @@ Participacao::Participacao(Sessao * sessao, int pontuacao[3], int posicao, int f
 	this->posicao = posicao;
 	this->fase = fase;
 }
+
+Participacao::~Participacao()
+{
+  delete sessao;
+  delete[] pontuacao;
+}
+
 const Sessao * Participacao::getSessao() const
 {
 	return this->sessao;

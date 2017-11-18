@@ -15,9 +15,9 @@ private:
 	string data; //simple string dd/mm/aaaa
 	bool changeable; //cangeable sessions can be changed because no phase has been generated
 public:
-	//construtor
+	//construtor e destrutor
 	Sessao(vector<Jurado *> jurados,string artePerformativa, string data, bool changeable);
-
+	~Sessao();
 	//métodos get
 	vector<Jurado *> getJurados() const;
 	string getArtePerformativa() const;

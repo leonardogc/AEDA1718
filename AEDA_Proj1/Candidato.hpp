@@ -20,6 +20,7 @@ public:
 	static unsigned int numCandidato;
 	Candidato(string nome, string  morada, string  generoArte, string dataNascimento);
 	Candidato(int nInscricao, string nome, string  morada, string  generoArte, string dataNascimento, bool validade);
+	~Candidato();
 	string getDataNasc() const;
 	int getNumInscricao() const;
 	vector <Participacao *> getParticipacoes() const;

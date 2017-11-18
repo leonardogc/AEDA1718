@@ -1,5 +1,19 @@
 #include "Sessao.hpp"
 
+Sessao::Sessao(vector<Jurado *> jurados,string artePerformativa, string data, bool changeable){
+	this->jurados = jurados;
+	this->artePerformativa = artePerformativa;
+	this->data = data;
+	this->changeable = changeable;
+}
+
+Sessao::~Sessao()
+{
+  for(unsigned i = 0; i < jurados.size(); i++){
+    delete jurados[i];
+  }
+}
+
 vector<Jurado *> Sessao::getJurados() const{
 	return this->jurados;
 }
@@ -30,13 +44,6 @@ void Sessao::setData(string data){
 
 void Sessao::setStatus(bool status){
 	this->changeable = status;
-}
-
-Sessao::Sessao(vector<Jurado *> jurados,string artePerformativa, string data, bool changeable){
-	this->jurados = jurados;
-	this->artePerformativa = artePerformativa;
-	this->data = data;
-	this->changeable = changeable;
 }
 
 bool Sessao::operator== (Sessao sessao) const{

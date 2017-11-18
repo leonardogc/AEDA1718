@@ -9,6 +9,13 @@ Candidato::Candidato(string nome, string  morada, string  generoArte, string dat
 	this->dataNascimento = dataNascimento;
 }
 
+Candidato::~Candidato()
+{
+  for(unsigned i = 0; i < participacoes.size(); i++){
+    delete participacoes[i];
+  }
+}
+
 Candidato::Candidato(int nInscricao, string nome, string  morada, string  generoArte, string dataNascimento, bool validade):
 				Pessoa(nome, morada, generoArte, validade), numInscricao(nInscricao)
 {

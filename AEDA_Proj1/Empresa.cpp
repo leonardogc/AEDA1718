@@ -7,6 +7,19 @@ Empresa::Empresa(string (&nomes)[4]) {
 	load_files(nomes);
 }
 
+Empresa::~Empresa()
+{
+  for(unsigned i = 0; i < jurados.size(); i++){
+    delete jurados[i];
+  }
+  for(unsigned i = 0; i < candidatos.size(); i++){
+    delete candidatos[i];
+  }
+  for(unsigned i = 0; i < sessoes.size(); i++){
+    delete sessoes[i];
+  }
+}
+
 /*
  * Formato dos ficheiros: (pode sofrer alteração)
  *
@@ -1066,10 +1079,9 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 			a = rand() % 11; //Valor de 0 a 10
 			b = rand() % 11;
 			c = rand() % 11;
+			int points[] = {a,b,c}; //posicao é atualizada no final de todos terem pontuacoes atribuidas
 
-			Participacao * participacao(sessao, {a,b,c}, 0, 1); //posicao é atualizada no final de todos terem pontuacoes atribuidas
-
-			candidatos[i]->addParticipacao(participacao);
+			candidatos[i]->addParticipacao(new Participacao(sessao, points, 0, 1));
 
 			candidatos_primeira_fase.push_back(candidatos[i]); //cria um vetor com todos os candidatos desta fase desta sessao
 		}
@@ -1082,7 +1094,7 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 		//tem que percorrer os candidatos e alterar lá também
 
 		for(unsigned int k = 0; k < candidatos.size(); k++){
-			if(candidatos[k] == candidatos_primeira_fase[j]){
+			if(*(candidatos[k]) == *(candidatos_primeira_fase[j])){
 				candidatos[k]->getParticipacao(sessao->getData()).first->setPosicao(j+1);
 			}
 		}

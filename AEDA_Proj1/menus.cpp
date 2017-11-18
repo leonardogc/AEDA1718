@@ -549,7 +549,7 @@ void draw_menu_sessao(Sessao * sessao){
 
 	cout << "  1 - Ver detalhes\n";
 	if(sessao->getStatus())
-	{//TODO tornar menu dinâmico para sessoes validas/invalidas
+	{
 		cout << "  2 - Gerar Primeira Fase\n";
 		cout << "  3 - Gerar Segunda Fase\n";
 		cout << "  4 - Adicionar Candidato\n";
