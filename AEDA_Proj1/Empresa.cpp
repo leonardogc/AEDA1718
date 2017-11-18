@@ -709,15 +709,15 @@ void Empresa::printSessoes(){
 
 void Empresa::printDetalhesSessao(Sessao * sessao){
 	int pos = 0, pontuacao = 0;
-	map<Candidato, pair<Participacao *,Participacao *>> info;
-	vector<Candidato> candidatosOrdenar; candidatosOrdenar.clear();
+	map<Candidato *, pair<Participacao *,Participacao *>> info;
+	vector<Candidato *> candidatosOrdenar; candidatosOrdenar.clear();
 	for(unsigned i = 0; i < candidatos.size(); ++i)
 		{
 			pair<Participacao *,Participacao *> infoCandidato = candidatos[i]->getParticipacao(sessao->getData());
 			if(infoCandidato.first != NULL)
 			{
-				info[*(candidatos[i])] = infoCandidato;
-				candidatosOrdenar.push_back(*(candidatos[i]));
+				info[candidatos[i]] = infoCandidato;
+				candidatosOrdenar.push_back(candidatos[i]);
 			}
 		}
 
@@ -758,8 +758,8 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 			}
 
 			cout << setw(3) << left << pos;
-			cout << setw(30) << left << candidatosOrdenar[i].getNome();
-			cout << setw(10) << left << candidatosOrdenar[i].getNumInscricao();
+			cout << setw(30) << left << candidatosOrdenar[i]->getNome();
+			cout << setw(10) << left << candidatosOrdenar[i]->getNumInscricao();
 			cout << setw(3) << left << pontuacao;
 			cout << "\n\n";
 		}
