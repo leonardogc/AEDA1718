@@ -17,7 +17,7 @@ private:
 public:
 	//construtor e destrutor
 	Sessao(vector<Jurado *> jurados,string artePerformativa, string data, bool changeable);
-	~Sessao();
+	//~Sessao();
 	//métodos get
 	vector<Jurado *> getJurados() const;
 	string getArtePerformativa() const;

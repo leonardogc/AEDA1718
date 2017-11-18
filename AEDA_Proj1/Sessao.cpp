@@ -7,12 +7,12 @@ Sessao::Sessao(vector<Jurado *> jurados,string artePerformativa, string data, bo
 	this->changeable = changeable;
 }
 
-Sessao::~Sessao()
+/*Sessao::~Sessao()
 {
   for(unsigned i = 0; i < jurados.size(); i++){
     delete jurados[i];
   }
-}
+}*/
 
 vector<Jurado *> Sessao::getJurados() const{
 	return this->jurados;

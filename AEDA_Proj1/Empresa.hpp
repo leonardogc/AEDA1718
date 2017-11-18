@@ -48,7 +48,7 @@ private:
 	void save_participacao(string &s);
 public:
 	Empresa(string (&nomes)[4]);
-	~Empresa();
+	//~Empresa();
 	vector<Jurado *> getJurados();
 	vector<Candidato *> getCandidatos();
 	vector<Sessao *> getSessoes();
