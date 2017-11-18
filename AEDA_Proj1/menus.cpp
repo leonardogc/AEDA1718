@@ -515,7 +515,7 @@ void menu_gerir_sessoes(Empresa * empresa){
 		case 2: //empresa->Escolher Sessao
 			menu_sessao(empresa->escolher_sessao(), empresa);
 			break;
-		case 3: //TODO (testar)Adicionar Sessao
+		case 3: //Adicionar Sessao
 			empresa->adicionar_sessao();
 			break;
 		case 4: //TODO (testar) empresa->Remover Sessao

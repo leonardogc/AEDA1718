@@ -83,16 +83,25 @@ bool isValidDate(string date){
 
 	//Parse date to integers
 	getline(ss, line, '/');
+	if(line.size() != 2){
+		return false;
+	}
 	auxiliar << line;
 	auxiliar >> day;
 	auxiliar.clear();
 
 	getline(ss, line, '/');
+	if(line.size() != 2){
+			return false;
+		}
 	auxiliar << line;
 	auxiliar >> month;
 	auxiliar.clear();
 
 	getline(ss, line, '/');
+	if(line.size() != 4){
+			return false;
+		}
 	auxiliar << line;
 	auxiliar >> year;
 

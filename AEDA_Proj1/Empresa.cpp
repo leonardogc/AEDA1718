@@ -127,6 +127,10 @@ void Empresa::save_sessoes(string &s){
 			file << sessoes[i]->getArtePerformativa() << ";";
 			file << sessoes[i]->getData() << ";";
 
+			if(sessoes[i]->getStatus()){
+				file << "changeable" << ";";
+			}
+
 			if(i != sessoes.size()-1){
 				file << "\n";
 			}
@@ -818,6 +822,7 @@ Sessao *  Empresa::escolher_sessao(){
 			if(sessoes[i]->getArtePerformativa() == arte){
 				cout << "O genero de arte e valido!" << endl;
 				found = true;
+				break;
 			}
 		}
 
@@ -954,7 +959,7 @@ void Empresa::adicionar_sessao(){
 	vector <string> artes;
 	vector <string> artesValidas;
 	int counter;
-	int telemovel;
+	int pos;
 	bool found= false;
 
 	for (int i = 0; i < jurados.size(); i++){
@@ -998,23 +1003,31 @@ void Empresa::adicionar_sessao(){
 			cout << "\nArtes Válidas\n\n";
 
 			for(int i = 0;i < artesValidas.size();i++){
+				cout << i+1 << " - ";
 				cout << artesValidas[i] << "\n";
 			}
 
-			cout << "Introduza o genero de arte da sessao: ";
-			getline(cin, arte);
+			cout << "Introduza a posicao na lista do genero de arte\n";
 
-			for(int i = 0; i< artesValidas.size();i++){
-				if(arte==artesValidas[i]){
-					found = true;
-					break;
-				}
+			try{
+				pos = read_number_Input();
 			}
+			catch(invalid_argument &e){
+				cout << "Introduziu um numero invalido!";
 
-			if(!found){
-				cout << "Arte invalida..." << endl;
 				pressKeyToContinue();
+				continue;
 			}
+
+			if((pos > artesValidas.size()) || (pos < 1)){
+				cout << "Introduziu um numero invalido!";
+
+				pressKeyToContinue();
+				continue;
+			}
+
+			arte = artesValidas[pos - 1];
+			found=true;
 
 		}
 
@@ -1063,42 +1076,32 @@ void Empresa::adicionar_sessao(){
 			clear_scrn();
 
 			for (int i = 0; i < juradosValidos.size(); i++){
+				cout << i + 1 << " - ";
 				cout << juradosValidos[i];
 			}
 
-			cout << "Introduza o Telemovel do jurado principal\n";
+			cout << "Introduza a posicao na lista do jurado principal\n";
 
 			try{
-				telemovel = read_number_Input();
+				pos = read_number_Input();
 			}
 			catch(invalid_argument &e){
-				cout << "Introduziu um numero de telemovel invalido!";
+				cout << "Introduziu um numero invalido!";
 
 				pressKeyToContinue();
 				continue;
 			}
 
-			if(numbr_size(telemovel) != 9){
-				cout << "Introduziu um numero de telemovel invalido!";
+			if((pos > juradosValidos.size()) || (pos < 1)){
+				cout << "Introduziu um numero invalido!";
 
 				pressKeyToContinue();
 				continue;
 			}
 
-			for (int i = 0; i < juradosValidos.size(); i++){
-				if(juradosValidos[i]->getTelemovel() == telemovel){
-					avaliadores.push_back(juradosValidos[i]);
-					juradosValidos.erase(juradosValidos.begin()+i);
-					found=true;
-					break;
-				}
-			}
-
-			if(!found){
-				cout << "Nao existe nenhum jurado com esse numero...";
-				pressKeyToContinue();
-				continue;
-			}
+			avaliadores.push_back(juradosValidos[pos - 1]);
+			juradosValidos.erase(juradosValidos.begin() + pos - 1);
+			found=true;
 		}
 
 		found=false;
@@ -1107,43 +1110,34 @@ void Empresa::adicionar_sessao(){
 			clear_scrn();
 
 			for (int i = 0; i < juradosValidos.size(); i++){
+				cout << i + 1 << " - ";
 				cout << juradosValidos[i];
 			}
 
-			cout << "Introduza o Telemovel de outro jurado\n";
+			cout << "Introduza a posicao na lista do jurado\n";
 
 			try{
-				telemovel = read_number_Input();
+				pos = read_number_Input();
 			}
 			catch(invalid_argument &e){
-				cout << "Introduziu um numero de telemovel invalido!";
+				cout << "Introduziu um numero invalido!";
 
 				pressKeyToContinue();
 				continue;
 			}
 
-			if(numbr_size(telemovel) != 9){
-				cout << "Introduziu um numero de telemovel invalido!";
+			if((pos > juradosValidos.size()) || (pos < 1)){
+				cout << "Introduziu um numero invalido!";
 
 				pressKeyToContinue();
 				continue;
 			}
 
-			for (int i = 0; i < juradosValidos.size(); i++){
-				if(juradosValidos[i]->getTelemovel() == telemovel){
-					avaliadores.push_back(juradosValidos[i]);
-					juradosValidos.erase(juradosValidos.begin()+i);
-					found=true;
-					break;
-				}
-			}
-
-			if(!found){
-				cout << "Nao existe nenhum jurado com esse numero...";
-				pressKeyToContinue();
-				continue;
-			}
+			avaliadores.push_back(juradosValidos[pos - 1]);
+			juradosValidos.erase(juradosValidos.begin() + pos - 1);
+			found=true;
 		}
+
 
 		found=false;
 
@@ -1151,42 +1145,32 @@ void Empresa::adicionar_sessao(){
 			clear_scrn();
 
 			for (int i = 0; i < juradosValidos.size(); i++){
+				cout << i + 1 << " - ";
 				cout << juradosValidos[i];
 			}
 
-			cout << "Introduza o Telemovel de outro jurado\n";
+			cout << "Introduza a posicao na lista do jurado\n";
 
 			try{
-				telemovel = read_number_Input();
+				pos = read_number_Input();
 			}
 			catch(invalid_argument &e){
-				cout << "Introduziu um numero de telemovel invalido!";
+				cout << "Introduziu um numero invalido!";
 
 				pressKeyToContinue();
 				continue;
 			}
 
-			if(numbr_size(telemovel) != 9){
-				cout << "Introduziu um numero de telemovel invalido!";
+			if((pos > juradosValidos.size()) || (pos < 1)){
+				cout << "Introduziu um numero invalido!";
 
 				pressKeyToContinue();
 				continue;
 			}
 
-			for (int i = 0; i < juradosValidos.size(); i++){
-				if(juradosValidos[i]->getTelemovel() == telemovel){
-					avaliadores.push_back(juradosValidos[i]);
-					juradosValidos.erase(juradosValidos.begin()+i);
-					found=true;
-					break;
-				}
-			}
-
-			if(!found){
-				cout << "Nao existe nenhum jurado com esse numero...";
-				pressKeyToContinue();
-				continue;
-			}
+			avaliadores.push_back(juradosValidos[pos - 1]);
+			juradosValidos.erase(juradosValidos.begin() + pos - 1);
+			found=true;
 		}
 
 		sessoes.push_back(new Sessao(avaliadores, arte, data, true));
