@@ -518,7 +518,7 @@ void menu_gerir_sessoes(Empresa * empresa){
 		case 3: //Adicionar Sessao
 			empresa->adicionar_sessao();
 			break;
-		case 4: //TODO (testar) empresa->Remover Sessao
+		case 4: //empresa->Remover Sessao
 			empresa->remover_sessao();
 			break;
 		case 5: //Ordenar por data e arte
@@ -590,7 +590,7 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 			case 3: //TODO sessao->Gerar Segunda Fase
 
 				break;
-			case 4: //TODO (testar) sessao->Adicionar Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
+			case 4: //sessao->Adicionar Candidato
 				empresa->adicionar_candidato_sessao(sessao);
 				break;
 			case 5: //TODO (testar) sessao->Remover Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)

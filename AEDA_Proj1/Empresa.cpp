@@ -1199,7 +1199,6 @@ void Empresa::remover_candidato(){
 }
 
 void Empresa::remover_sessao(){
-	bool found = false;
 
 	Sessao * sessao = this->escolher_sessao();
 
@@ -1212,22 +1211,13 @@ void Empresa::remover_sessao(){
 
 	string arte = sessao->getArtePerformativa();
 
-	this->sortCandidatos(by_name_and_art);
 	vector<Candidato *> candidatos;
 	candidatos.clear();
 
 	for (unsigned i = 0; i < this->candidatos.size(); ++i)
 	{
-		if(this->candidatos[i]->getGeneroArte() != arte)
+		if(this->candidatos[i]->getGeneroArte() == arte)
 		{
-			if(found)
-				break;
-			else
-				continue;
-		}
-		else
-		{
-			found = true;
 			candidatos.push_back(this->candidatos[i]);
 		}
 	}
@@ -1254,8 +1244,61 @@ void Empresa::remover_sessao(){
 
 void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 	//para adicionar um candidato a sessao tem que escolher dos já existentes
+	bool found=false;
+	int id;
+	vector <Candidato *> candidatos_possiveis;
+	Candidato *candidato;
 
-	Candidato * candidato = this->escolher_candidato();
+	for(int i = 0; i < candidatos.size(); i++){
+		if(candidatos[i]->getGeneroArte() == sessao->getArtePerformativa()){
+			candidatos_possiveis.push_back(candidatos[i]);
+		}
+	}
+
+	while(!found){
+		clear_scrn();
+
+		cout << "\n\n";
+		cout << setw(20) << left << "Num. Inscricao";
+		cout << setw(30) << left << "Nome";
+		cout << setw(20) << left << "Data Nascimento";
+		cout << setw(30) << left << "Genero de Arte";
+		cout << setw(20) << left << "Morada";
+		cout << setw(20) << left << "Validade";
+		cout << "\n\n";
+
+		for(int i = 0; i < candidatos_possiveis.size(); i++){
+			cout << candidatos_possiveis[i];
+		}
+
+		cout <<"\n\nIntroduza o numero de incricao do candidato:\n";
+
+		try{
+			id = read_number_Input();
+		}
+		catch(invalid_argument &e){
+			cout << "Introduziu um numero invalido!";
+
+			pressKeyToContinue();
+			continue;
+		}
+
+		for(int i = 0; i < candidatos_possiveis.size(); i++){
+			if(id == candidatos_possiveis[i]->getNumInscricao()){
+				found=true;
+				candidato=(Candidato *)candidatos_possiveis[i];
+			}
+		}
+
+		if(!found){
+			cout << "Introduziu um numero invalido!";
+
+			pressKeyToContinue();
+			continue;
+		}
+
+	}
+
 
 	int points[3] = {0,0,0};
 	candidato->addParticipacao(new Participacao(sessao, points, 0, 1));
