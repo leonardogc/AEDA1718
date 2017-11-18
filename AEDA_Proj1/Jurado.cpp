@@ -42,14 +42,14 @@ void Jurado::alterarTelemovel(){
 			catch(invalid_argument &e){
 				cout << "Introduziu um numero de telemovel invalido!";
 
-				waitEnterToContinue();
+				pressKeyToContinue();
 				continue;
 			}
 
 			if(numbr_size(telemovel) != 9){
 				cout << "Introduziu um numero de telemovel invalido!";
 
-				waitEnterToContinue();
+				pressKeyToContinue();
 				continue;
 			}
 			break;
@@ -58,7 +58,7 @@ void Jurado::alterarTelemovel(){
 		this->telemovel = telemovel;
 		cout << "O numero de telemovel foi alterado com sucesso!";
 
-		waitEnterToContinue();
+		pressKeyToContinue();
 }
 
 void Jurado::alterarMorada(){
@@ -78,7 +78,7 @@ void Jurado::alterarMorada(){
 			else{
 				cout << "Introduziu uma morada invalida!";
 
-				waitEnterToContinue();
+				pressKeyToContinue();
 				continue;
 			}
 		}
@@ -86,7 +86,7 @@ void Jurado::alterarMorada(){
 		this->morada = morada;
 		cout << "A morada foi alterada com sucesso!";
 
-		waitEnterToContinue();
+		pressKeyToContinue();
 }
 
 void Jurado::alterarNome(){
@@ -106,7 +106,7 @@ void Jurado::alterarNome(){
 			else{
 				cout << "Introduziu um nome invalido!";
 
-				waitEnterToContinue();
+				pressKeyToContinue();
 				continue;
 			}
 		}
@@ -114,7 +114,7 @@ void Jurado::alterarNome(){
 		this->nome = nome;
 		cout << "O nome foi alterado com sucesso!";
 
-		waitEnterToContinue();
+		pressKeyToContinue();
 }
 
 

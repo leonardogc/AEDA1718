@@ -674,7 +674,7 @@ void Empresa::printJurados(){
 		cout << jurados[i];
 	}
 
-	waitEnterToContinue();
+	pressKeyToContinue();
 }
 
 void Empresa::printCandidatos(){
@@ -691,7 +691,7 @@ void Empresa::printCandidatos(){
 		cout << candidatos[i];
 	}
 
-	waitEnterToContinue();
+	pressKeyToContinue();
 }
 
 void Empresa::printSessoes(){
@@ -704,7 +704,7 @@ void Empresa::printSessoes(){
 		cout << sessoes[i];
 	}
 
-	waitEnterToContinue();
+	pressKeyToContinue();
 }
 
 void Empresa::printDetalhesSessao(Sessao * sessao){
@@ -765,7 +765,7 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 		}
 	}
 
-	waitEnterToContinue();
+	pressKeyToContinue();
 }
 
 Candidato *  Empresa::escolher_candidato(){
@@ -783,7 +783,7 @@ Candidato *  Empresa::escolher_candidato(){
 		}
 		catch(invalid_argument &e){
 			cout << "Introduziu um numero invalido!";
-			waitEnterToContinue();
+			pressKeyToContinue();
 			continue;
 		}
 
@@ -796,7 +796,7 @@ Candidato *  Empresa::escolher_candidato(){
 		}
 
 		cout << "Introduziu um id que nao existe!" << endl;
-		waitEnterToContinue();
+		pressKeyToContinue();
 	}
 }
 
@@ -823,7 +823,7 @@ Sessao *  Empresa::escolher_sessao(){
 
 		if(!found){
 			cout << "genero de arte invalido" << endl;
-			waitEnterToContinue();
+			pressKeyToContinue();
 		}
 	}
 
@@ -844,7 +844,7 @@ Sessao *  Empresa::escolher_sessao(){
 
 			if(!found){
 				cout << "data invalida" << endl;
-				waitEnterToContinue();
+				pressKeyToContinue();
 			}
 		}
 }
@@ -864,12 +864,12 @@ Jurado *  Empresa::escolher_jurado(){
 			}
 			catch(invalid_argument &e){
 				cout << "Introduziu um numero de telemovel invalido!";
-				waitEnterToContinue();
+				pressKeyToContinue();
 				continue;
 			}
 			if(numbr_size(telemovel) != 9){
 				cout << "Introduziu um numero de telemovel invalido!";
-				waitEnterToContinue();
+				pressKeyToContinue();
 				continue;
 			}
 			break;
@@ -882,7 +882,7 @@ Jurado *  Empresa::escolher_jurado(){
 			}
 		}
 		cout << "Introduziu um telemovel que nao existe!" << endl;
-		waitEnterToContinue();
+		pressKeyToContinue();
 	}
 }
 
@@ -902,7 +902,7 @@ void Empresa::adicionar_candidato(){
 
 	cout << "Foi introduzido um novo candidato com sucesso!";
 
-	waitEnterToContinue();
+	pressKeyToContinue();
 }
 
 void Empresa::adicionar_jurado(){
@@ -925,12 +925,12 @@ void Empresa::adicionar_jurado(){
 		}
 		catch(invalid_argument &e){
 			cout << "Introduziu um numero de telemovel invalido!";
-			waitEnterToContinue();
+			pressKeyToContinue();
 			continue;
 		}
 		if(numbr_size(telemovel) != 9){
 			cout << "Introduziu um numero de telemovel invalido!";
-			waitEnterToContinue();
+			pressKeyToContinue();
 			continue;
 		}
 		break;
@@ -940,7 +940,7 @@ void Empresa::adicionar_jurado(){
 
 	cout << "Foi introduzido um novo jurado com sucesso!";
 
-	waitEnterToContinue();
+	pressKeyToContinue();
 }
 
 void Empresa::adicionar_sessao(){
@@ -961,21 +961,21 @@ void Empresa::adicionar_sessao(){
 
 	cout << "Foi criada uma nova sessao com sucesso!";
 
-	waitEnterToContinue();
+	pressKeyToContinue();
 }
 
 void Empresa::remover_jurado(){
 	Jurado * jurado = this->escolher_jurado();
 	jurado->setValid(false);
 	cout << "O jurado foi removido com sucesso!";
-	waitEnterToContinue();
+	pressKeyToContinue();
 }
 
 void Empresa::remover_candidato(){
 	Candidato * candidato = this->escolher_candidato();
 	candidato->setValid(false);
 	cout << "O candidato foi removido com sucesso!";
-	waitEnterToContinue();
+	pressKeyToContinue();
 }
 
 void Empresa::remover_sessao(){
@@ -986,7 +986,7 @@ void Empresa::remover_sessao(){
 	if(!(sessao->getStatus()))
 	{
 		cout << "Não é possivel remover uma sessao que já tenha acontecido!";
-		waitEnterToContinue();
+		pressKeyToContinue();
 		return;
 	}
 
@@ -1029,7 +1029,7 @@ void Empresa::remover_sessao(){
 	}
 
 	cout << "A sessao foi removida com sucesso!";
-	waitEnterToContinue();
+	pressKeyToContinue();
 }
 
 void Empresa::adicionar_candidato_sessao(Sessao * sessao){
@@ -1042,7 +1042,7 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 
 	cout << "O candidato foi adicionado a sessao com sucesso!\n" << endl;
 
-	waitEnterToContinue();
+	pressKeyToContinue();
 
 }
 
@@ -1111,7 +1111,7 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 
 	//chamar diretamente o criar segunda fase! pedir um enter antes!!
 
-	waitEnterToContinue();
+	pressKeyToContinue();
 
 	//os cinco melhores estºao guardados em candidatos_apurados
 }

@@ -107,7 +107,7 @@ void Candidato::printParticipacoes(){
 			cout << participacoes[i];
 		}
 
-		waitEnterToContinue();
+		pressKeyToContinue();
 }
 
 void Candidato::alterarMorada(){
@@ -127,7 +127,7 @@ void Candidato::alterarMorada(){
 			else{
 				cout << "Introduziu uma morada invalida!";
 
-				waitEnterToContinue();
+				pressKeyToContinue();
 				continue;
 			}
 		}
@@ -135,7 +135,7 @@ void Candidato::alterarMorada(){
 		this->morada = morada;
 		cout << "A morada foi alterada com sucesso!";
 
-		waitEnterToContinue();
+		pressKeyToContinue();
 }
 
 void Candidato::alterarNome(){
@@ -155,7 +155,7 @@ void Candidato::alterarNome(){
 			else{
 				cout << "Introduziu um nome invalido!";
 
-				waitEnterToContinue();
+				pressKeyToContinue();
 				continue;
 			}
 		}
@@ -163,7 +163,7 @@ void Candidato::alterarNome(){
 		this->nome = nome;
 		cout << "O nome foi alterado com sucesso!";
 
-		waitEnterToContinue();
+		pressKeyToContinue();
 }
 
 bool Candidato::removeParticipacao(Sessao * sessao){
