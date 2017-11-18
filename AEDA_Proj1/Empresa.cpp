@@ -1050,12 +1050,56 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 
 	//funcao que percorre as participacoes do candidato para saber se ele pertence a esta sessao ou nao
 
+	vector <Candidato *> candidatos_primeira_fase;
+	vector <Candidato *> candidatos_apurados;
+
 	for(unsigned int i = 0; i < candidatos.size(); i++){
 		//verificar se o candidato tem participacao nessa sessao
 		//talvez criar um vetor para os candidatos da sessao
 		//ate para depois se fazerem os prints dos que apuram e das pontuacoes gerais e assim
-		if(candidatos[i]->getParticipacao(sessao->getData()).first /*esta é agora a primeira fase...*/ ){
 
+		//se isto nao retornar vazio, significa que o candidato tem participacao para esta sessao e faz o que esta dentro do if
+		if(candidatos[i]->getParticipacao(sessao->getData()).first /*esta é agora a primeira fase...*/ ){
+			candidatos[i]->removeParticipacao(sessao);
+
+			int a, b, c;
+			a = rand() % 11; //Valor de 0 a 10
+			b = rand() % 11;
+			c = rand() % 11;
+
+			Participacao * participacao(sessao, {a,b,c}, 0, 1); //posicao é atualizada no final de todos terem pontuacoes atribuidas
+
+			candidatos[i]->addParticipacao(participacao);
+
+			candidatos_primeira_fase.push_back(candidatos[i]); //cria um vetor com todos os candidatos desta fase desta sessao
 		}
 	}
+	//ordenar por pontuacao
+	sortBy_points_in_session(candidatos_primeira_fase, sessao->getData(), 1);
+	for(unsigned int j = 0; j < candidatos_primeira_fase.size(); j++){
+		//atribuir a posicao a partir daí, para alem de guardar a posicao na participacao do candidato original!
+		candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->setPosicao(j+1); //so esta a alterar a posicao nas copias
+		//tem que percorrer os candidatos e alterar lá também
+
+		for(unsigned int k = 0; k < candidatos.size(); k++){
+			if(candidatos[k] == candidatos_primeira_fase[j]){
+				candidatos[k]->getParticipacao(sessao->getData()).first->setPosicao(j+1);
+			}
+		}
+
+		cout << candidatos_primeira_fase[j] << "Pontuacao = " << candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->getPontuacaoFinal();
+		if(j < 5){
+			cout << "   Aprovado!";
+			candidatos_apurados.push_back(candidatos_primeira_fase[j]);
+		}
+		cout << "\n";
+	}
+
+	cout << "Para a fase 2 do casting apuram os 5 primeiros da lista anterior! Boa sorte a todos!";
+
+	//chamar diretamente o criar segunda fase! pedir um enter antes!!
+
+	waitEnterToContinue();
+
+	//os cinco melhores estºao guardados em candidatos_apurados
 }
