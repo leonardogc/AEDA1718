@@ -1335,7 +1335,7 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 		//ate para depois se fazerem os prints dos que apuram e das pontuacoes gerais e assim
 
 		//se isto nao retornar vazio, significa que o candidato tem participacao para esta sessao e faz o que esta dentro do if
-		if(candidatos[i]->getParticipacao(sessao->getData()).first /*esta é agora a primeira fase...*/ ){
+		if(candidatos[i]->getParticipacao(sessao->getData()).first != NULL /*esta é agora a primeira fase...*/ ){
 			candidatos[i]->removeParticipacao(sessao);
 
 			int a, b, c;
@@ -1354,6 +1354,8 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 	for(unsigned int j = 0; j < candidatos_primeira_fase.size(); j++){
 		//atribuir a posicao a partir daí, para alem de guardar a posicao na participacao do candidato original!
 		candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->setPosicao(j+1); //so esta a alterar a posicao nas copias
+		/*
+		//acho que isto é desnecessario porque sao pointers....
 		//tem que percorrer os candidatos e alterar lá também
 
 		for(unsigned int k = 0; k < candidatos.size(); k++){
@@ -1361,6 +1363,7 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 				candidatos[k]->getParticipacao(sessao->getData()).first->setPosicao(j+1);
 			}
 		}
+		*/
 
 		cout << candidatos_primeira_fase[j] << "Pontuacao = " << candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->getPontuacaoFinal();
 		if(j < 5){
@@ -1377,4 +1380,49 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 	pressKeyToContinue();
 
 	//os cinco melhores estºao guardados em candidatos_apurados
+}
+
+void Empresa::gerarSegundaFase(Sessao * sessao){
+
+	/*IMPORTANT     falta verificar se a primeira fase ja foi criada*/
+
+	sessao->setStatus(false);
+
+	vector <Candidato *> candidatos_primeira_fase;
+	vector <Candidato *> candidatos_apurados;
+
+	for(unsigned int i = 0; i < candidatos.size(); i++){
+		if(candidatos[i]->getParticipacao(sessao->getData()).first != NULL ){
+			candidatos_primeira_fase.push_back(candidatos[i]);
+		}
+	}
+
+
+	sortBy_points_in_session(candidatos_primeira_fase, sessao->getData(), 1);
+
+	for(unsigned int i = 0; i < candidatos_primeira_fase.size()  && i < 5; i++){
+		candidatos_apurados.push_back(candidatos_primeira_fase[i]);
+	}
+
+	for(unsigned int i = 0; i < candidatos_apurados.size(); i++){
+
+		int a, b, c;
+		a = rand() % 11; //Valor de 0 a 10
+		b = rand() % 11;
+		c = rand() % 11;
+		int points[] = {a,b,c}; //posicao é atualizada no final de todos terem pontuacoes atribuidas
+
+		candidatos_apurados[i]->addParticipacao(new Participacao(sessao,points,0,2));
+	}
+
+	sortBy_points_in_session(candidatos_apurados, sessao->getData(), 2);
+
+	for(unsigned int i = 0; i < candidatos_apurados.size(); i++){
+		candidatos_apurados[i]->getParticipacao(sessao->getData()).second->setPosicao(i+1);
+	}
+
+	cout << "O vencedor e:\n"<< candidatos_apurados[0]<<endl;
+
+	pressKeyToContinue();
+
 }

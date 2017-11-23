@@ -78,6 +78,7 @@ public:
 	void adicionar_candidato_sessao(Sessao * sessao);
 	void remover_candidato_sessao(Sessao * sessao);
 	void gerarPrimeiraFase(Sessao * sessao);
+	void gerarSegundaFase(Sessao * sessao);
 };
 
 void sortBy_points_in_session(vector<Candidato> &candidatos, string const &dataSessao, int fase);

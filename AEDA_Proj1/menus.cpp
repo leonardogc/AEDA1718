@@ -584,11 +584,11 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 			case 1: //TODO (testar) empresa->ver detalhes sessao (candidatos por ordem de pontuação / fase)
 				empresa->printDetalhesSessao(sessao);
 				break;
-			case 2: //TODO sessao->Gerar Primeira Fase comecado e mais ou menos estruturado
+			case 2: //TODO (testar) sessao->Gerar Primeira Fase comecado e mais ou menos estruturado
 				empresa->gerarPrimeiraFase(sessao);
 				break;
-			case 3: //TODO sessao->Gerar Segunda Fase
-
+			case 3: //TODO (testar) sessao->Gerar Segunda Fase
+				empresa->gerarSegundaFase(sessao);
 				break;
 			case 4: //sessao->Adicionar Candidato
 				empresa->adicionar_candidato_sessao(sessao);
