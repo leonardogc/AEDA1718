@@ -1321,8 +1321,10 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 void Empresa::gerarPrimeiraFase(Sessao * sessao){
 	//a sessao passada como parametro ja esta escolhida, e validada
 
-	//colocar o status a false, para não se poder alterar mais a sessao
-	sessao->setStatus(false);
+	if(sessao->get_primeira_fase_gerada()){
+		return;
+	}
+
 
 	//funcao que percorre as participacoes do candidato para saber se ele pertence a esta sessao ou nao
 
@@ -1377,6 +1379,8 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 
 	//chamar diretamente o criar segunda fase! pedir um enter antes!!
 
+	sessao->set_primeira_fase_gerada(true);
+
 	pressKeyToContinue();
 
 	//os cinco melhores estºao guardados em candidatos_apurados
@@ -1384,9 +1388,9 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 
 void Empresa::gerarSegundaFase(Sessao * sessao){
 
-	/*IMPORTANT     falta verificar se a primeira fase ja foi criada*/
-
-	sessao->setStatus(false);
+	if(sessao->get_segunda_fase_gerada()){
+		return;
+	}
 
 	vector <Candidato *> candidatos_primeira_fase;
 	vector <Candidato *> candidatos_apurados;
@@ -1422,6 +1426,9 @@ void Empresa::gerarSegundaFase(Sessao * sessao){
 	}
 
 	cout << "O vencedor e:\n"<< candidatos_apurados[0]<<endl;
+
+	sessao->setStatus(false);
+	sessao->set_segunda_fase_gerada(true);
 
 	pressKeyToContinue();
 

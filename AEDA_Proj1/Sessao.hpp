@@ -14,6 +14,8 @@ private:
 	string artePerformativa;
 	string data; //simple string dd/mm/aaaa
 	bool changeable; //cangeable sessions can be changed because no phase has been generated
+	bool primeira_fase_gerada;
+	bool segunda_fase_gerada;
 public:
 	//construtor e destrutor
 	Sessao(vector<Jurado *> jurados,string artePerformativa, string data, bool changeable);
@@ -23,12 +25,17 @@ public:
 	string getArtePerformativa() const;
 	string getData() const;
 	bool getStatus() const;
+	bool get_primeira_fase_gerada();
+	bool get_segunda_fase_gerada();
+
 
 	//metodos set
 	void setJurados(vector <Jurado *> jur);
 	void setArtePerformativa(string artePerformativa);
 	void setData(string data);
 	void setStatus(bool status);
+	void set_primeira_fase_gerada(bool status);
+	void set_segunda_fase_gerada(bool status);
 
 	//operadores
 	bool operator== (Sessao sessao) const;

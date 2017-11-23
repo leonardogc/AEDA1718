@@ -5,6 +5,15 @@ Sessao::Sessao(vector<Jurado *> jurados,string artePerformativa, string data, bo
 	this->artePerformativa = artePerformativa;
 	this->data = data;
 	this->changeable = changeable;
+
+	if(changeable){
+		primeira_fase_gerada=false;
+		segunda_fase_gerada=false;
+	}
+	else{
+		primeira_fase_gerada=true;
+		segunda_fase_gerada=true;
+	}
 }
 
 /*Sessao::~Sessao()
@@ -98,4 +107,20 @@ ostream& operator <<(ostream &os, const Sessao *s){
 	os << "\n";
 
 	return os;
+}
+
+bool Sessao::get_primeira_fase_gerada(){
+	return primeira_fase_gerada;
+}
+
+bool Sessao::get_segunda_fase_gerada(){
+	return segunda_fase_gerada;
+}
+
+void Sessao::set_primeira_fase_gerada(bool status){
+	primeira_fase_gerada=status;
+}
+
+void Sessao::set_segunda_fase_gerada(bool status){
+	segunda_fase_gerada=status;
 }
