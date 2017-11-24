@@ -580,7 +580,7 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 		if(sessao->getStatus())
 		{
 			switch (option) {
-			case 1: //TODO (testar) empresa->ver detalhes sessao (candidatos por ordem de pontuação / fase)
+			case 1: //empresa->ver detalhes sessao (candidatos por ordem de pontuação / fase)
 				empresa->printDetalhesSessao(sessao);
 				break;
 			case 2: //TODO (testar) gerar fases
@@ -605,7 +605,7 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 		else
 		{
 			switch (option) {
-			case 1: //TODO (testar) empresa->ver detalhes sessao (candidatos por ordem de pontuação / fase)
+			case 1: //empresa->ver detalhes sessao (candidatos por ordem de pontuação / fase)
 				empresa->printDetalhesSessao(sessao);
 				break;
 			case 2: //Return

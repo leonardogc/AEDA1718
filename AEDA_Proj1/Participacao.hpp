@@ -12,7 +12,6 @@ private:
 	int fase;
 public:
 	Participacao(Sessao * sessao, int pontuacao[3], int posicao, int fase);
-	//~Participacao();
 	const Sessao * getSessao() const;
 	void setPontuacao(int pontuacao[4]);
 	void setPosicao(int posicao);

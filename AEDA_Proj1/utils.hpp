@@ -36,7 +36,7 @@ public:
 };
 
 
-bool isValidDate(string date); //TODO use on date stuff...
+bool isValidDate(string date);
 
 void pressKeyToContinue();
 

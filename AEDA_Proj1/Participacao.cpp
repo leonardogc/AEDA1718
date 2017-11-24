@@ -28,7 +28,7 @@ Participacao::Participacao(Sessao * sessao, int pontuacao[3], int posicao, int f
 /*Participacao::~Participacao()
 {
   delete sessao;
-  delete[] pontuacao;
+  delete [] pontuacao;
 }*/
 
 const Sessao * Participacao::getSessao() const
