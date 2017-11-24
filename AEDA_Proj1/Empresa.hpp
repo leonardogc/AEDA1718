@@ -72,6 +72,7 @@ public:
 	void remover_jurado();
 	void remover_candidato();
 	void remover_sessao();
+	void alterarDataSessao(Sessao* sessao);
 
 	//outros metodos
 	void adicionar_candidato_sessao(Sessao * sessao);

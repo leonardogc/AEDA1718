@@ -1483,3 +1483,42 @@ void Empresa::gerarSegundaFase(Sessao * sessao){
 	pressKeyToContinue();
 
 }
+
+
+
+void Empresa::alterarDataSessao(Sessao* sessao){
+
+	bool found=true;
+	string data;
+
+	while(found){
+		clear_scrn();
+		found=false;
+
+		cout << "Introduza a nova data da sessao: ";
+		getline(cin, data);
+
+		if(!isValidDate(data)){
+			cout << "Data invalida" << endl;
+			pressKeyToContinue();
+			found=true;
+			continue;
+		}
+
+		for(int i = 0; i< sessoes.size();i++){
+			if(!(*sessao == *sessoes[i]) && (sessao->getArtePerformativa() == sessoes[i]->getArtePerformativa()) && (data == sessoes[i]->getData())){
+				found = true;
+				break;
+			}
+		}
+
+		if(found){
+			cout << "Ja existe uma sessao nessa data..." << endl;
+			pressKeyToContinue();
+		}
+	}
+
+	cout << "\nData alterada com sucesso!\n";
+
+	sessao->setData(data);
+}

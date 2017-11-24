@@ -76,11 +76,6 @@ public:
 	void setData(string data);
 
 	/**
-	 * Metodo que permite escolher uma nova data
-	 */
-	void alterarData();
-
-	/**
 	 * Define o estado da sessão de acordo com o parametro dado
 	 * @param status booleano com o novo valor de changeable
 	 */
