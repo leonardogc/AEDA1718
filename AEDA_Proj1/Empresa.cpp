@@ -726,19 +726,20 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 		}
 
 	cout << "\n\n";
-	cout << setw(40) << left << "Genero de Arte: " << sessao->getArtePerformativa();
-	cout << setw(20) << left << " Data: " << sessao->getData();
+	cout << "Genero de Arte: " << sessao->getArtePerformativa();
+	cout << "         Data: " << sessao->getData();
 
 	cout << "\n\nJurados:\n\n";
 
-	cout << setw(40) << left << "Nome: " << sessao->getJurados()[0]->getNome();
-	cout << setw(10) << left << " Contacto: " << sessao->getJurados()[0]->getTelemovel();
-	cout << "\n\n";
-	cout << setw(40) << left << "Nome: " << sessao->getJurados()[1]->getNome();
-	cout << setw(10) << left << " Contacto: " << sessao->getJurados()[1]->getTelemovel();
-	cout << "\n\n";
-	cout << setw(40) << left << "Nome: " << sessao->getJurados()[2]->getNome();
-	cout << setw(10) << left << " Contacto: " << sessao->getJurados()[2]->getTelemovel();
+	cout << "Nome: " << setw(30) << left << sessao->getJurados()[0]->getNome();
+	cout << "Contacto: " << sessao->getJurados()[0]->getTelemovel();
+	cout << "\n";
+	cout << "Nome: " << setw(30) << left << sessao->getJurados()[1]->getNome();
+	cout << "Contacto: " << sessao->getJurados()[1]->getTelemovel();
+	cout << "\n";
+	cout << "Nome: " << setw(30) << left << sessao->getJurados()[2]->getNome();
+	cout << "Contacto: " << sessao->getJurados()[2]->getTelemovel();
+	cout << "\n";
 
 
 	unsigned max_fase;
@@ -756,7 +757,14 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 	for(unsigned counter = 1; counter < max_fase; counter++)
 	{
 		sortBy_points_in_session(candidatosOrdenar, sessao->getData(), counter);
-		cout << "\n\n\n" << "Fase" << counter <<":\n\n";
+		cout << "\n\n\n" << "Fase " << counter <<":\n\n";
+
+		cout << setw(10) << left << "Posicao";
+		cout << setw(30) << left << "Nome";
+		cout << setw(30) << left << "Numero de Inscricao";
+		cout << setw(10) << left << "Pontuacao";
+		cout << "\n\n";
+
 
 		for(unsigned i = 0; i < candidatosOrdenar.size(); ++i)
 		{
@@ -771,11 +779,11 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 				pontuacao = info[candidatosOrdenar[i]].second->getPontuacaoFinal();
 			}
 
-			cout << setw(3) << left << pos;
+			cout << setw(10) << left << pos;
 			cout << setw(30) << left << candidatosOrdenar[i]->getNome();
-			cout << setw(10) << left << candidatosOrdenar[i]->getNumInscricao();
-			cout << setw(3) << left << pontuacao;
-			cout << "\n\n";
+			cout << setw(30) << left << candidatosOrdenar[i]->getNumInscricao();
+			cout << setw(10) << left << pontuacao;
+			cout << "\n";
 		}
 	}
 
