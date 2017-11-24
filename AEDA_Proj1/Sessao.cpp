@@ -7,13 +7,6 @@ Sessao::Sessao(vector<Jurado *> jurados,string artePerformativa, string data, bo
 	this->changeable = changeable;
 }
 
-/*Sessao::~Sessao()
-{
-  for(unsigned i = 0; i < jurados.size(); i++){
-    delete jurados[i];
-  }
-}*/
-
 vector<Jurado *> Sessao::getJurados() const{
 	return this->jurados;
 }
@@ -32,10 +25,6 @@ bool Sessao::getStatus() const{
 
 void Sessao::setJurados(vector <Jurado *> jur){
 
-}
-
-void Sessao::setArtePerformativa(string artePerformativa){
-	this->artePerformativa = artePerformativa;
 }
 
 void Sessao::setData(string data){
@@ -58,23 +47,10 @@ bool Sessao::operator== (Sessao sessao) const{
 	return variable;
 }
 
-bool Sessao::operator< (Sessao sessao) const{
-	bool variable = false;
-
-	if(this->artePerformativa < sessao.getArtePerformativa() ){
-		if (this->data < sessao.getData()){
-			variable = true;
-		}
-	}
-
-	return variable;
-}
-
 void Sessao::alterarData(){
 
 	bool verifica = false;
 
-	//ter em atencao se so altera se for changeable
 	do{
 	string data;
 	cout << "Insira a nova data da sessao no formato dd/mm/aaaa: ";
