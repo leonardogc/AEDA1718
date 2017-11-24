@@ -721,20 +721,20 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 	candidatosOrdenar_2.clear();
 
 	for(unsigned i = 0; i < candidatos.size(); ++i)
+	{
+		pair<Participacao *,Participacao *> infoCandidato = candidatos[i]->getParticipacao(sessao->getData());
+		if(infoCandidato.first != NULL)
 		{
-			pair<Participacao *,Participacao *> infoCandidato = candidatos[i]->getParticipacao(sessao->getData());
-			if(infoCandidato.first != NULL)
-			{
-				info_1[candidatos[i]] = infoCandidato;
-				candidatosOrdenar_1.push_back(candidatos[i]);
-			}
-
-			if(infoCandidato.second != NULL)
-			{
-				info_2[candidatos[i]] = infoCandidato;
-				candidatosOrdenar_2.push_back(candidatos[i]);
-			}
+			info_1[candidatos[i]] = infoCandidato;
+			candidatosOrdenar_1.push_back(candidatos[i]);
 		}
+
+		if(infoCandidato.second != NULL)
+		{
+			info_2[candidatos[i]] = infoCandidato;
+			candidatosOrdenar_2.push_back(candidatos[i]);
+		}
+	}
 
 	cout << "\n\n";
 	cout << "Genero de Arte: " << sessao->getArtePerformativa();
@@ -879,26 +879,26 @@ Sessao *  Empresa::escolher_sessao(){
 		}
 	}
 
-		found = false;
+	found = false;
 
-		while(!found){
-			cout << "Introduza a data: " << endl;
+	while(!found){
+		cout << "Introduza a data: " << endl;
 
-			getline(cin, data);
+		getline(cin, data);
 
-			for(unsigned int i = 0; i < sessoes.size(); i++){
-				if((sessoes[i]->getArtePerformativa() == arte) && (sessoes[i]->getData() == data)){
-					cout << "A sessao e valido!" << endl;
-					found = true;
-					return sessoes[i];
-				}
-			}
-
-			if(!found){
-				cout << "data invalida" << endl;
-				pressKeyToContinue();
+		for(unsigned int i = 0; i < sessoes.size(); i++){
+			if((sessoes[i]->getArtePerformativa() == arte) && (sessoes[i]->getData() == data)){
+				cout << "A sessao e valido!" << endl;
+				found = true;
+				return sessoes[i];
 			}
 		}
+
+		if(!found){
+			cout << "data invalida" << endl;
+			pressKeyToContinue();
+		}
+	}
 }
 
 Jurado *  Empresa::escolher_jurado(){
@@ -1409,54 +1409,54 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 	found=false;
 
 	while(!found){
-			clear_scrn();
+		clear_scrn();
 
-			cout << "\n\n";
-			cout << setw(20) << left << "Num. Inscricao";
-			cout << setw(30) << left << "Nome";
-			cout << setw(20) << left << "Data Nascimento";
-			cout << setw(30) << left << "Genero de Arte";
-			cout << setw(20) << left << "Morada";
-			cout << setw(20) << left << "Validade";
-			cout << "\n\n";
+		cout << "\n\n";
+		cout << setw(20) << left << "Num. Inscricao";
+		cout << setw(30) << left << "Nome";
+		cout << setw(20) << left << "Data Nascimento";
+		cout << setw(30) << left << "Genero de Arte";
+		cout << setw(20) << left << "Morada";
+		cout << setw(20) << left << "Validade";
+		cout << "\n\n";
 
-			for(int i = 0; i < candidatos_possiveis.size(); i++){
-				cout << candidatos_possiveis[i];
-			}
-
-			cout <<"\n\nIntroduza o numero de incricao do candidato:\n";
-
-			try{
-				id = read_number_Input();
-			}
-			catch(invalid_argument &e){
-				cout << "Introduziu um numero invalido!";
-
-				pressKeyToContinue();
-				continue;
-			}
-
-			for(int i = 0; i < candidatos_possiveis.size(); i++){
-				if(id == candidatos_possiveis[i]->getNumInscricao()){
-					found=true;
-					candidato=(Candidato *)candidatos_possiveis[i];
-				}
-			}
-
-			if(!found){
-				cout << "Introduziu um numero invalido!";
-
-				pressKeyToContinue();
-				continue;
-			}
-
+		for(int i = 0; i < candidatos_possiveis.size(); i++){
+			cout << candidatos_possiveis[i];
 		}
 
-		candidato->removeParticipacao(sessao);
+		cout <<"\n\nIntroduza o numero de incricao do candidato:\n";
 
-		cout << "\nCandidato removido com sucesso!\n" << endl;
+		try{
+			id = read_number_Input();
+		}
+		catch(invalid_argument &e){
+			cout << "Introduziu um numero invalido!";
 
-		pressKeyToContinue();
+			pressKeyToContinue();
+			continue;
+		}
+
+		for(int i = 0; i < candidatos_possiveis.size(); i++){
+			if(id == candidatos_possiveis[i]->getNumInscricao()){
+				found=true;
+				candidato=(Candidato *)candidatos_possiveis[i];
+			}
+		}
+
+		if(!found){
+			cout << "Introduziu um numero invalido!";
+
+			pressKeyToContinue();
+			continue;
+		}
+
+	}
+
+	candidato->removeParticipacao(sessao);
+
+	cout << "\nCandidato removido com sucesso!\n" << endl;
+
+	pressKeyToContinue();
 }
 
 void Empresa::gerarPrimeiraFase(Sessao * sessao){
