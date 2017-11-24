@@ -896,8 +896,17 @@ void Empresa::adicionar_candidato(){
 
 	cout << "Introduza o nome do candidato: ";
 	getline(cin, nome);
-	cout << "Introduza a data de nascimento no formato dd/mm/aaaa: ";
-	getline(cin, dataNascimento);
+
+	while(true)
+	{
+		cout << "Introduza a data de nascimento no formato dd/mm/aaaa: ";
+		getline(cin, dataNascimento);
+		if(isValidDate(dataNascimento))
+			break;
+		else
+			cout << "formato invalido, tente outra vez!\n";
+	}
+
 	cout << "Introduza o genero de arte: ";
 	getline(cin, generoArte);
 	cout << "Introduza a sua cidade de morada: ";
@@ -1249,8 +1258,8 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 	vector <Candidato *> candidatos_possiveis;
 	Candidato *candidato;
 
-	for(int i = 0; i < candidatos.size(); i++){
-		if(candidatos[i]->getGeneroArte() == sessao->getArtePerformativa()){
+	for(unsigned i = 0; i < candidatos.size(); i++){
+		if(candidatos[i]->getGeneroArte() == sessao->getArtePerformativa() && candidatos[i]->getParticipacao(sessao->getData()).first == NULL){
 			candidatos_possiveis.push_back(candidatos[i]);
 		}
 	}

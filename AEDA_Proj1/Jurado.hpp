@@ -4,12 +4,21 @@
 #include "Pessoa.hpp"
 #include "utils.hpp"
 
-
+/**
+ *
+ */
 class Jurado: public Pessoa {
 private:
 	int telemovel; //must be 9 digits long
 public:
 	//construtor
+	/**
+	 *
+	 * @param nome
+	 * @param morada
+	 * @param generoArte
+	 * @param telemovel
+	 */
 	Jurado(string nome, string  morada, string  generoArte, int telemovel);
 	Jurado(string nome, string  morada, string  generoArte, int telemovel, bool validade);
 	//métodos get
