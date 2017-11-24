@@ -8,7 +8,7 @@ Pessoa(nome, morada, generoArte)
 }
 
 Jurado::Jurado(string nome, string  morada, string  generoArte, int telemovel, bool validade):
-		Pessoa(nome, morada, generoArte, validade)
+				Pessoa(nome, morada, generoArte, validade)
 {
 	this->telemovel = telemovel;
 }
@@ -30,91 +30,91 @@ bool Jurado::operator ==(Jurado jurado){
 
 void Jurado::alterarTelemovel(){
 
-		int telemovel;
+	int telemovel;
 
-		while(true)
-		{
-			clear_scrn();
-			cout << "Introduza o numero de telemovel: ";
-			try{
-				telemovel = read_number_Input();
-			}
-			catch(invalid_argument &e){
-				cout << "Introduziu um numero de telemovel invalido!";
+	while(true)
+	{
+		clear_scrn();
+		cout << "Introduza o numero de telemovel: ";
+		try{
+			telemovel = read_number_Input();
+		}
+		catch(invalid_argument &e){
+			cout << "Introduziu um numero de telemovel invalido!";
 
-				pressKeyToContinue();
-				continue;
-			}
-
-			if(numbr_size(telemovel) != 9){
-				cout << "Introduziu um numero de telemovel invalido!";
-
-				pressKeyToContinue();
-				continue;
-			}
-			break;
+			pressKeyToContinue();
+			continue;
 		}
 
-		this->telemovel = telemovel;
-		cout << "O numero de telemovel foi alterado com sucesso!";
+		if(numbr_size(telemovel) != 9){
+			cout << "Introduziu um numero de telemovel invalido!";
 
-		pressKeyToContinue();
+			pressKeyToContinue();
+			continue;
+		}
+		break;
+	}
+
+	this->telemovel = telemovel;
+	cout << "O numero de telemovel foi alterado com sucesso!";
+
+	pressKeyToContinue();
 }
 
 void Jurado::alterarMorada(){
 
-		string morada;
+	string morada;
 
-		while(true)
-		{
-			clear_scrn();
-			cout << "Introduza uma nova morada: ";
+	while(true)
+	{
+		clear_scrn();
+		cout << "Introduza uma nova morada: ";
 
-			getline(cin, morada);
+		getline(cin, morada);
 
-			if(morada.size() > 0){
-				break;
-			}
-			else{
-				cout << "Introduziu uma morada invalida!";
-
-				pressKeyToContinue();
-				continue;
-			}
+		if(morada.size() > 0){
+			break;
 		}
+		else{
+			cout << "Introduziu uma morada invalida!";
 
-		this->morada = morada;
-		cout << "A morada foi alterada com sucesso!";
+			pressKeyToContinue();
+			continue;
+		}
+	}
 
-		pressKeyToContinue();
+	this->morada = morada;
+	cout << "A morada foi alterada com sucesso!";
+
+	pressKeyToContinue();
 }
 
 void Jurado::alterarNome(){
 
-		string nome;
+	string nome;
 
-		while(true)
-		{
-			clear_scrn();
-			cout << "Introduza o novo nome: ";
+	while(true)
+	{
+		clear_scrn();
+		cout << "Introduza o novo nome: ";
 
-			getline(cin, nome);
+		getline(cin, nome);
 
-			if(nome.size() > 0){
-				break;
-			}
-			else{
-				cout << "Introduziu um nome invalido!";
-
-				pressKeyToContinue();
-				continue;
-			}
+		if(nome.size() > 0){
+			break;
 		}
+		else{
+			cout << "Introduziu um nome invalido!";
 
-		this->nome = nome;
-		cout << "O nome foi alterado com sucesso!";
+			pressKeyToContinue();
+			continue;
+		}
+	}
 
-		pressKeyToContinue();
+	this->nome = nome;
+	cout << "O nome foi alterado com sucesso!";
+
+	pressKeyToContinue();
 }
 
 

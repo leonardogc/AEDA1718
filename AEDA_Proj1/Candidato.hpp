@@ -117,7 +117,7 @@ public:
 
 /**
  * Operador para facilitar a escrita dos dados no ecra
- * @param os stream onde são guardados os dados a imprimir
+ * @param os stream onde sao guardados os dados a imprimir
  * @param c candidato do qual se quer imprimir as informacoes
  * @return ostream os passada como parametro
  */
