@@ -25,21 +25,15 @@ Participacao::Participacao(Sessao * sessao, int pontuacao[3], int posicao, int f
 	this->fase = fase;
 }
 
-/*Participacao::~Participacao()
-{
-  delete sessao;
-  delete [] pontuacao;
-}*/
-
 const Sessao * Participacao::getSessao() const
 {
 	return this->sessao;
 }
 
 bool Participacao::operator== (const Participacao &p) const
-{
+		{
 	return ((* (this->sessao)) == (*(p.sessao)) && (this->fase == p.fase));
-}
+		}
 
 void Participacao::setPontuacao(int pontuacao[4])
 {
@@ -70,10 +64,10 @@ int Participacao::getFase(){
 }
 
 ostream& operator <<(ostream &os, const Participacao *p){
-		os << setw(20) << left << p->posicao;
-		os << setw(20) << left << p->fase;
-		os << setw(20) << left << p->pontuacao[0];
-		os << p->sessao;
+	os << setw(20) << left << p->posicao;
+	os << setw(20) << left << p->fase;
+	os << setw(20) << left << p->pontuacao[0];
+	os << p->sessao;
 
-		return os;
-	}
+	return os;
+}

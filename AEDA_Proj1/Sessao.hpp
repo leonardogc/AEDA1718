@@ -99,7 +99,7 @@ public:
 /**
  * Operador para facilitar a escrita dos dados no ecra
  * @param os stream onde são guardados os dados a imprimir
- * @param s sessao da qual se quer imprimir as informacoes
+ * @param s apontador para a sessao da qual se quer imprimir as informacoes
  * @return ostream os passada como parametro
  */
 ostream& operator <<(ostream &os, const Sessao *s);

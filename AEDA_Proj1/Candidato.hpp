@@ -118,7 +118,7 @@ public:
 /**
  * Operador para facilitar a escrita dos dados no ecra
  * @param os stream onde sao guardados os dados a imprimir
- * @param c candidato do qual se quer imprimir as informacoes
+ * @param c apontador para o candidato do qual se quer imprimir as informacoes
  * @return ostream os passada como parametro
  */
 ostream& operator <<(ostream & os, const Candidato *c);
