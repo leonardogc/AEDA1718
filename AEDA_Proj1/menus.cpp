@@ -589,7 +589,7 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 			case 3: //sessao->Adicionar Candidato
 				empresa->adicionar_candidato_sessao(sessao);
 				break;
-			case 4: //TODO (testar) sessao->Remover Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
+			case 4: //sessao->Remover Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
 				empresa->remover_candidato_sessao(sessao);
 				break;
 			case 5: //sessao->Alterar data Testar a ver se funciona (o pc da Verónica não gosta de aeda) feita depois da meia noite, nao prometo nada xD

@@ -1372,12 +1372,74 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 }
 
 void Empresa::remover_candidato_sessao(Sessao * sessao){
-	Candidato * candidato = this->escolher_candidato();
+	vector <Candidato *> candidatos_possiveis;
+	Candidato* candidato;
+	bool found;
+	int id;
 
-	if(sessao->getStatus()){
-		candidato->removeParticipacao(sessao);
+	for (int i = 0; i < candidatos.size(); i++){
+		if(candidatos[i]->getParticipacao(sessao->getData()).first != NULL){
+			candidatos_possiveis.push_back(candidatos[i]);
+		}
 	}
 
+	if(candidatos_possiveis.size()<1){
+		cout << "\nNao ha candidatos nesta sessao\n";
+		pressKeyToContinue();
+		return;
+	}
+
+	found=false;
+
+	while(!found){
+			clear_scrn();
+
+			cout << "\n\n";
+			cout << setw(20) << left << "Num. Inscricao";
+			cout << setw(30) << left << "Nome";
+			cout << setw(20) << left << "Data Nascimento";
+			cout << setw(30) << left << "Genero de Arte";
+			cout << setw(20) << left << "Morada";
+			cout << setw(20) << left << "Validade";
+			cout << "\n\n";
+
+			for(int i = 0; i < candidatos_possiveis.size(); i++){
+				cout << candidatos_possiveis[i];
+			}
+
+			cout <<"\n\nIntroduza o numero de incricao do candidato:\n";
+
+			try{
+				id = read_number_Input();
+			}
+			catch(invalid_argument &e){
+				cout << "Introduziu um numero invalido!";
+
+				pressKeyToContinue();
+				continue;
+			}
+
+			for(int i = 0; i < candidatos_possiveis.size(); i++){
+				if(id == candidatos_possiveis[i]->getNumInscricao()){
+					found=true;
+					candidato=(Candidato *)candidatos_possiveis[i];
+				}
+			}
+
+			if(!found){
+				cout << "Introduziu um numero invalido!";
+
+				pressKeyToContinue();
+				continue;
+			}
+
+		}
+
+		candidato->removeParticipacao(sessao);
+
+		cout << "\nCandidato removido com sucesso!\n" << endl;
+
+		pressKeyToContinue();
 }
 
 void Empresa::gerarPrimeiraFase(Sessao * sessao){
