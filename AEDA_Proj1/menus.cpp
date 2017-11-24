@@ -206,9 +206,7 @@ void draw_menu_candidato(Candidato * candidato){
 	cout << "  1 - Ver Participacoes\n";
 	cout << "  2 - Alterar nome\n";
 	cout << "  3 - Alterar morada\n";
-	cout << "  4 - ?\n";
-	cout << "  5 - ?\n";
-	cout << "  6 - Return\n";
+	cout << "  4 - Return\n";
 	cout << ' ' << string(WIDTH, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -236,13 +234,7 @@ void menu_candidato(Candidato * candidato){
 		case 3: //pessoa->Alterar morada
 			candidato->alterarMorada();
 			break;
-		case 4: //?
-
-			break;
-		case 5: //?
-
-			break;
-		case 6: //Return
+		case 4: //Return
 			done=true;
 			break;
 		}
@@ -377,12 +369,10 @@ void draw_menu_jurado(Jurado * jurado){
 	cout << "Morada: " << jurado->getMorada() << endl;
 	cout << "Estado do contrato: " << (jurado->getValidade() ? "valida" : "invalida") << endl;
 
-	cout << "  1 - ?\n";
-	cout << "  2 - Alterar nome\n";
-	cout << "  3 - Alterar morada\n";
-	cout << "  4 - Alterar telemovel\n";
-	cout << "  5 - ?\n";
-	cout << "  6 - Return\n";
+	cout << "  1 - Alterar nome\n";
+	cout << "  2 - Alterar morada\n";
+	cout << "  3 - Alterar telemovel\n";
+	cout << "  4 - Return\n";
 	cout << ' ' << string(WIDTH, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -401,22 +391,16 @@ void menu_jurado(Jurado * jurado){
 		}
 
 		switch (option) {
-		case 1: //?
-
-			break;
-		case 2: //juri->Alterar nome
+		case 1: //juri->Alterar nome
 			jurado->alterarNome();
 			break;
-		case 3: //juri->Alterar morada
+		case 2: //juri->Alterar morada
 			jurado->alterarMorada();
 			break;
-		case 4: //juri->Alterar telemovel
+		case 3: //juri->Alterar telemovel
 			jurado->alterarTelemovel();
 			break;
-		case 5: //?
-
-			break;
-		case 6: //Return
+		case 4: //Return
 			done=true;
 			break;
 		}
