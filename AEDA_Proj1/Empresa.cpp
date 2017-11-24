@@ -713,15 +713,26 @@ void Empresa::printSessoes(){
 
 void Empresa::printDetalhesSessao(Sessao * sessao){
 	int pos = 0, pontuacao = 0;
-	map<Candidato *, pair<Participacao *,Participacao *>> info;
-	vector<Candidato *> candidatosOrdenar; candidatosOrdenar.clear();
+	map<Candidato *, pair<Participacao *,Participacao *>> info_1;
+	map<Candidato *, pair<Participacao *,Participacao *>> info_2;
+	vector<Candidato *> candidatosOrdenar_1;
+	vector<Candidato *> candidatosOrdenar_2;
+	candidatosOrdenar_1.clear();
+	candidatosOrdenar_2.clear();
+
 	for(unsigned i = 0; i < candidatos.size(); ++i)
 		{
 			pair<Participacao *,Participacao *> infoCandidato = candidatos[i]->getParticipacao(sessao->getData());
 			if(infoCandidato.first != NULL)
 			{
-				info[candidatos[i]] = infoCandidato;
-				candidatosOrdenar.push_back(candidatos[i]);
+				info_1[candidatos[i]] = infoCandidato;
+				candidatosOrdenar_1.push_back(candidatos[i]);
+			}
+
+			if(infoCandidato.second != NULL)
+			{
+				info_2[candidatos[i]] = infoCandidato;
+				candidatosOrdenar_2.push_back(candidatos[i]);
 			}
 		}
 
@@ -752,7 +763,13 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 
 	for(unsigned counter = 1; counter < max_fase; counter++)
 	{
-		sortBy_points_in_session(candidatosOrdenar, sessao->getData(), counter);
+		if(counter==1){
+			sortBy_points_in_session(candidatosOrdenar_1, sessao->getData(), counter);
+		}
+		else if(counter==2){
+			sortBy_points_in_session(candidatosOrdenar_2, sessao->getData(), counter);
+		}
+
 		cout << "\n\n\n" << "Fase " << counter <<":\n\n";
 
 		cout << setw(10) << left << "Posicao";
@@ -762,24 +779,40 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 		cout << "\n\n";
 
 
-		for(unsigned i = 0; i < candidatosOrdenar.size(); ++i)
-		{
-			if(counter == 1)
+		if(counter==1){
+			for(unsigned i = 0; i < candidatosOrdenar_1.size(); ++i)
 			{
-				pos = info[candidatosOrdenar[i]].first->getPosicao();
-				pontuacao = info[candidatosOrdenar[i]].first->getPontuacaoFinal();
-			}
-			else
-			{
-				pos = info[candidatosOrdenar[i]].second->getPosicao();
-				pontuacao = info[candidatosOrdenar[i]].second->getPontuacaoFinal();
-			}
 
-			cout << setw(10) << left << pos;
-			cout << setw(30) << left << candidatosOrdenar[i]->getNome();
-			cout << setw(30) << left << candidatosOrdenar[i]->getNumInscricao();
-			cout << setw(10) << left << pontuacao;
-			cout << "\n";
+				pos = info_1[candidatosOrdenar_1[i]].first->getPosicao();
+				pontuacao = info_1[candidatosOrdenar_1[i]].first->getPontuacaoFinal();
+
+				cout << setw(10) << left << pos;
+				cout << setw(30) << left << candidatosOrdenar_1[i]->getNome();
+				cout << setw(30) << left << candidatosOrdenar_1[i]->getNumInscricao();
+				cout << setw(10) << left << pontuacao;
+				cout << "\n";
+			}
+		}
+		else if(counter==2){
+			for(unsigned i = 0; i < candidatosOrdenar_2.size(); ++i)
+			{
+				if(counter == 1)
+				{
+					pos = info_2[candidatosOrdenar_2[i]].first->getPosicao();
+					pontuacao = info_2[candidatosOrdenar_2[i]].first->getPontuacaoFinal();
+				}
+				else
+				{
+					pos = info_2[candidatosOrdenar_2[i]].second->getPosicao();
+					pontuacao = info_2[candidatosOrdenar_2[i]].second->getPontuacaoFinal();
+				}
+
+				cout << setw(10) << left << pos;
+				cout << setw(30) << left << candidatosOrdenar_2[i]->getNome();
+				cout << setw(30) << left << candidatosOrdenar_2[i]->getNumInscricao();
+				cout << setw(10) << left << pontuacao;
+				cout << "\n";
+			}
 		}
 	}
 
@@ -1278,6 +1311,12 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 		}
 	}
 
+	if(candidatos_possiveis.size() < 1){
+		cout << "Nao ha candidatos para adicionar a esta sessao" << endl;
+		pressKeyToContinue();
+		return;
+	}
+
 	while(!found){
 		clear_scrn();
 
@@ -1369,13 +1408,19 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 			candidatos_primeira_fase.push_back(candidatos[i]); //cria um vetor com todos os candidatos desta fase desta sessao
 		}
 	}
+
+	if(candidatos_primeira_fase.size() < 1){
+		return;
+	}
+
 	//ordenar por pontuacao
 	sortBy_points_in_session(candidatos_primeira_fase, sessao->getData(), 1);
 	for(unsigned int j = 0; j < candidatos_primeira_fase.size(); j++){
 		//atribuir a posicao a partir daí, para alem de guardar a posicao na participacao do candidato original!
 		candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->setPosicao(j+1);
 
-		cout << candidatos_primeira_fase[j] << "Pontuacao = " << candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->getPontuacaoFinal();
+		cout << setw(30)<< left << candidatos_primeira_fase[j]->getNome() << "Pontuacao = " << candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->getPontuacaoFinal();
+
 		if(j < 5){
 			cout << "   Aprovado!";
 			candidatos_apurados.push_back(candidatos_primeira_fase[j]);
@@ -1390,6 +1435,8 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 	pressKeyToContinue();
 
 	cout << "\n\n\n\n";
+
+	gerarSegundaFase(sessao);
 
 	//os cinco melhores estºao guardados em candidatos_apurados
 }

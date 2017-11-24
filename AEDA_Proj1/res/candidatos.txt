@@ -23,3 +23,4 @@
 23;Estefania Veiga;19/06/1958;Musica;Oliveira do Douro;valid;
 24;Eduardo Samora;16/09/1986;Artes Circenses;Gouveia;valid;
 25;Manuela Pires;19/03/2000;Cinema;Mora;valid;
+26;Mario Costa;13/08/1998;Cinema;Porto;valid;

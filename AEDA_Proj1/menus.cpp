@@ -585,7 +585,6 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 				break;
 			case 2: //TODO (testar) gerar fases
 				empresa->gerarPrimeiraFase(sessao);
-				empresa->gerarSegundaFase(sessao);
 				break;
 			case 3: //sessao->Adicionar Candidato
 				empresa->adicionar_candidato_sessao(sessao);
