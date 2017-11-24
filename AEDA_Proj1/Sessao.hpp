@@ -19,7 +19,7 @@ private:
 	vector<Jurado *> jurados; // maximo de 3 jurados
 	/// Arte da sessão, condiciona os jurados e candidatos que podem participar nesta. E tambem usada para identificar a sessão, juntamente com a data.
 	string artePerformativa;
-	/// Data da sessão usada para identificar a sessão juntamente com a arte performativa
+	/// Data da sessão no formato dd/mm/aaaa (dia/mes/ano), usada para identificar a sessão juntamente com a arte performativa
 	string data; //simple string dd/mm/aaaa
 	///booleano auxiliar que impede uma sessão de ser alterada apos serem geradas primeira e segunda fases
 	bool changeable; //cangeable sessions can be changed because no phase has been generated
