@@ -47,27 +47,6 @@ bool Sessao::operator== (Sessao sessao) const{
 	return variable;
 }
 
-void Sessao::alterarData(){
-
-	bool verifica = false;
-
-	do{
-	string data;
-	cout << "Insira a nova data da sessao no formato dd/mm/aaaa: ";
-	getline(cin, data);
-
-	//verificacao se a data e valida e esta no formato certo, se nao, pedir para reintroduzir
-	if(isValidDate(data) == true){
-		this->setData(data);
-		verifica = true;
-	}
-	else{
-		cout << "A data que introduziu nao esta correta! Tente novamente: ";
-		verifica = false;
-	}
-	}while(verifica == false);
-}
-
 ostream& operator <<(ostream &os, const Sessao *s){
 	os << setw(30) << left << s->artePerformativa;
 	os << setw(20) << left << s->data;

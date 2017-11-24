@@ -583,9 +583,8 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 			case 1: //empresa->ver detalhes sessao (candidatos por ordem de pontuação / fase)
 				empresa->printDetalhesSessao(sessao);
 				break;
-			case 2: //TODO (testar) gerar fases
+			case 2: //gerar fases
 				empresa->gerarPrimeiraFase(sessao);
-				empresa->gerarSegundaFase(sessao);
 				break;
 			case 3: //sessao->Adicionar Candidato
 				empresa->adicionar_candidato_sessao(sessao);
@@ -593,8 +592,8 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 			case 4: //TODO (testar) sessao->Remover Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
 				empresa->remover_candidato_sessao(sessao);
 				break;
-			case 5: //TODO (testar) sessao->Alterar data Testar a ver se funciona (o pc da Verónica não gosta de aeda) feita depois da meia noite, nao prometo nada xD
-				sessao->alterarData();
+			case 5: //sessao->Alterar data Testar a ver se funciona (o pc da Verónica não gosta de aeda) feita depois da meia noite, nao prometo nada xD
+				empresa->alterarDataSessao(sessao);
 				break;
 			case 6: //Return
 				done=true;
