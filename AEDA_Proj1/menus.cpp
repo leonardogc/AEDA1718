@@ -550,12 +550,11 @@ void draw_menu_sessao(Sessao * sessao){
 	cout << "  1 - Ver detalhes\n";
 	if(sessao->getStatus())
 	{
-		cout << "  2 - Gerar Primeira Fase\n";
-		cout << "  3 - Gerar Segunda Fase\n";
-		cout << "  4 - Adicionar Candidato\n";
-		cout << "  5 - Remover Candidato\n";
-		cout << "  6 - Alterar data\n";
-		cout << "  7 - Return\n";
+		cout << "  2 - Gerar Fases\n";
+		cout << "  3 - Adicionar Candidato\n";
+		cout << "  4 - Remover Candidato\n";
+		cout << "  5 - Alterar data\n";
+		cout << "  6 - Return\n";
 	}
 	else
 	{
@@ -584,22 +583,20 @@ void menu_sessao(Sessao * sessao, Empresa * empresa){
 			case 1: //TODO (testar) empresa->ver detalhes sessao (candidatos por ordem de pontuação / fase)
 				empresa->printDetalhesSessao(sessao);
 				break;
-			case 2: //TODO (testar) sessao->Gerar Primeira Fase comecado e mais ou menos estruturado
+			case 2: //TODO (testar) gerar fases
 				empresa->gerarPrimeiraFase(sessao);
-				break;
-			case 3: //TODO (testar) sessao->Gerar Segunda Fase
 				empresa->gerarSegundaFase(sessao);
 				break;
-			case 4: //sessao->Adicionar Candidato
+			case 3: //sessao->Adicionar Candidato
 				empresa->adicionar_candidato_sessao(sessao);
 				break;
-			case 5: //TODO (testar) sessao->Remover Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
+			case 4: //TODO (testar) sessao->Remover Candidato -> Testar a ver se funciona (o pc da Verónica não gosta de aeda)
 				empresa->remover_candidato_sessao(sessao);
 				break;
-			case 6: //TODO (testar) sessao->Alterar data Testar a ver se funciona (o pc da Verónica não gosta de aeda) feita depois da meia noite, nao prometo nada xD
+			case 5: //TODO (testar) sessao->Alterar data Testar a ver se funciona (o pc da Verónica não gosta de aeda) feita depois da meia noite, nao prometo nada xD
 				sessao->alterarData();
 				break;
-			case 7: //Return
+			case 6: //Return
 				done=true;
 				break;
 

@@ -744,14 +744,10 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 
 	unsigned max_fase;
 
-	if(sessao->get_primeira_fase_gerada() && !sessao->get_segunda_fase_gerada()){
-		max_fase=2;
-	}
-	else if(sessao->get_primeira_fase_gerada() && sessao->get_segunda_fase_gerada()){
-		max_fase=3;
-	}
-	else if(!sessao->get_primeira_fase_gerada() && !sessao->get_segunda_fase_gerada()){
+	if(sessao->getStatus()){
 		max_fase=1;
+	}else{
+		max_fase=3;
 	}
 
 	for(unsigned counter = 1; counter < max_fase; counter++)
@@ -1348,11 +1344,6 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 void Empresa::gerarPrimeiraFase(Sessao * sessao){
 	//a sessao passada como parametro ja esta escolhida, e validada
 
-	if(sessao->get_primeira_fase_gerada()){
-		return;
-	}
-
-
 	//funcao que percorre as participacoes do candidato para saber se ele pertence a esta sessao ou nao
 
 	vector <Candidato *> candidatos_primeira_fase;
@@ -1382,17 +1373,7 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 	sortBy_points_in_session(candidatos_primeira_fase, sessao->getData(), 1);
 	for(unsigned int j = 0; j < candidatos_primeira_fase.size(); j++){
 		//atribuir a posicao a partir daí, para alem de guardar a posicao na participacao do candidato original!
-		candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->setPosicao(j+1); //so esta a alterar a posicao nas copias
-		/*
-		//acho que isto é desnecessario porque sao pointers....
-		//tem que percorrer os candidatos e alterar lá também
-
-		for(unsigned int k = 0; k < candidatos.size(); k++){
-			if(*(candidatos[k]) == *(candidatos_primeira_fase[j])){
-				candidatos[k]->getParticipacao(sessao->getData()).first->setPosicao(j+1);
-			}
-		}
-		*/
+		candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->setPosicao(j+1);
 
 		cout << candidatos_primeira_fase[j] << "Pontuacao = " << candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->getPontuacaoFinal();
 		if(j < 5){
@@ -1402,22 +1383,18 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 		cout << "\n";
 	}
 
-	cout << "Para a fase 2 do casting apuram os 5 primeiros da lista anterior! Boa sorte a todos!";
+	cout << "\nPara a fase 2 do casting apuram os 5 primeiros da lista anterior! Boa sorte a todos!\n";
 
 	//chamar diretamente o criar segunda fase! pedir um enter antes!!
 
-	sessao->set_primeira_fase_gerada(true);
-
 	pressKeyToContinue();
+
+	cout << "\n\n\n\n";
 
 	//os cinco melhores estºao guardados em candidatos_apurados
 }
 
 void Empresa::gerarSegundaFase(Sessao * sessao){
-
-	if(sessao->get_segunda_fase_gerada()){
-		return;
-	}
 
 	vector <Candidato *> candidatos_primeira_fase;
 	vector <Candidato *> candidatos_apurados;
@@ -1452,10 +1429,9 @@ void Empresa::gerarSegundaFase(Sessao * sessao){
 		candidatos_apurados[i]->getParticipacao(sessao->getData()).second->setPosicao(i+1);
 	}
 
-	cout << "O vencedor e:\n"<< candidatos_apurados[0]<<endl;
+	cout << "O vencedor e: "<< candidatos_apurados[0]->getNome()<<endl;
 
 	sessao->setStatus(false);
-	sessao->set_segunda_fase_gerada(true);
 
 	pressKeyToContinue();
 
