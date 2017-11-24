@@ -741,9 +741,19 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 	cout << setw(10) << left << " Contacto: " << sessao->getJurados()[2]->getTelemovel();
 
 
+	unsigned max_fase;
 
+	if(sessao->get_primeira_fase_gerada() && !sessao->get_segunda_fase_gerada()){
+		max_fase=2;
+	}
+	else if(sessao->get_primeira_fase_gerada() && sessao->get_segunda_fase_gerada()){
+		max_fase=3;
+	}
+	else if(!sessao->get_primeira_fase_gerada() && !sessao->get_segunda_fase_gerada()){
+		max_fase=1;
+	}
 
-	for(unsigned counter = 1; counter < 3; counter++)
+	for(unsigned counter = 1; counter < max_fase; counter++)
 	{
 		sortBy_points_in_session(candidatosOrdenar, sessao->getData(), counter);
 		cout << "\n\n\n" << "Fase" << counter <<":\n\n";
