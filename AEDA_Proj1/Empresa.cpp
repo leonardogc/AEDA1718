@@ -969,6 +969,7 @@ void Empresa::adicionar_candidato(){
 void Empresa::adicionar_jurado(){
 	string nome, generoArte, morada;
 	int  telemovel;
+	bool unique;
 
 	cout << "Introduza o nome do jurado: ";
 	getline(cin, nome);
@@ -994,6 +995,22 @@ void Empresa::adicionar_jurado(){
 			pressKeyToContinue();
 			continue;
 		}
+
+		unique=true;
+
+		for(int i=0; i < jurados.size() ; i++){
+			if(jurados[i]->getTelemovel() == telemovel){
+				unique=false;
+				cout << "Ja existe um jurado com esse numero!";
+				pressKeyToContinue();
+				break;
+			}
+		}
+
+		if(!unique){
+			continue;
+		}
+
 		break;
 	}
 
@@ -1472,6 +1489,8 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 	}
 
 	if(candidatos_primeira_fase.size() < 1){
+		cout << "\nNao ha candidatos suficientes...\n\n";
+		pressKeyToContinue();
 		return;
 	}
 
