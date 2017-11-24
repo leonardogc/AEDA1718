@@ -18,6 +18,11 @@ using namespace std;
 
 extern const string default_files[4];
 
+/**
+ * usa getline para ler input do utilizador e verifica se é composto apenas por numeros
+ *
+ * @return numero introduzido pelo utilizador
+ */
 int read_number_Input();
 
 void clear_scrn();
