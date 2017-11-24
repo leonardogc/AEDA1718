@@ -7,19 +7,6 @@ Empresa::Empresa(string (&nomes)[4]) {
 	load_files(nomes);
 }
 
-/*Empresa::~Empresa()
-{
-  for(unsigned i = 0; i < jurados.size(); i++){
-    delete jurados[i];
-  }
-  for(unsigned i = 0; i < candidatos.size(); i++){
-    delete candidatos[i];
-  }
-  for(unsigned i = 0; i < sessoes.size(); i++){
-    delete sessoes[i];
-  }
-}*/
-
 /*
  * Formato dos ficheiros: (pode sofrer alteração)
  *
@@ -1460,31 +1447,24 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 }
 
 void Empresa::gerarPrimeiraFase(Sessao * sessao){
-	//a sessao passada como parametro ja esta escolhida, e validada
-
-	//funcao que percorre as participacoes do candidato para saber se ele pertence a esta sessao ou nao
-
 	vector <Candidato *> candidatos_primeira_fase;
-	vector <Candidato *> candidatos_apurados;
+
+	srand (time(NULL));
 
 	for(unsigned int i = 0; i < candidatos.size(); i++){
-		//verificar se o candidato tem participacao nessa sessao
-		//talvez criar um vetor para os candidatos da sessao
-		//ate para depois se fazerem os prints dos que apuram e das pontuacoes gerais e assim
 
-		//se isto nao retornar vazio, significa que o candidato tem participacao para esta sessao e faz o que esta dentro do if
-		if(candidatos[i]->getParticipacao(sessao->getData()).first != NULL /*esta é agora a primeira fase...*/ ){
+		if(candidatos[i]->getParticipacao(sessao->getData()).first != NULL){
 			candidatos[i]->removeParticipacao(sessao);
 
 			int a, b, c;
-			a = rand() % 11; //Valor de 0 a 10
+			a = rand() % 11;
 			b = rand() % 11;
 			c = rand() % 11;
-			int points[] = {a,b,c}; //posicao é atualizada no final de todos terem pontuacoes atribuidas
+			int points[] = {a,b,c};
 
 			candidatos[i]->addParticipacao(new Participacao(sessao, points, 0, 1));
 
-			candidatos_primeira_fase.push_back(candidatos[i]); //cria um vetor com todos os candidatos desta fase desta sessao
+			candidatos_primeira_fase.push_back(candidatos[i]);
 		}
 	}
 
@@ -1494,38 +1474,36 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 		return;
 	}
 
-	//ordenar por pontuacao
+
 	sortBy_points_in_session(candidatos_primeira_fase, sessao->getData(), 1);
+
 	for(unsigned int j = 0; j < candidatos_primeira_fase.size(); j++){
-		//atribuir a posicao a partir daí, para alem de guardar a posicao na participacao do candidato original!
+
 		candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->setPosicao(j+1);
 
 		cout << setw(30)<< left << candidatos_primeira_fase[j]->getNome() << "Pontuacao = " << candidatos_primeira_fase[j]->getParticipacao(sessao->getData()).first->getPontuacaoFinal();
 
 		if(j < 5){
 			cout << "   Aprovado!";
-			candidatos_apurados.push_back(candidatos_primeira_fase[j]);
 		}
 		cout << "\n";
 	}
 
 	cout << "\nPara a fase 2 do casting apuram os 5 primeiros da lista anterior! Boa sorte a todos!\n";
 
-	//chamar diretamente o criar segunda fase! pedir um enter antes!!
-
 	pressKeyToContinue();
 
 	cout << "\n\n\n\n";
 
 	gerarSegundaFase(sessao);
-
-	//os cinco melhores estºao guardados em candidatos_apurados
 }
 
 void Empresa::gerarSegundaFase(Sessao * sessao){
 
 	vector <Candidato *> candidatos_primeira_fase;
 	vector <Candidato *> candidatos_apurados;
+
+	srand (time(NULL));
 
 	for(unsigned int i = 0; i < candidatos.size(); i++){
 		if(candidatos[i]->getParticipacao(sessao->getData()).first != NULL ){
