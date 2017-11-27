@@ -17,7 +17,7 @@ int read_number_Input() {
 	return option;
 }
 
-void clear_scrn() {	cout << string(20, '\n'); }
+void clear_scrn() {	cout << string(40, '\n'); }
 
 int numbr_size(int numbr) {
 	stringstream ss; ss.clear();
@@ -149,7 +149,7 @@ bool isValidDate(string date){
 
 void pressKeyToContinue()
 {
-	cout << "\n\nPressione alguma tecla para continuar...\n\n";
+	cout << "\n\nPressione enter para continuar...\n\n";
 	cin.ignore();
 }
 
