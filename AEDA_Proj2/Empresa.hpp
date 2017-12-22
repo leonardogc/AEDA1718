@@ -20,10 +20,7 @@ struct ciHash
 
 	bool operator() (const Candidato &c1, const Candidato &c2) const
 	{
-		//TODO:
-		//...
-
-		return false;
+		return c1==c2;
 	}
 };
 
