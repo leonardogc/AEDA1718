@@ -46,6 +46,20 @@ enum sort_t /// all sorts are for Ascending order
 };
 }
 
+//TODO priority queue
+
+class comp_candidatos{
+public:
+	comp_candidatos(){};
+	bool operator()(Candidato * cand1, Candidato * cand2) const{
+		return lowerThan(cand1->getDataMaisRecente(), cand2->getDataMaisRecente());
+	}
+};
+
+typedef priority_queue<Candidato*, vector<Candidato*>, comp_candidatos> pq_recentes;
+
+
+
 /**
  * \class Empresa
  * Classe que guarda em vetores toda a informacao
@@ -63,6 +77,9 @@ private:
 
 	///Vetor usado para guardar pointers para os objetos da classe Sessao
 	vector<Sessao *> sessoes;
+
+	///Fila de prioridade utilizada para guardar candidattos ordenados por sessao mais recente
+	vector<pq_recentes> candidatos_ordenados;
 
 	/**
 	 * Metodo que chama as funcoes que leem os ficheiros
@@ -296,6 +313,32 @@ public:
 	 * @param sessao sessao em que vai ser gerada a segunda fase
 	 */
 	void gerarSegundaFase(Sessao * sessao);
+
+	//TODO priority_queue
+	/**
+		 * Metodo para adicionar um candidato à fila de prioridades
+		 * da sua arte
+		 *
+		 * @param cand Candidato que vai ser adicionado à priority queue
+		 */
+	void adiciona_candidato_pq(Candidato * cand);
+
+
+/**
+	 * Metodo para atualizar as informações de um candidato que já existe
+	 * numa determinada fila do vetor de listas de prioridades
+	 *
+	 * @param cand Candidato que vai ser alterado na priority queue
+	 */
+	void atualiza_candidato_pq(Candidato cand);
+
+/**
+	 * Metodo que retorna uma fila de prioridades de uma certa arte
+	 *
+	 * @param arte arte cuja fila se pretende retornar
+	 */
+	pq_recentes getPQ(string arte);
+
 };
 
 /**

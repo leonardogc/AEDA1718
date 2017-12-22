@@ -47,7 +47,7 @@ string Candidato::getDataMaisRecente() const{
 	{
 		if(lowerThan(current, this->participacoes[i]->getSessao()->getData()))
 		{
-			current = this->participacoes[i]->getSessao()->getData())
+			current = this->participacoes[i]->getSessao()->getData();
 		}
 	}
 	return current;

@@ -1657,3 +1657,63 @@ void Empresa::alterarDataSessao(Sessao* sessao){
 
 	sessao->setData(data);
 }
+
+void Empresa::adiciona_candidato_pq(Candidato * cand){
+
+	bool existe = false;
+
+	for(unsigned int i = 0; i < this->candidatos_ordenados.size(); i++){
+		if(candidatos_ordenados[i].top()->getGeneroArte() == cand->getGeneroArte()){
+			existe = true;
+			candidatos_ordenados[i].push(cand);
+		}
+	}
+
+	if(existe == false){
+		pq_recentes nova;
+		nova.push(cand);
+		candidatos_ordenados.push_back(nova);
+	}
+
+}
+
+//TODO Check PQ
+void Empresa::atualiza_candidato_pq(Candidato cand){
+	//O candidato cand já contem as informações atualizadas
+	//Assim, o objetivo é procurar o candidato cand na fila da sua arte e substitui-lo pelo cand
+
+	for(unsigned int i = 0; i < candidatos_ordenados.size(); i++){
+		if(candidatos_ordenados[i].top()->getGeneroArte() == cand.getGeneroArte()){
+			pq_recentes aux;
+
+			while(!candidatos_ordenados[i].empty()){
+				if(candidatos_ordenados[i].top()->getNumInscricao() == cand.getNumInscricao()){
+					candidatos_ordenados[i].pop();
+					candidatos_ordenados[i].push(&cand);
+					break;
+				}
+				aux.push(candidatos_ordenados[i].top());
+				candidatos_ordenados[i].pop();
+			}
+
+			while(!aux.empty()){
+				candidatos_ordenados[i].push(aux.top());
+				aux.pop();
+			}
+
+			}
+		}
+	}
+
+pq_recentes Empresa::getPQ(string arte){
+
+	for(unsigned int i = 0; i < candidatos_ordenados.size(); i++){
+		if(candidatos_ordenados[i].top()->getGeneroArte() == arte){
+			return candidatos_ordenados[i].top()->getGeneroArte();
+		}
+	}
+
+	return -1;
+
+}
+
