@@ -12,10 +12,7 @@ struct ciHash
 {
 	int operator() (const Candidato &c) const
 	{
-		//TODO:
-		//...
-
-		return 0;
+		return c.getNumInscricao();
 	}
 
 	bool operator() (const Candidato &c1, const Candidato &c2) const
