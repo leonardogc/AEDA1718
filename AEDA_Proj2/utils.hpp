@@ -12,6 +12,7 @@
 #include <sstream>
 #include <fstream>
 #include <map>
+#include <unordered_set>
 
 #include "BST.h"
 

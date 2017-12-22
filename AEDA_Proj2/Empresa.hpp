@@ -8,6 +8,21 @@
 #include "Sessao.hpp"
 #include "utils.hpp"
 
+struct ciHash
+{
+	int operator() (const Candidato &c) const
+	{
+		return c.getNumInscricao();
+	}
+
+	bool operator() (const Candidato &c1, const Candidato &c2) const
+	{
+		return c1==c2;
+	}
+};
+
+typedef unordered_set<Candidato, ciHash, ciHash> candidatosIndisponiveisHash;
+
 
 namespace castingspace
 {
