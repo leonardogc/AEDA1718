@@ -144,7 +144,7 @@ void draw_menu_gerir_candidatos(){
 	cout << "  2 - Escolher Candidato\n";
 	cout << "  3 - Adicionar\n";
 	cout << "  4 - Remover\n";
-	cout << "  5 - Ordenar\n";
+	cout << "  5 - Ordenar (-desativado)\n"; //TODO CHECK BST
 	cout << "  6 - Return\n";
 	cout << ' ' << string(WIDTH, '-') << endl;
 	cout << "Escolha opcao: ";
@@ -177,7 +177,7 @@ void menu_gerir_candidatos(Empresa * empresa){
 			empresa->remover_candidato();
 			break;
 		case 5: //Ordenar
-			menu_ordenar_candidatos(empresa);
+			//menu_ordenar_candidatos(empresa);
 			break;
 		case 6: //Return
 			done=true;
@@ -241,7 +241,7 @@ void menu_candidato(Candidato * candidato){
 	}
 }
 
-
+/*
 void draw_menu_ordenar_candidatos(){
 	clear_scrn();
 	cout << ' ' << string(WIDTH, '_') << endl;
@@ -290,7 +290,7 @@ void menu_ordenar_candidatos(Empresa * empresa){
 			break;
 		}
 	}
-}
+}*/
 
 
 

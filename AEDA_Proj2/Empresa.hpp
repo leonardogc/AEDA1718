@@ -42,7 +42,9 @@ private:
 	vector<Jurado *> jurados;
 
 	///Vetor usado para guardar pointers para os objetos da classe Candidato
-	vector<Candidato *> candidatos;
+	BST<Candidato> candidatos;
+
+	const Candidato NoCandidate = Candidato(0, "", "", "", "", false);
 
 	///Vetor usado para guardar pointers para os objetos da classe Sessao
 	vector<Sessao *> sessoes;
@@ -188,7 +190,7 @@ public:
 	 *
 	 * @param by tipo de sort
 	 */
-	void sortCandidatos(castingspace::sort_t const & by);
+	//void sortCandidatos(castingspace::sort_t const & by);
 
 
 	/**

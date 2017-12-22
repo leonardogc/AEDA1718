@@ -13,6 +13,8 @@
 #include <fstream>
 #include <map>
 
+#include "BST.h"
+
 using namespace std;
 
 

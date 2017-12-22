@@ -73,18 +73,33 @@ bool Candidato::operator == (const Candidato &c) const {
 }
 
 
-ostream& operator <<(ostream & os, const Candidato *c){
-	string validade= c->validade ? "valido" : "invalido";
+ostream& operator <<(ostream & os, const Candidato c){
+	string validade= c.validade ? "valido" : "invalido";
 
-	os << setw(20) << left << c->numInscricao;
-	os << setw(30) << left << c->nome;
-	os << setw(20) << left << c->dataNascimento;
-	os << setw(30) << left << c->generoArte;
-	os << setw(20) << left << c->morada;
+	os << setw(20) << left << c.numInscricao;
+	os << setw(30) << left << c.nome;
+	os << setw(20) << left << c.dataNascimento;
+	os << setw(30) << left << c.generoArte;
+	os << setw(20) << left << c.morada;
 	os << setw(20) << left << validade;
 	os << "\n";
 
 	return os;
+}
+
+bool Candidato::operator< (const Candidato & c) const
+{
+	if(this->getGeneroArte() == c.getGeneroArte())
+	{
+		if(this->getDataNasc() != c.getDataNasc())
+			return lowerThan(c.getDataNasc(), this->getDataNasc());
+		else
+		{
+			if(this->getNome() != c.getNome())
+				return this->getNome() < c.getNome();
+		}
+	}
+	return this->getGeneroArte() < c.getGeneroArte();
 }
 
 void Candidato::printParticipacoes(){

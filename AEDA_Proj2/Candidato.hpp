@@ -112,7 +112,14 @@ public:
 	 */
 	void alterarNome();
 
-	friend ostream& operator <<(ostream & os,const Candidato *c);
+	/**
+	 * Matodo que compara dois candidatos de acordo com a sua arte performativa e idade
+	 * @param c candidato a comparar com o candidato atual
+	 * @return verdadeiro se o candidato atual for de uma arte performativa alfabeticamente anterior à do candidato dado ou caso sejam da mesma arte, se a idade for menor. Devolve falso caso contrário
+	 */
+	bool operator< (const Candidato & c) const;
+
+	friend ostream& operator <<(ostream & os,const Candidato c);
 };
 
 /**
@@ -121,7 +128,7 @@ public:
  * @param c apontador para o candidato do qual se quer imprimir as informacoes
  * @return ostream os passada como parametro
  */
-ostream& operator <<(ostream & os, const Candidato *c);
+ostream& operator <<(ostream & os, const Candidato c);
 
 
 #endif /* CANDIDATO_HPP_ */

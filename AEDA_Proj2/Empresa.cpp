@@ -3,7 +3,7 @@
 
 using namespace castingspace;
 
-Empresa::Empresa(string (&nomes)[4]) {
+Empresa::Empresa(string (&nomes)[4]):candidatos(NoCandidate) {
 	load_files(nomes);
 }
 
@@ -45,22 +45,26 @@ void Empresa::save_candidatos(string &s){
 
 
 	if(file.is_open()){
+		//TODO CHECK BST
+		BSTItrIn<Candidato> it(candidatos);
 
-		for(unsigned i = 0; i < candidatos.size(); i++){
-			validade= candidatos[i]->getValidade() ? "valid" : "invalid";
+		while(! it.isAtEnd())
+		{
+			validade= it.retrieve().getValidade() ? "valid" : "invalid";
 
-			file << candidatos[i]->getNumInscricao() << ";";
-			file << candidatos[i]->getNome() << ";";
-			file << candidatos[i]->getDataNasc() << ";";
-			file << candidatos[i]->getGeneroArte() << ";";
-			file << candidatos[i]->getMorada() << ";";
+			file << it.retrieve().getNumInscricao() << ";";
+			file << it.retrieve().getNome() << ";";
+			file << it.retrieve().getDataNasc() << ";";
+			file << it.retrieve().getGeneroArte() << ";";
+			file << it.retrieve().getMorada() << ";";
 			file << validade << ";";
 
-			if(i != candidatos.size()-1){
+			it.advance();
+
+			if(! it.isAtEnd()){
 				file << "\n";
 			}
 		}
-
 		file.close();
 	}
 	else{
@@ -140,24 +144,31 @@ void Empresa::save_participacao(string &s){
 
 	if(file.is_open()){
 
-		for(unsigned i = 0; i < candidatos.size(); i++){
-			for(unsigned i2 = 0; i2 < candidatos[i]->getParticipacoes().size(); i2++){
+		//TODO CHECK BST
+		BSTItrIn<Candidato> it(candidatos);
+
+		while(! it.isAtEnd())
+		{
+
+			for(unsigned i2 = 0; i2 < it.retrieve().getParticipacoes().size(); i2++){
 
 				if(lines != 0){
 					file << "\n";
 				}
 
-				file << candidatos[i]->getNumInscricao() << ";";
-				file << candidatos[i]->getParticipacoes()[i2]->getFase() << ";";
-				file << candidatos[i]->getParticipacoes()[i2]->getSessao()->getData() << ";";
-				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[1] << ";";
-				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[2] << ";";
-				file << candidatos[i]->getParticipacoes()[i2]->getPontuacao()[3] << ";";
-				file << candidatos[i]->getParticipacoes()[i2]->getPosicao() << ";";
+				file << it.retrieve().getNumInscricao() << ";";
+				file << it.retrieve().getParticipacoes()[i2]->getFase() << ";";
+				file << it.retrieve().getParticipacoes()[i2]->getSessao()->getData() << ";";
+				file << it.retrieve().getParticipacoes()[i2]->getPontuacao()[1] << ";";
+				file << it.retrieve().getParticipacoes()[i2]->getPontuacao()[2] << ";";
+				file << it.retrieve().getParticipacoes()[i2]->getPontuacao()[3] << ";";
+				file << it.retrieve().getParticipacoes()[i2]->getPosicao() << ";";
 
 				lines++;
 
 			}
+
+			it.advance();
 		}
 
 		file.close();
@@ -407,8 +418,8 @@ void Empresa::load_candidatos(string &s){
 
 			ss.str(string());
 			ss.clear();
-
-			candidatos.push_back(new Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade));
+			//TODO CHECK BST
+			candidatos.insert(Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade));
 		}
 		file.close();
 	}
@@ -493,12 +504,17 @@ void Empresa::load_participacao(string &s){
 			ss.str(string());
 			ss.clear();
 
-			for (unsigned i = 0; i < candidatos.size(); i++){
-				if(candidatos[i]->getNumInscricao() == numInscricao){
-					generoArte=candidatos[i]->getGeneroArte();
-				}
-			}
+			//TODO CHECK BST
+			BSTItrIn<Candidato> it(this->candidatos);
 
+			while(! it.isAtEnd())
+			{
+				if(it.retrieve().getNumInscricao() == numInscricao){
+					generoArte=it.retrieve().getGeneroArte();
+				}
+
+				it.advance();
+			}
 
 			for (unsigned i = 0; i < sessoes.size(); i++){
 				if((sessoes[i]->getData()==data) && (sessoes[i]->getArtePerformativa() == generoArte)){
@@ -510,11 +526,17 @@ void Empresa::load_participacao(string &s){
 			pontuacao_array[1]=pontuacao2;
 			pontuacao_array[2]=pontuacao3;
 
-			for (unsigned i = 0; i < candidatos.size(); i++){
-				if(candidatos[i]->getNumInscricao() == numInscricao){
-					candidatos[i]->addParticipacao(new Participacao(sessoes[sessao], pontuacao_array, posicao, fase));
+			//TODO CHECK BST
+			BSTItrIn<Candidato> it2(candidatos);
+
+			while(! it2.isAtEnd())
+			{
+				if(it2.retrieve().getNumInscricao() == numInscricao){
+					it2.retrieve().addParticipacao(new Participacao(sessoes[sessao], pontuacao_array, posicao, fase));
 					break;
 				}
+
+				it2.advance();
 			}
 		}
 		file.close();
@@ -525,7 +547,19 @@ void Empresa::load_participacao(string &s){
 }
 
 vector <Candidato *> Empresa::getCandidatos(){
-	return candidatos;
+	vector<Candidato *> ret;
+
+	//TODO CHECK BST
+	BSTItrIn<Candidato> it(candidatos);
+
+	while(! it.isAtEnd())
+	{
+
+		ret.push_back(&it.retrieve());
+
+		it.advance();
+	}
+	return ret;
 }
 
 vector <Jurado *> Empresa::getJurados(){
@@ -579,7 +613,7 @@ void Empresa::sortSessoes(sort_t const & by)
 		break;
 	}
 }
-
+/*
 void Empresa::sortCandidatos(sort_t const & by)
 {
 	switch(by)
@@ -611,7 +645,7 @@ void Empresa::sortCandidatos(sort_t const & by)
 	default:
 		break;
 	}
-}
+}*/
 
 void parse_line(string &line, stringstream &ss){
 	for (unsigned i=0; i < line.size(); i++){
@@ -678,8 +712,13 @@ void Empresa::printCandidatos(){
 	cout << setw(20) << left << "Validade";
 	cout << "\n\n";
 
-	for(unsigned i=0; i < candidatos.size(); i++){
-		cout << candidatos[i];
+	BSTItrIn<Candidato> it(candidatos);
+
+	while(! it.isAtEnd())
+	{
+		cout << it.retrieve();
+
+		it.advance();
 	}
 
 	pressKeyToContinue();
@@ -707,20 +746,25 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 	candidatosOrdenar_1.clear();
 	candidatosOrdenar_2.clear();
 
-	for(unsigned i = 0; i < candidatos.size(); ++i)
+	//TODO CHECK BST
+	BSTItrIn<Candidato> it(candidatos);
+
+	while(! it.isAtEnd())
 	{
-		pair<Participacao *,Participacao *> infoCandidato = candidatos[i]->getParticipacao(sessao->getData());
+		pair<Participacao *,Participacao *> infoCandidato = it.retrieve().getParticipacao(sessao->getData());
 		if(infoCandidato.first != NULL)
 		{
-			info_1[candidatos[i]] = infoCandidato;
-			candidatosOrdenar_1.push_back(candidatos[i]);
+			info_1[&it.retrieve()] = infoCandidato;
+			candidatosOrdenar_1.push_back(&it.retrieve());
 		}
 
 		if(infoCandidato.second != NULL)
 		{
-			info_2[candidatos[i]] = infoCandidato;
-			candidatosOrdenar_2.push_back(candidatos[i]);
+			info_2[&it.retrieve()] = infoCandidato;
+			candidatosOrdenar_2.push_back(&it.retrieve());
 		}
+
+		it.advance();
 	}
 
 	cout << "\n\n";
@@ -825,12 +869,17 @@ Candidato *  Empresa::escolher_candidato(){
 			continue;
 		}
 
+		//TODO CHECK BST
+		BSTItrIn<Candidato> it(this->candidatos);
 
-		for(unsigned int i = 0; i < candidatos.size(); i++){
-			if(candidatos[i]->getNumInscricao() == id){
+		while(! it.isAtEnd())
+		{
+			if(it.retrieve().getNumInscricao() == id){
 				cout << "O candidato e valido!" << endl;
-				return candidatos[i];
+				return &it.retrieve();
 			}
+
+			it.advance();
 		}
 
 		cout << "Introduziu um id que nao existe!" << endl;
@@ -945,8 +994,8 @@ void Empresa::adicionar_candidato(){
 	getline(cin, generoArte);
 	cout << "Introduza a sua cidade de morada: ";
 	getline(cin, morada);
-
-	candidatos.push_back(new Candidato(nome, morada, generoArte, dataNascimento));
+	//TODO CHECK BST
+	candidatos.insert(Candidato(nome, morada, generoArte, dataNascimento));
 
 	cout << "Foi introduzido um novo candidato com sucesso!";
 
@@ -985,7 +1034,7 @@ void Empresa::adicionar_jurado(){
 
 		unique=true;
 
-		for(int i=0; i < jurados.size() ; i++){
+		for(unsigned i=0; i < jurados.size() ; i++){
 			if(jurados[i]->getTelemovel() == telemovel){
 				unique=false;
 				cout << "Ja existe um jurado com esse numero!";
@@ -1022,16 +1071,16 @@ void Empresa::adicionar_sessao(){
 	int pos;
 	bool found= false;
 
-	for (int i = 0; i < jurados.size(); i++){
+	for (unsigned i = 0; i < jurados.size(); i++){
 		if(jurados[i]->getValidade()){
 			artes.push_back(jurados[i]->getGeneroArte());
 		}
 	}
 
 
-	for (int i1 = 0; i1 < artes.size(); i1++){
+	for (unsigned i1 = 0; i1 < artes.size(); i1++){
 		counter=1;
-		for (int i2 = 0; i2 < artes.size(); i2++){
+		for (unsigned i2 = 0; i2 < artes.size(); i2++){
 			if(i2!=i1){
 				if(artes[i1]==artes[i2]){
 					counter++;
@@ -1043,7 +1092,7 @@ void Empresa::adicionar_sessao(){
 			artesValidas.push_back(artes[i1]);
 		}
 
-		for(int i3=0; i3 < artes.size(); i3++){
+		for(unsigned i3=0; i3 < artes.size(); i3++){
 			if(i3!=i1){
 				if(artes[i1]==artes[i3]){
 					artes.erase(artes.begin()+i3);
@@ -1062,7 +1111,7 @@ void Empresa::adicionar_sessao(){
 
 			cout << "\nArtes Válidas\n\n";
 
-			for(int i = 0;i < artesValidas.size();i++){
+			for(unsigned i = 0;i < artesValidas.size();i++){
 				cout << i+1 << " - ";
 				cout << artesValidas[i] << "\n";
 			}
@@ -1107,7 +1156,7 @@ void Empresa::adicionar_sessao(){
 				continue;
 			}
 
-			for(int i = 0; i< sessoes.size();i++){
+			for(unsigned i = 0; i< sessoes.size();i++){
 				if((arte==sessoes[i]->getArtePerformativa()) && (data == sessoes[i]->getData())){
 					found = true;
 					break;
@@ -1122,7 +1171,7 @@ void Empresa::adicionar_sessao(){
 
 
 
-		for (int i = 0; i < jurados.size(); i++){
+		for (unsigned i = 0; i < jurados.size(); i++){
 			if(jurados[i]->getValidade()){
 				if(arte == jurados[i]->getGeneroArte()){
 					juradosValidos.push_back(jurados[i]);
@@ -1135,7 +1184,7 @@ void Empresa::adicionar_sessao(){
 		while(!found){
 			clear_scrn();
 
-			for (int i = 0; i < juradosValidos.size(); i++){
+			for (unsigned i = 0; i < juradosValidos.size(); i++){
 				cout << i + 1 << " - ";
 				cout << juradosValidos[i];
 			}
@@ -1169,7 +1218,7 @@ void Empresa::adicionar_sessao(){
 		while(!found){
 			clear_scrn();
 
-			for (int i = 0; i < juradosValidos.size(); i++){
+			for( unsigned i = 0; i < juradosValidos.size(); i++){
 				cout << i + 1 << " - ";
 				cout << juradosValidos[i];
 			}
@@ -1204,7 +1253,7 @@ void Empresa::adicionar_sessao(){
 		while(!found){
 			clear_scrn();
 
-			for (int i = 0; i < juradosValidos.size(); i++){
+			for( unsigned i = 0; i < juradosValidos.size(); i++){
 				cout << i + 1 << " - ";
 				cout << juradosValidos[i];
 			}
@@ -1274,12 +1323,17 @@ void Empresa::remover_sessao(){
 	vector<Candidato *> candidatos;
 	candidatos.clear();
 
-	for (unsigned i = 0; i < this->candidatos.size(); ++i)
+	//TODO CHECK BST
+	BSTItrIn<Candidato> it(this->candidatos);
+
+	while(! it.isAtEnd())
 	{
-		if(this->candidatos[i]->getGeneroArte() == arte)
+		if(it.retrieve().getGeneroArte() == arte)
 		{
-			candidatos.push_back(this->candidatos[i]);
+			candidatos.push_back(&it.retrieve());
 		}
+
+		it.advance();
 	}
 
 	for (unsigned i = 0; i < candidatos.size(); ++i)
@@ -1309,10 +1363,15 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 	vector <Candidato *> candidatos_possiveis;
 	Candidato *candidato;
 
-	for(unsigned i = 0; i < candidatos.size(); i++){
-		if(candidatos[i]->getGeneroArte() == sessao->getArtePerformativa() && candidatos[i]->getParticipacao(sessao->getData()).first == NULL){
-			candidatos_possiveis.push_back(candidatos[i]);
+	//TODO CHECK BST
+	BSTItrIn<Candidato> it(candidatos);
+
+	while(! it.isAtEnd())
+	{
+		if(it.retrieve().getGeneroArte() == sessao->getArtePerformativa() && it.retrieve().getParticipacao(sessao->getData()).first == NULL){
+			candidatos_possiveis.push_back(&it.retrieve());
 		}
+		it.advance();
 	}
 
 	if(candidatos_possiveis.size() < 1){
@@ -1333,7 +1392,7 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 		cout << setw(20) << left << "Validade";
 		cout << "\n\n";
 
-		for(int i = 0; i < candidatos_possiveis.size(); i++){
+		for( unsigned i = 0; i < candidatos_possiveis.size(); i++){
 			cout << candidatos_possiveis[i];
 		}
 
@@ -1349,7 +1408,7 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 			continue;
 		}
 
-		for(int i = 0; i < candidatos_possiveis.size(); i++){
+		for( unsigned i = 0; i < candidatos_possiveis.size(); i++){
 			if(id == candidatos_possiveis[i]->getNumInscricao()){
 				found=true;
 				candidato=(Candidato *)candidatos_possiveis[i];
@@ -1381,10 +1440,16 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 	bool found;
 	int id;
 
-	for (int i = 0; i < candidatos.size(); i++){
-		if(candidatos[i]->getParticipacao(sessao->getData()).first != NULL){
-			candidatos_possiveis.push_back(candidatos[i]);
+	//TODO CHECK BST
+	BSTItrIn<Candidato> it(candidatos);
+
+	while(! it.isAtEnd())
+	{
+		if(it.retrieve().getParticipacao(sessao->getData()).first != NULL){
+			candidatos_possiveis.push_back(&it.retrieve());
 		}
+
+		it.advance();
 	}
 
 	if(candidatos_possiveis.size()<1){
@@ -1407,7 +1472,7 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 		cout << setw(20) << left << "Validade";
 		cout << "\n\n";
 
-		for(int i = 0; i < candidatos_possiveis.size(); i++){
+		for( unsigned i = 0; i < candidatos_possiveis.size(); i++){
 			cout << candidatos_possiveis[i];
 		}
 
@@ -1423,7 +1488,7 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 			continue;
 		}
 
-		for(int i = 0; i < candidatos_possiveis.size(); i++){
+		for( unsigned i = 0; i < candidatos_possiveis.size(); i++){
 			if(id == candidatos_possiveis[i]->getNumInscricao()){
 				found=true;
 				candidato=(Candidato *)candidatos_possiveis[i];
@@ -1451,10 +1516,13 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 
 	srand (time(NULL));
 
-	for(unsigned int i = 0; i < candidatos.size(); i++){
+	//TODO CHECK BST
+	BSTItrIn<Candidato> it(candidatos);
 
-		if(candidatos[i]->getParticipacao(sessao->getData()).first != NULL){
-			candidatos[i]->removeParticipacao(sessao);
+	while(! it.isAtEnd())
+	{
+		if(it.retrieve().getParticipacao(sessao->getData()).first != NULL){
+			it.retrieve().removeParticipacao(sessao);
 
 			int a, b, c;
 			a = rand() % 11;
@@ -1462,10 +1530,13 @@ void Empresa::gerarPrimeiraFase(Sessao * sessao){
 			c = rand() % 11;
 			int points[] = {a,b,c};
 
-			candidatos[i]->addParticipacao(new Participacao(sessao, points, 0, 1));
+			it.retrieve().addParticipacao(new Participacao(sessao, points, 0, 1));
 
-			candidatos_primeira_fase.push_back(candidatos[i]);
+			candidatos_primeira_fase.push_back(&it.retrieve());
 		}
+
+
+		it.advance();
 	}
 
 	if(candidatos_primeira_fase.size() < 1){
@@ -1505,12 +1576,17 @@ void Empresa::gerarSegundaFase(Sessao * sessao){
 
 	srand (time(NULL));
 
-	for(unsigned int i = 0; i < candidatos.size(); i++){
-		if(candidatos[i]->getParticipacao(sessao->getData()).first != NULL ){
-			candidatos_primeira_fase.push_back(candidatos[i]);
-		}
-	}
+	//TODO CHECK BST
+	BSTItrIn<Candidato> it(candidatos);
 
+	while(! it.isAtEnd())
+	{
+		if(it.retrieve().getParticipacao(sessao->getData()).first != NULL ){
+			candidatos_primeira_fase.push_back(&it.retrieve());
+		}
+
+		it.advance();
+	}
 
 	sortBy_points_in_session(candidatos_primeira_fase, sessao->getData(), 1);
 
@@ -1564,7 +1640,7 @@ void Empresa::alterarDataSessao(Sessao* sessao){
 			continue;
 		}
 
-		for(int i = 0; i< sessoes.size();i++){
+		for( unsigned i = 0; i< sessoes.size();i++){
 			if(!(*sessao == *sessoes[i]) && (sessao->getArtePerformativa() == sessoes[i]->getArtePerformativa()) && (data == sessoes[i]->getData())){
 				found = true;
 				break;
