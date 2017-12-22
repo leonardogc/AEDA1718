@@ -41,6 +41,18 @@ bool Candidato::addParticipacao(Participacao * participacao)
 	return true;
 }
 
+string Candidato::getDataMaisRecente() const{
+	string current = "00/00/0000";
+	for( unsigned i=0; i< this->participacoes.size(); i++)
+	{
+		if(lowerThan(current, this->participacoes[i]->getSessao()->getData()))
+		{
+			current = this->participacoes[i]->getSessao()->getData())
+		}
+	}
+	return current;
+}
+
 pair<Participacao *, Participacao *> Candidato::getParticipacao(string const &dataSessao) const
 {
 	int first = -1, second = -1;

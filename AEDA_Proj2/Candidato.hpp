@@ -69,6 +69,8 @@ public:
 	 */
 	vector <Participacao *> getParticipacoes() const;
 
+	string getDataMaisRecente() const;
+
 	/**
 	 * Adiciona ao candidato uma participacao numa sessao
 	 * @param participacao apontador para uma participacao previamente criada
