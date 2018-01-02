@@ -1360,7 +1360,7 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 	//para adicionar um candidato a sessao tem que escolher dos já existentes
 	bool found=false;
 	int id;
-	vector <Candidato *> candidatos_possiveis;
+	vector <Candidato> candidatos_possiveis;
 	Candidato *candidato;
 
 	//TODO CHECK BST
@@ -1369,7 +1369,7 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 	while(! it.isAtEnd())
 	{
 		if(it.retrieve().getGeneroArte() == sessao->getArtePerformativa() && it.retrieve().getParticipacao(sessao->getData()).first == NULL){
-			candidatos_possiveis.push_back(&it.retrieve());
+			candidatos_possiveis.push_back(it.retrieve());
 		}
 		it.advance();
 	}
@@ -1409,9 +1409,9 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 		}
 
 		for( unsigned i = 0; i < candidatos_possiveis.size(); i++){
-			if(id == candidatos_possiveis[i]->getNumInscricao()){
+			if(id == candidatos_possiveis[i].getNumInscricao()){
 				found=true;
-				candidato=(Candidato *)candidatos_possiveis[i];
+				candidato= &(candidatos_possiveis[i]);
 			}
 		}
 
@@ -1428,6 +1428,9 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 	int points[3] = {0,0,0};
 	candidato->addParticipacao(new Participacao(sessao, points, 0, 1));
 
+	//Atualizar a Priority Queue
+	//atualiza_candidato_pq(*candidato);
+
 	cout << "O candidato foi adicionado a sessao com sucesso!\n" << endl;
 
 	pressKeyToContinue();
@@ -1435,7 +1438,7 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 }
 
 void Empresa::remover_candidato_sessao(Sessao * sessao){
-	vector <Candidato *> candidatos_possiveis;
+	vector <Candidato> candidatos_possiveis;
 	Candidato* candidato;
 	bool found;
 	int id;
@@ -1446,7 +1449,7 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 	while(! it.isAtEnd())
 	{
 		if(it.retrieve().getParticipacao(sessao->getData()).first != NULL){
-			candidatos_possiveis.push_back(&it.retrieve());
+			candidatos_possiveis.push_back(it.retrieve());
 		}
 
 		it.advance();
@@ -1489,9 +1492,9 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 		}
 
 		for( unsigned i = 0; i < candidatos_possiveis.size(); i++){
-			if(id == candidatos_possiveis[i]->getNumInscricao()){
+			if(id == candidatos_possiveis[i].getNumInscricao()){
 				found=true;
-				candidato=(Candidato *)candidatos_possiveis[i];
+				candidato= &(candidatos_possiveis[i]);
 			}
 		}
 
@@ -1687,6 +1690,7 @@ void Empresa::atualiza_candidato_pq(Candidato cand){
 			pq_recentes aux;
 
 			while(!candidatos_ordenados[i].empty()){
+				cout << *(candidatos_ordenados[i].top());
 				if(candidatos_ordenados[i].top()->getNumInscricao() == cand.getNumInscricao()){
 					candidatos_ordenados[i].pop();
 					candidatos_ordenados[i].push(&cand);
@@ -1703,17 +1707,20 @@ void Empresa::atualiza_candidato_pq(Candidato cand){
 
 			}
 		}
+
 	}
 
 pq_recentes Empresa::getPQ(string arte){
 
+	pq_recentes vazio;
+
 	for(unsigned int i = 0; i < candidatos_ordenados.size(); i++){
 		if(candidatos_ordenados[i].top()->getGeneroArte() == arte){
-			return candidatos_ordenados[i].top()->getGeneroArte();
+			return candidatos_ordenados[i];
 		}
 	}
 
-	return -1;
+	return vazio;
 
 }
 

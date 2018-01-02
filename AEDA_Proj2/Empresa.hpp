@@ -8,6 +8,8 @@
 #include "Sessao.hpp"
 #include "utils.hpp"
 
+const Candidato NoCandidate = Candidato(0, "", "", "", "", false);
+
 struct ciHash
 {
 	int operator() (const Candidato &c) const
@@ -72,8 +74,6 @@ private:
 
 	///Vetor usado para guardar pointers para os objetos da classe Candidato
 	BST<Candidato> candidatos;
-
-	const Candidato NoCandidate = Candidato(0, "", "", "", "", false);
 
 	///Vetor usado para guardar pointers para os objetos da classe Sessao
 	vector<Sessao *> sessoes;
