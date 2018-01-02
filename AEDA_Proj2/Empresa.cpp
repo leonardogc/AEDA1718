@@ -1716,11 +1716,15 @@ pq_recentes Empresa::getPQ(string arte){
 
 	for(unsigned int i = 0; i < candidatos_ordenados.size(); i++){
 		if(candidatos_ordenados[i].top()->getGeneroArte() == arte){
+
 			return candidatos_ordenados[i];
+
+			vazio = candidatos_ordenados[i];
+			return vazio;
 		}
 	}
 
-	return vazio;
+	return -1;
 
 }
 

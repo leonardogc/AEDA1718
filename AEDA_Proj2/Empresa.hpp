@@ -8,8 +8,6 @@
 #include "Sessao.hpp"
 #include "utils.hpp"
 
-const Candidato NoCandidate = Candidato(0, "", "", "", "", false);
-
 struct ciHash
 {
 	int operator() (const Candidato &c) const
@@ -60,7 +58,7 @@ public:
 
 typedef priority_queue<Candidato*, vector<Candidato*>, comp_candidatos> pq_recentes;
 
-
+const Candidato NoCandidate = Candidato(0, "", "", "", "", false);
 
 /**
  * \class Empresa

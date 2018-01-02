@@ -9,6 +9,7 @@ int main(){	//TODO destrutores para assegurar que tudo é apagado (ricardo is on 
 	Empresa *empresa;
 	changeFileName_menu(ficheiros);
 
+
 	try{
 		empresa = new Empresa(ficheiros);
 	}
