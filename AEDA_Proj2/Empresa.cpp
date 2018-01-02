@@ -1724,7 +1724,7 @@ pq_recentes Empresa::getPQ(string arte){
 		}
 	}
 
-	return -1;
+	return vazio;
 
 }
 
