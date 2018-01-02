@@ -58,7 +58,7 @@ public:
 
 typedef priority_queue<Candidato*, vector<Candidato*>, comp_candidatos> pq_recentes;
 
-
+const Candidato NoCandidate = Candidato(0, "", "", "", "", false);
 
 /**
  * \class Empresa
@@ -73,7 +73,6 @@ private:
 	///Vetor usado para guardar pointers para os objetos da classe Candidato
 	BST<Candidato> candidatos;
 
-	const Candidato NoCandidate = Candidato(0, "", "", "", "", false);
 
 	///Vetor usado para guardar pointers para os objetos da classe Sessao
 	vector<Sessao *> sessoes;

@@ -1707,13 +1707,16 @@ void Empresa::atualiza_candidato_pq(Candidato cand){
 
 pq_recentes Empresa::getPQ(string arte){
 
+	pq_recentes vazio;
+
 	for(unsigned int i = 0; i < candidatos_ordenados.size(); i++){
 		if(candidatos_ordenados[i].top()->getGeneroArte() == arte){
-			return candidatos_ordenados[i].top()->getGeneroArte();
+			vazio = candidatos_ordenados[i];
+			return vazio;
 		}
 	}
 
-	return -1;
+	return vazio;
 
 }
 
