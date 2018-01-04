@@ -115,11 +115,18 @@ public:
 	void alterarNome();
 
 	/**
-	 * Matodo que compara dois candidatos de acordo com a sua arte performativa e idade
+	 * Metodo que compara dois candidatos de acordo com a sua arte performativa e idade
 	 * @param c candidato a comparar com o candidato atual
 	 * @return verdadeiro se o candidato atual for de uma arte performativa alfabeticamente anterior à do candidato dado ou caso sejam da mesma arte, se a idade for menor. Devolve falso caso contrário
 	 */
 	bool operator< (const Candidato & c) const;
+
+	/**
+	 * Operador de atribuição da classe candidato
+	 * @param c candidato cujos atributos serao atribuidos ao objeto atual
+	 * @return objeto atual da classe
+	 */
+	Candidato& operator= (const Candidato & c);
 
 	friend ostream& operator <<(ostream & os,const Candidato c);
 };

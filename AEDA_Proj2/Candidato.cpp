@@ -4,13 +4,13 @@ unsigned int Candidato::numCandidato = 1;
 
 
 Candidato::Candidato(string nome, string  morada, string  generoArte, string dataNascimento):
-				Pessoa(nome, morada, generoArte), numInscricao(numCandidato++)
+						Pessoa(nome, morada, generoArte), numInscricao(numCandidato++)
 {
 	this->dataNascimento = dataNascimento;
 }
 
 Candidato::Candidato(int nInscricao, string nome, string  morada, string  generoArte, string dataNascimento, bool validade):
-				Pessoa(nome, morada, generoArte, validade), numInscricao(nInscricao)
+						Pessoa(nome, morada, generoArte, validade), numInscricao(nInscricao)
 {
 	this->dataNascimento = dataNascimento;
 	numCandidato++;
@@ -114,76 +114,86 @@ bool Candidato::operator< (const Candidato & c) const
 	return this->getGeneroArte() < c.getGeneroArte();
 }
 
+Candidato& Candidato::operator= (const Candidato & c){
+	this->dataNascimento = c.getDataNasc();
+	this->numCandidato = c.numCandidato;
+	this->nome = c.getNome(); this->morada = c.getMorada();
+	this->generoArte = c.getGeneroArte();
+	this->validade = c.getValidade();
+	this->participacoes = c.getParticipacoes();
+	return *this;
+}
+
 void Candidato::printParticipacoes(){
-		cout << "\n\n";
-		cout << setw(20) << left << "Posicao";
-		cout << setw(20) << left << "Fase";
-		cout << setw(20) << left << "Pontuacao";
-		cout << setw(30) << left << "Genero de Arte";
-		cout << setw(20) << left << "Data";
-		cout << "\n\n";
+	cout << "\n\n";
+	cout << setw(20) << left << "Posicao";
+	cout << setw(20) << left << "Fase";
+	cout << setw(20) << left << "Pontuacao";
+	cout << setw(30) << left << "Genero de Arte";
+	cout << setw(20) << left << "Data";
+	cout << "\n\n";
 
-		for(unsigned i=0; i < participacoes.size(); i++){
-			cout << participacoes[i];
-		}
+	for(unsigned i=0; i < participacoes.size(); i++){
+		cout << participacoes[i];
+	}
 
-		pressKeyToContinue();
+	pressKeyToContinue();
 }
 
 void Candidato::alterarMorada(){
 
-		string morada;
+	string morada;
 
-		while(true)
-		{
-			clear_scrn();
-			cout << "Introduza uma nova morada: ";
+	while(true)
+	{
+		clear_scrn();
+		cout << "Introduza uma nova morada: ";
 
-			getline(cin, morada);
+		getline(cin, morada);
 
-			if(morada.size() > 0){
-				break;
-			}
-			else{
-				cout << "Introduziu uma morada invalida!";
-
-				pressKeyToContinue();
-				continue;
-			}
+		if(morada.size() > 0){
+			break;
 		}
+		else{
+			cout << "Introduziu uma morada invalida!";
 
-		this->morada = morada;
-		cout << "A morada foi alterada com sucesso!";
+			pressKeyToContinue();
+			continue;
+		}
+	}
 
-		pressKeyToContinue();
+	this->morada = morada;
+	cout << "A morada foi alterada com sucesso!";
+
+	pressKeyToContinue();
 }
 
 void Candidato::alterarNome(){
 
-		string nome;
+	string nome;
 
-		while(true)
-		{
-			clear_scrn();
-			cout << "Introduza o novo nome: ";
+	while(true)
+	{
+		clear_scrn();
+		cout << "Introduza o novo nome: ";
 
-			getline(cin, nome);
+		getline(cin, nome);
 
-			if(nome.size() > 0){
-				break;
-			}
-			else{
-				cout << "Introduziu um nome invalido!";
-
-				pressKeyToContinue();
-				continue;
-			}
+		if(nome.size() > 0){
+			break;
 		}
+		else{
+			cout << "Introduziu um nome invalido!";
 
-		this->nome = nome;
-		cout << "O nome foi alterado com sucesso!";
+			pressKeyToContinue();
+			continue;
+		}
+	}
 
-		pressKeyToContinue();
+	this->nome = nome;
+	cout << "O nome foi alterado com sucesso!";
+
+	pressKeyToContinue();
 }
 
 bool Candidato::removeParticipacao(Sessao * sessao){

@@ -70,8 +70,11 @@ private:
 	///Vetor usado para guardar pointers para os objetos da classe Jurado
 	vector<Jurado *> jurados;
 
-	///Vetor usado para guardar pointers para os objetos da classe Candidato
+	///árvore binária de pesquisa usada para guardar os candidatos ordenados alfabéticamente pela arte e por ordem de idades dentro da mesma arte
 	BST<Candidato> candidatos;
+
+	///Vetor usado para guardar os candidatos apagados, considerados como inválidos por forma a não perder os dados relativos a sessões antigas
+	vector<Candidato> candidatosInvalidos;
 
 	///Vetor usado para guardar pointers para os objetos da classe Sessao
 	vector<Sessao *> sessoes;
@@ -314,15 +317,15 @@ public:
 
 	//TODO priority_queue
 	/**
-		 * Metodo para adicionar um candidato à fila de prioridades
-		 * da sua arte
-		 *
-		 * @param cand Candidato que vai ser adicionado à priority queue
-		 */
+	 * Metodo para adicionar um candidato à fila de prioridades
+	 * da sua arte
+	 *
+	 * @param cand Candidato que vai ser adicionado à priority queue
+	 */
 	void adiciona_candidato_pq(Candidato * cand);
 
 
-/**
+	/**
 	 * Metodo para atualizar as informações de um candidato que já existe
 	 * numa determinada fila do vetor de listas de prioridades
 	 *
@@ -330,7 +333,7 @@ public:
 	 */
 	void atualiza_candidato_pq(Candidato cand);
 
-/**
+	/**
 	 * Metodo que retorna uma fila de prioridades de uma certa arte
 	 *
 	 * @param arte arte cuja fila se pretende retornar

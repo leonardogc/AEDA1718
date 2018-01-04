@@ -31,9 +31,9 @@ const Sessao * Participacao::getSessao() const
 }
 
 bool Participacao::operator== (const Participacao &p) const
-		{
+				{
 	return ((* (this->sessao)) == (*(p.sessao)) && (this->fase == p.fase));
-		}
+				}
 
 void Participacao::setPontuacao(int pontuacao[4])
 {

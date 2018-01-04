@@ -418,8 +418,17 @@ void Empresa::load_candidatos(string &s){
 
 			ss.str(string());
 			ss.clear();
-			//TODO CHECK BST
-			candidatos.insert(Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade));
+
+
+			if(validade)
+			{
+				//TODO CHECK BST
+				candidatos.insert(Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade));
+			} else
+			{
+				this->candidatosInvalidos.push_back(Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade));
+			}
+
 		}
 		file.close();
 	}
@@ -506,11 +515,13 @@ void Empresa::load_participacao(string &s){
 
 			//TODO CHECK BST
 			BSTItrIn<Candidato> it(this->candidatos);
-
+			bool valid;
 			while(! it.isAtEnd())
 			{
 				if(it.retrieve().getNumInscricao() == numInscricao){
 					generoArte=it.retrieve().getGeneroArte();
+					valid = it.retrieve().getValidade();
+					break;
 				}
 
 				it.advance();
@@ -526,17 +537,29 @@ void Empresa::load_participacao(string &s){
 			pontuacao_array[1]=pontuacao2;
 			pontuacao_array[2]=pontuacao3;
 
-			//TODO CHECK BST
-			BSTItrIn<Candidato> it2(candidatos);
-
-			while(! it2.isAtEnd())
+			if(valid)
 			{
-				if(it2.retrieve().getNumInscricao() == numInscricao){
-					it2.retrieve().addParticipacao(new Participacao(sessoes[sessao], pontuacao_array, posicao, fase));
-					break;
-				}
+				//TODO CHECK BST
+				BSTItrIn<Candidato> it2(candidatos);
 
-				it2.advance();
+				while(! it2.isAtEnd())
+				{
+					if(it2.retrieve().getNumInscricao() == numInscricao){
+						it2.retrieve().addParticipacao(new Participacao(sessoes[sessao], pontuacao_array, posicao, fase));
+						break;
+					}
+
+					it2.advance();
+				}
+			}
+			else {
+				for (unsigned i=0; i<this->candidatosInvalidos.size(); i++)
+				{
+					if(candidatosInvalidos[i].getNumInscricao() == numInscricao){
+						candidatosInvalidos[i].addParticipacao(new Participacao(sessoes[sessao], pontuacao_array, posicao, fase));
+						break;
+					}
+				}
 			}
 		}
 		file.close();
@@ -1301,8 +1324,12 @@ void Empresa::remover_jurado(){
 }
 
 void Empresa::remover_candidato(){
-	Candidato * candidato = this->escolher_candidato();
-	candidato->setValid(false);
+	Candidato candidato = *(this->escolher_candidato());
+
+	this->candidatos.remove(candidato);
+
+	candidato.setValid(false);
+	this->candidatosInvalidos.push_back(candidato);
 	cout << "O candidato foi removido com sucesso!";
 	pressKeyToContinue();
 }
@@ -1705,10 +1732,10 @@ void Empresa::atualiza_candidato_pq(Candidato cand){
 				aux.pop();
 			}
 
-			}
 		}
-
 	}
+
+}
 
 pq_recentes Empresa::getPQ(string arte){
 

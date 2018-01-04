@@ -92,16 +92,16 @@ bool isValidDate(string date){
 
 	getline(ss, line, '/');
 	if(line.size() != 2){
-			return false;
-		}
+		return false;
+	}
 	auxiliar << line;
 	auxiliar >> month;
 	auxiliar.clear();
 
 	getline(ss, line, '/');
 	if(line.size() != 4){
-			return false;
-		}
+		return false;
+	}
 	auxiliar << line;
 	auxiliar >> year;
 
