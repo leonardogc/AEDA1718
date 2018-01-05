@@ -1596,7 +1596,6 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 	bool found=false;
 	int id;
 	vector <Candidato> candidatos_possiveis;
-	Candidato *candidato;
 
 	//TODO CHECK BST
 	BSTItrIn<Candidato> it(candidatos);
@@ -1647,8 +1646,13 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 		for( unsigned i = 0; i < candidatos_possiveis.size(); i++){
 			if(id == candidatos_possiveis[i].getNumInscricao()){
 				found=true;
-				candidato= &(candidatos_possiveis[i]);
-				candidatos.remove(*candidato);
+				candidatos.remove(candidatos_possiveis[i]);
+
+				int points[3] = {0,0,0};
+				candidatos_possiveis[i].addParticipacao(new Participacao(sessao, points, 0, 1));
+
+				candidatos.insert(candidatos_possiveis[i]);
+
 				break;
 			}
 		}
@@ -1662,13 +1666,6 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 
 	}
 
-
-	int points[3] = {0,0,0};
-	candidato->addParticipacao(new Participacao(sessao, points, 0, 1));
-
-	candidatos.insert(*candidato);
-
-
 	//Atualizar a Priority Queue
 	//atualiza_candidato_pq(*candidato);
 
@@ -1680,7 +1677,6 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 
 void Empresa::remover_candidato_sessao(Sessao * sessao){
 	vector <Candidato> candidatos_possiveis;
-	Candidato* candidato;
 	bool found;
 	int id;
 
@@ -1735,8 +1731,11 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 		for( unsigned i = 0; i < candidatos_possiveis.size(); i++){
 			if(id == candidatos_possiveis[i].getNumInscricao()){
 				found=true;
-				candidato= &(candidatos_possiveis[i]);
-				candidatos.remove(*candidato);
+				candidatos.remove(candidatos_possiveis[i]);
+				candidatos_possiveis[i].removeParticipacao(sessao);
+
+				candidatos.insert(candidatos_possiveis[i]);
+				break;
 			}
 		}
 
@@ -1748,10 +1747,6 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 		}
 
 	}
-
-	candidato->removeParticipacao(sessao);
-
-	candidatos.insert(*candidato);
 
 	//atualiza_candidato_pq(*candidato);
 
