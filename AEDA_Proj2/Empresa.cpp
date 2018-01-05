@@ -1646,12 +1646,13 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 		for( unsigned i = 0; i < candidatos_possiveis.size(); i++){
 			if(id == candidatos_possiveis[i].getNumInscricao()){
 				found=true;
-				candidatos.remove(candidatos_possiveis[i]);
+				Candidato c=candidatos_possiveis[i];
+				candidatos.remove(c);
 
 				int points[3] = {0,0,0};
-				candidatos_possiveis[i].addParticipacao(new Participacao(sessao, points, 0, 1));
+				c.addParticipacao(new Participacao(sessao, points, 0, 1));
 
-				candidatos.insert(candidatos_possiveis[i]);
+				candidatos.insert(c);
 
 				break;
 			}
@@ -1685,7 +1686,7 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 
 	while(! it.isAtEnd())
 	{
-		if(it.retrieve().getParticipacao(sessao->getData()).first != NULL){
+		if(it.retrieve().getGeneroArte() == sessao->getArtePerformativa() && it.retrieve().getParticipacao(sessao->getData()).first != NULL){
 			candidatos_possiveis.push_back(it.retrieve());
 		}
 
@@ -1731,10 +1732,11 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 		for( unsigned i = 0; i < candidatos_possiveis.size(); i++){
 			if(id == candidatos_possiveis[i].getNumInscricao()){
 				found=true;
-				candidatos.remove(candidatos_possiveis[i]);
-				candidatos_possiveis[i].removeParticipacao(sessao);
+				Candidato c=candidatos_possiveis[i];
+				candidatos.remove(c);
+				c.removeParticipacao(sessao);
 
-				candidatos.insert(candidatos_possiveis[i]);
+				candidatos.insert(c);
 				break;
 			}
 		}
