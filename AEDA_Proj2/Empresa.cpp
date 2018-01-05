@@ -1643,10 +1643,13 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 			continue;
 		}
 
+
 		for( unsigned i = 0; i < candidatos_possiveis.size(); i++){
 			if(id == candidatos_possiveis[i].getNumInscricao()){
 				found=true;
 				candidato= &(candidatos_possiveis[i]);
+				candidatos.remove(*candidato);
+				break;
 			}
 		}
 
@@ -1663,8 +1666,11 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 	int points[3] = {0,0,0};
 	candidato->addParticipacao(new Participacao(sessao, points, 0, 1));
 
+	candidatos.insert(*candidato);
+
+
 	//Atualizar a Priority Queue
-	//atualiza_candidato_pq(*candidato);
+	atualiza_candidato_pq(*candidato);
 
 	cout << "O candidato foi adicionado a sessao com sucesso!\n" << endl;
 
@@ -1730,6 +1736,7 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 			if(id == candidatos_possiveis[i].getNumInscricao()){
 				found=true;
 				candidato= &(candidatos_possiveis[i]);
+				candidatos.remove(*candidato);
 			}
 		}
 
@@ -1743,6 +1750,8 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 	}
 
 	candidato->removeParticipacao(sessao);
+
+	candidatos.insert(*candidato);
 
 	cout << "\nCandidato removido com sucesso!\n" << endl;
 
@@ -1922,7 +1931,10 @@ void Empresa::atualiza_candidato_pq(Candidato cand){
 
 	for(unsigned int i = 0; i < candidatos_ordenados.size(); i++){
 		if(candidatos_ordenados[i].top()->getGeneroArte() == cand.getGeneroArte()){
+			cout << "here"<<endl;
 			vector<Candidato *> c;
+
+			c.clear();
 
 			while(!candidatos_ordenados[i].empty()){
 			c.push_back(candidatos_ordenados[i].top());
