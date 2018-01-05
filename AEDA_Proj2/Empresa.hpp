@@ -67,6 +67,9 @@ const Candidato NoCandidate = Candidato(0, "", "", "", "", false);
 class Empresa {
 private:
 
+	///usado para guardar os candidatos apagados, considerados como inválidos por forma a não perder os dados relativos a sessões antigas
+	candidatosIndisponiveisHash candidatosInvalidos;
+
 	///Vetor usado para guardar pointers para os objetos da classe Jurado
 	vector<Jurado *> jurados;
 
@@ -74,7 +77,7 @@ private:
 	BST<Candidato> candidatos;
 
 	///Vetor usado para guardar os candidatos apagados, considerados como inválidos por forma a não perder os dados relativos a sessões antigas
-	vector<Candidato> candidatosInvalidos;
+	//vector<Candidato> candidatosInvalidos;
 
 	///Vetor usado para guardar pointers para os objetos da classe Sessao
 	vector<Sessao *> sessoes;

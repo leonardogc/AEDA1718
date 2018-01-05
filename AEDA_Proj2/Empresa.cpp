@@ -47,9 +47,14 @@ void Empresa::save_candidatos(string &s){
 	if(file.is_open()){
 		//TODO CHECK BST
 		BSTItrIn<Candidato> it(candidatos);
+		int counter=0;
 
 		while(! it.isAtEnd())
 		{
+			if(counter != 0){
+				file << "\n";
+			}
+
 			validade= it.retrieve().getValidade() ? "valid" : "invalid";
 
 			file << it.retrieve().getNumInscricao() << ";";
@@ -60,11 +65,24 @@ void Empresa::save_candidatos(string &s){
 			file << validade << ";";
 
 			it.advance();
-
-			if(! it.isAtEnd()){
-				file << "\n";
-			}
+			counter++;
 		}
+
+
+		for (auto i=candidatosInvalidos.begin(); i!=candidatosInvalidos.end(); i++){
+			file << "\n";
+
+			validade= i->getValidade() ? "valid" : "invalid";
+
+			file << i->getNumInscricao() << ";";
+			file << i->getNome() << ";";
+			file << i->getDataNasc() << ";";
+			file << i->getGeneroArte() << ";";
+			file << i->getMorada() << ";";
+			file << validade << ";";
+
+		}
+
 		file.close();
 	}
 	else{
@@ -169,6 +187,24 @@ void Empresa::save_participacao(string &s){
 			}
 
 			it.advance();
+		}
+
+		for (auto i=candidatosInvalidos.begin(); i!=candidatosInvalidos.end(); i++){
+			for(unsigned i2 = 0; i2 < i->getParticipacoes().size(); i2++){
+
+				file << "\n";
+
+				file << i->getNumInscricao() << ";";
+				file << i->getParticipacoes()[i2]->getFase() << ";";
+				file << i->getParticipacoes()[i2]->getSessao()->getData() << ";";
+				file << i->getParticipacoes()[i2]->getPontuacao()[1] << ";";
+				file << i->getParticipacoes()[i2]->getPontuacao()[2] << ";";
+				file << i->getParticipacoes()[i2]->getPontuacao()[3] << ";";
+				file << i->getParticipacoes()[i2]->getPosicao() << ";";
+
+				lines++;
+
+			}
 		}
 
 		file.close();
@@ -426,7 +462,7 @@ void Empresa::load_candidatos(string &s){
 				candidatos.insert(Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade));
 			} else
 			{
-				this->candidatosInvalidos.push_back(Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade));
+				this->candidatosInvalidos.insert(Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade));
 			}
 
 		}
@@ -513,6 +549,8 @@ void Empresa::load_participacao(string &s){
 			ss.str(string());
 			ss.clear();
 
+			bool found=false;
+
 			//TODO CHECK BST
 			BSTItrIn<Candidato> it(this->candidatos);
 			bool valid;
@@ -521,10 +559,22 @@ void Empresa::load_participacao(string &s){
 				if(it.retrieve().getNumInscricao() == numInscricao){
 					generoArte=it.retrieve().getGeneroArte();
 					valid = it.retrieve().getValidade();
+					found=true;
 					break;
 				}
 
 				it.advance();
+			}
+
+			if(!found){
+				for (auto i=candidatosInvalidos.begin(); i!=candidatosInvalidos.end(); i++)
+				{
+					if(i->getNumInscricao() == numInscricao){
+						generoArte=i->getGeneroArte();
+						valid = i->getValidade();
+						break;
+					}
+				}
 			}
 
 			for (unsigned i = 0; i < sessoes.size(); i++){
@@ -553,13 +603,18 @@ void Empresa::load_participacao(string &s){
 				}
 			}
 			else {
-				for (unsigned i=0; i<this->candidatosInvalidos.size(); i++)
+
+				for (auto i=candidatosInvalidos.begin(); i!=candidatosInvalidos.end(); i++)
 				{
-					if(candidatosInvalidos[i].getNumInscricao() == numInscricao){
-						candidatosInvalidos[i].addParticipacao(new Participacao(sessoes[sessao], pontuacao_array, posicao, fase));
+					if(i->getNumInscricao() == numInscricao){
+						Candidato c = *i;
+						c.addParticipacao(new Participacao(sessoes[sessao], pontuacao_array, posicao, fase));
+						candidatosInvalidos.erase(i);
+						candidatosInvalidos.insert(c);
 						break;
 					}
 				}
+
 			}
 		}
 		file.close();
@@ -742,6 +797,10 @@ void Empresa::printCandidatos(){
 		cout << it.retrieve();
 
 		it.advance();
+	}
+
+	for (auto i=candidatosInvalidos.begin(); i!=candidatosInvalidos.end(); i++){
+		cout << *i;
 	}
 
 	pressKeyToContinue();
@@ -1329,7 +1388,7 @@ void Empresa::remover_candidato(){
 	this->candidatos.remove(candidato);
 
 	candidato.setValid(false);
-	this->candidatosInvalidos.push_back(candidato);
+	this->candidatosInvalidos.insert(candidato);
 	cout << "O candidato foi removido com sucesso!";
 	pressKeyToContinue();
 }
