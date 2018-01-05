@@ -1670,7 +1670,7 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 
 
 	//Atualizar a Priority Queue
-	atualiza_candidato_pq(*candidato);
+	//atualiza_candidato_pq(*candidato);
 
 	cout << "O candidato foi adicionado a sessao com sucesso!\n" << endl;
 
@@ -1753,7 +1753,7 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 
 	candidatos.insert(*candidato);
 
-	atualiza_candidato_pq(*candidato);
+	//atualiza_candidato_pq(*candidato);
 
 	cout << "\nCandidato removido com sucesso!\n" << endl;
 
