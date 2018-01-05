@@ -181,7 +181,7 @@ void menu_gerir_candidatos(Empresa * empresa){
 		case 4: //Adicionar
 			empresa->adicionar_candidato();
 			break;
-		case 5: //Remover
+		case 5: //Indisponibilizar
 			empresa->remover_candidato();
 			break;
 		case 6: //Validar
