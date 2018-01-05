@@ -1090,6 +1090,7 @@ void Empresa::adicionar_candidato(){
 	getline(cin, morada);
 	//TODO CHECK BST
 	candidatos.insert(Candidato(nome, morada, generoArte, dataNascimento));
+	adiciona_candidato_pq(new Candidato(nome, morada, generoArte, dataNascimento));
 
 	cout << "Foi introduzido um novo candidato com sucesso!";
 
