@@ -249,57 +249,6 @@ void menu_candidato(Candidato * candidato){
 	}
 }
 
-/*
-void draw_menu_ordenar_candidatos(){
-	clear_scrn();
-	cout << ' ' << string(WIDTH, '_') << endl;
-	cout << '|' << string(WIDTH, ' ') << '|' << endl;
-	cout << '|' << string(14, ' ') << titulo << string(15, ' ') << '|' << endl;
-	cout << '|' << string(WIDTH, '_') << '|' << endl;
-	cout << '|' << string(WIDTH, ' ') << '|' << endl;
-	cout << '|' << string(11, ' ') << "Ordenar Candidatos" << string(11, ' ') << '|' << endl;
-	cout << '|' << string(WIDTH, '_') << '|' << endl;
-	cout << "  1 - Por nome\n";
-	cout << "  2 - Por nome e arte\n";
-	cout << "  3 - Por idade e arte\n";
-	cout << "  4 - Return\n";
-	cout << ' ' << string(WIDTH, '-') << endl;
-	cout << "Escolha opcao: ";
-}
-
-void menu_ordenar_candidatos(Empresa * empresa){
-	bool valid_input, done = false;
-	int option;
-
-	while (!done) {
-		draw_menu_ordenar_candidatos();
-		valid_input = false;
-		while (!valid_input) {
-			try {option = read_number_Input();}
-			catch (invalid_argument &e) { cout << "Opcao Invalida!\nTente outra vez: "; continue;}
-			valid_input = true;
-		}
-
-		switch (option) {
-		case 1: //Por nome
-			empresa->sortCandidatos(by_name);
-			done=true;
-			break;
-		case 2: //Por nome e arte
-			empresa->sortCandidatos(by_name_and_art);
-			done=true;
-			break;
-		case 3: //Por idade e arte
-			empresa->sortCandidatos(by_age_and_art);
-			done=true;
-			break;
-		case 4: //Return
-			done=true;
-			break;
-		}
-	}
-}*/
-
 
 
 //===========================//
