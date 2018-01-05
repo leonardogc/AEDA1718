@@ -28,6 +28,8 @@ void Empresa::load_files(string (&nomes)[4]){
 	load_jurados(nomes[0]);
 	load_sessoes(nomes[1]);
 	load_participacao(nomes[3]);
+
+	adicionar_candidatos_priority_queue();
 }
 
 void Empresa::save_files(string (&nomes)[4]){
@@ -35,6 +37,23 @@ void Empresa::save_files(string (&nomes)[4]){
 	save_jurados(nomes[0]);
 	save_sessoes(nomes[1]);
 	save_participacao(nomes[3]);
+}
+
+void Empresa::adicionar_candidatos_priority_queue(){
+	BSTItrIn<Candidato> it(candidatos);
+
+	while(! it.isAtEnd())
+	{
+		adiciona_candidato_pq(&it.retrieve());
+
+		it.advance();
+	}
+
+
+	for (auto i=candidatosInvalidos.begin(); i!=candidatosInvalidos.end(); i++){
+		Candidato* c=new Candidato(*i);
+		adiciona_candidato_pq(c);
+	}
 }
 
 void Empresa::save_candidatos(string &s){
@@ -1793,24 +1812,23 @@ void Empresa::atualiza_candidato_pq(Candidato cand){
 
 	for(unsigned int i = 0; i < candidatos_ordenados.size(); i++){
 		if(candidatos_ordenados[i].top()->getGeneroArte() == cand.getGeneroArte()){
-			pq_recentes aux;
+			vector<Candidato *> c;
 
 			while(!candidatos_ordenados[i].empty()){
-				cout << *(candidatos_ordenados[i].top());
-				if(candidatos_ordenados[i].top()->getNumInscricao() == cand.getNumInscricao()){
-					candidatos_ordenados[i].pop();
-					candidatos_ordenados[i].push(&cand);
-					break;
+			c.push_back(candidatos_ordenados[i].top());
+			candidatos_ordenados[i].pop();
+			}
+
+			for(unsigned i2=0; i2< c.size(); i2++){
+				if(c[i2]->getNumInscricao() == cand.getNumInscricao()){
+					c.erase(c.begin()+i2);
+					c.insert(c.begin()+i2, new Candidato(cand));
 				}
-				aux.push(candidatos_ordenados[i].top());
-				candidatos_ordenados[i].pop();
 			}
 
-			while(!aux.empty()){
-				candidatos_ordenados[i].push(aux.top());
-				aux.pop();
+			while(c.size() > 0){
+				candidatos_ordenados[i].push(c[0]);
 			}
-
 		}
 	}
 

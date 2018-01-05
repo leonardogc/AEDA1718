@@ -343,6 +343,12 @@ public:
 	 */
 	pq_recentes getPQ(string arte);
 
+	/**
+	 * Metodo que adiciona os candidatos a fila de prioridade
+	 *
+	 */
+	void adicionar_candidatos_priority_queue();
+
 };
 
 /**
