@@ -90,7 +90,8 @@ void draw_main_menu(){
 	cout << "  1 - Gerir Candidatos\n";
 	cout << "  2 - Gerir Jurados\n";
 	cout << "  3 - Gerir Sessoes\n";
-	cout << "  4 - Exit\n";
+	cout << "  4 - Ver Entrevistas\n";
+	cout << "  5 - Exit\n";
 	cout << ' ' << string(WIDTH, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -118,7 +119,10 @@ void main_menu(Empresa * empresa){
 		case 3: //Gerir Sessoes
 			menu_gerir_sessoes(empresa);
 			break;
-		case 4: //Exit
+		case 4: //Ver entrevistas
+			empresa->printEntrevistas();
+			break;
+		case 5: //Exit
 			done=true;
 			break;
 		}
@@ -144,10 +148,9 @@ void draw_menu_gerir_candidatos(){
 	cout << "  2 - Ver candidatos invalidos\n";
 	cout << "  3 - Escolher Candidato\n";
 	cout << "  4 - Adicionar\n";
-	cout << "  5 - Remover\n";
+	cout << "  5 - Indisponibilizar\n";
 	cout << "  6 - Validar\n";
-	cout << "  7 - Ordenar (-desativado)\n"; //TODO CHECK BST
-	cout << "  8 - Return\n";
+	cout << "  7 - Return\n";
 	cout << ' ' << string(WIDTH, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -182,12 +185,9 @@ void menu_gerir_candidatos(Empresa * empresa){
 			empresa->remover_candidato();
 			break;
 		case 6: //Validar
-					empresa->validar_candidato();
-					break;
-		case 7: //Ordenar
-			//menu_ordenar_candidatos(empresa);
-					break;
-		case 8: //Return
+			empresa->validar_candidato();
+			break;
+		case 7: //Return
 			done=true;
 			break;
 		}

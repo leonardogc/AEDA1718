@@ -1009,6 +1009,58 @@ Candidato *  Empresa::escolher_candidato(){
 	}
 }
 
+void Empresa::printEntrevistas(){
+	string arte;
+	bool found = false;
+	pq_recentes pq;
+
+	while(!found){
+		clear_scrn();
+		printSessoes();
+
+		cout << "Introduza o género de arte: " << endl;
+
+		getline(cin, arte);
+
+
+		for(unsigned int i = 0; i < sessoes.size(); i++){
+			if(sessoes[i]->getArtePerformativa() == arte){
+				cout << "O genero de arte e valido!" << endl;
+				found = true;
+				break;
+			}
+		}
+
+		if(!found){
+			cout << "genero de arte invalido" << endl;
+			pressKeyToContinue();
+		}
+	}
+
+	for(unsigned int i = 0; i < this->candidatos_ordenados.size(); i++){
+		if(candidatos_ordenados[i].top()->getGeneroArte() == arte){
+			pq=candidatos_ordenados[i];
+		}
+	}
+
+	cout << "\n\n";
+	cout << setw(20) << left << "Num. Inscricao";
+	cout << setw(30) << left << "Nome";
+	cout << setw(20) << left << "Data Nascimento";
+	cout << setw(30) << left << "Genero de Arte";
+	cout << setw(20) << left << "Morada";
+	cout << setw(20) << left << "Validade";
+	cout << setw(20) << left << "Motivo";
+	cout << "\n\n";
+
+	while(pq.size()>0){
+		cout << *(pq.top());
+		pq.pop();
+	}
+
+	pressKeyToContinue();
+}
+
 Sessao *  Empresa::escolher_sessao(){
 	string arte;
 	bool found = false;

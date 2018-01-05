@@ -171,6 +171,10 @@ public:
 	 */
 	void printCandidatosInvalidos();
 
+	/**
+	 * metodo que imprime as entrevistas na priority queue
+	 */
+	void printEntrevistas();
 
 	/**
 	 * metodo que imprime todas as sessoes
