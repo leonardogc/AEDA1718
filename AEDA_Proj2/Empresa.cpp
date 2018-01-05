@@ -99,6 +99,7 @@ void Empresa::save_candidatos(string &s){
 			file << i->getGeneroArte() << ";";
 			file << i->getMorada() << ";";
 			file << validade << ";";
+			file << i->getMotivo() << ";";
 
 		}
 
@@ -405,7 +406,7 @@ void Empresa::load_sessoes(string &s){
 void Empresa::load_candidatos(string &s){
 	ifstream file;
 	stringstream ss;
-	string ficheiro = "res/"+s, line, nome, dataNascimento, generoArte, morada;
+	string ficheiro = "res/"+s, line, nome, dataNascimento, generoArte, morada, motivo;
 	int numInscricao;
 	bool validade = false;
 
@@ -474,14 +475,27 @@ void Empresa::load_candidatos(string &s){
 			ss.str(string());
 			ss.clear();
 
+			//motivo
+
+			if(validade){
+				motivo = "";
+			}
+			else{
+				parse_line(line, ss);
+
+				motivo=ss.str();
+
+				ss.str(string());
+				ss.clear();
+			}
 
 			if(validade)
 			{
 				//TODO CHECK BST
-				candidatos.insert(Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade));
+				candidatos.insert(Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade, motivo));
 			} else
 			{
-				this->candidatosInvalidos.insert(Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade));
+				this->candidatosInvalidos.insert(Candidato(numInscricao,nome,morada,generoArte,dataNascimento, validade, motivo));
 			}
 
 		}
@@ -772,7 +786,7 @@ void Empresa::printJurados(){
 	pressKeyToContinue();
 }
 
-void Empresa::printCandidatos(){
+void Empresa::printCandidatosValidos(){
 	cout << "\n\n";
 	cout << setw(20) << left << "Num. Inscricao";
 	cout << setw(30) << left << "Nome";
@@ -790,6 +804,20 @@ void Empresa::printCandidatos(){
 
 		it.advance();
 	}
+
+	pressKeyToContinue();
+}
+
+void Empresa::printCandidatosInvalidos(){
+	cout << "\n\n";
+	cout << setw(20) << left << "Num. Inscricao";
+	cout << setw(30) << left << "Nome";
+	cout << setw(20) << left << "Data Nascimento";
+	cout << setw(30) << left << "Genero de Arte";
+	cout << setw(20) << left << "Morada";
+	cout << setw(20) << left << "Validade";
+	cout << setw(20) << left << "Motivo";
+	cout << "\n\n";
 
 	for (auto i=candidatosInvalidos.begin(); i!=candidatosInvalidos.end(); i++){
 		cout << *i;
@@ -949,7 +977,7 @@ Candidato *  Empresa::escolher_candidato(){
 
 	while(true){
 		clear_scrn();
-		printCandidatos();
+		printCandidatosValidos();
 
 		cout << "Introduza o id do candidato: " << endl;
 
@@ -1396,14 +1424,70 @@ void Empresa::remover_jurado(){
 }
 
 void Empresa::remover_candidato(){
+	string mot;
 	Candidato candidato = *(this->escolher_candidato());
 
 	this->candidatos.remove(candidato);
+
+	clear_scrn();
+
+	cout << "Introduza o motivo da indisponibilidade"<<endl;
+
+	getline(cin, mot);
+
+	candidato.setMotivo(mot);
 
 	candidato.setValid(false);
 	this->candidatosInvalidos.insert(candidato);
 	cout << "O candidato foi removido com sucesso!";
 	pressKeyToContinue();
+}
+
+void Empresa::validar_candidato(){
+	int id;
+	bool found;
+
+	if(candidatosInvalidos.size() == 0){
+		cout << "Nao ha candidatos invalidos" << endl;
+		return;
+	}
+
+	while(!found){
+		clear_scrn();
+		printCandidatosInvalidos();
+
+		cout << "Introduza o id do candidato: " << endl;
+
+
+		try{
+			id = read_number_Input();
+		}
+		catch(invalid_argument &e){
+			cout << "Introduziu um numero invalido!";
+			pressKeyToContinue();
+			continue;
+		}
+
+		found=false;
+
+		for (auto i=candidatosInvalidos.begin(); i!=candidatosInvalidos.end(); i++){
+			if(i->getNumInscricao() == id){
+				cout << "O candidato e valido!" << endl;
+				Candidato c = *i;
+				c.setMotivo("");
+				c.setValid(true);
+				candidatos.insert(c);
+				candidatosInvalidos.erase(i);
+				found=true;
+				break;
+			}
+		}
+
+		if(!found){
+			cout << "Introduziu um id que nao existe!" << endl;
+			pressKeyToContinue();
+		}
+	}
 }
 
 void Empresa::remover_sessao(){

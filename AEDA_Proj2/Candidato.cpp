@@ -7,17 +7,27 @@ Candidato::Candidato(string nome, string  morada, string  generoArte, string dat
 						Pessoa(nome, morada, generoArte), numInscricao(numCandidato++)
 {
 	this->dataNascimento = dataNascimento;
+	this->motivo_da_indisponibilidade = "";
 }
 
-Candidato::Candidato(int nInscricao, string nome, string  morada, string  generoArte, string dataNascimento, bool validade):
+Candidato::Candidato(int nInscricao, string nome, string  morada, string  generoArte, string dataNascimento, bool validade, string mot):
 						Pessoa(nome, morada, generoArte, validade), numInscricao(nInscricao)
 {
 	this->dataNascimento = dataNascimento;
 	numCandidato++;
+	this->motivo_da_indisponibilidade = mot;
 }
 
 string Candidato::getDataNasc() const{
 	return this->dataNascimento;
+}
+
+string Candidato::getMotivo() const{
+	return this->motivo_da_indisponibilidade;
+}
+
+void Candidato::setMotivo(string mot){
+	this->motivo_da_indisponibilidade = mot;
 }
 
 int Candidato::getNumInscricao() const{
@@ -94,6 +104,9 @@ ostream& operator <<(ostream & os, const Candidato c){
 	os << setw(30) << left << c.generoArte;
 	os << setw(20) << left << c.morada;
 	os << setw(20) << left << validade;
+	if(!c.validade){
+		os << setw(20) << left << c.motivo_da_indisponibilidade;
+	}
 	os << "\n";
 
 	return os;

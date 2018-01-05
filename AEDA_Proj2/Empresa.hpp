@@ -58,7 +58,7 @@ public:
 
 typedef priority_queue<Candidato*, vector<Candidato*>, comp_candidatos> pq_recentes;
 
-const Candidato NoCandidate = Candidato(0, "", "", "", "", false);
+const Candidato NoCandidate = Candidato(0, "", "", "", "", false, "");
 
 /**
  * \class Empresa
@@ -162,9 +162,15 @@ public:
 	void printJurados();
 
 	/**
-	 * metodo que imprime todos os candidatos
+	 * metodo que imprime todos os candidatos validos
 	 */
-	void printCandidatos();
+	void printCandidatosValidos();
+
+	/**
+	 * metodo que imprime todos os candidatos invalidos
+	 */
+	void printCandidatosInvalidos();
+
 
 	/**
 	 * metodo que imprime todas as sessoes
@@ -327,6 +333,11 @@ public:
 	 *
 	 */
 	void adicionar_candidatos_priority_queue();
+
+	/**
+	 * Metodo que torna um candidato valido
+	 */
+	void validar_candidato();
 
 };
 

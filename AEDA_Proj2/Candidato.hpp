@@ -25,6 +25,8 @@ private:
 	 * se cada pessoa guardar as suas participações o vetor é mais pequeno do que se fosse guardado nas sessoes
 	 * e para saber quem participou em cada sessão pode-se evitar percorrer todos os candidatos saltando os que não sejam da arte da sessao
 	 */
+
+	string motivo_da_indisponibilidade;
 public:
 
 	/// contador que regista o ultimo valor atribuido na inscricao de um candidato
@@ -48,7 +50,7 @@ public:
 	 * @param dataNascimento data de nascimento do candidato no formato dd/mm/aaaa (dia/mes/ano)
 	 * @param validade define a validade do candidato na classe mae
 	 */
-	Candidato(int nInscricao, string nome, string  morada, string  generoArte, string dataNascimento, bool validade);
+	Candidato(int nInscricao, string nome, string  morada, string  generoArte, string dataNascimento, bool validade, string mot);
 
 	//Gets
 	/**
@@ -62,6 +64,18 @@ public:
 	 * @return copia do numero de inscricao do candidato
 	 */
 	int getNumInscricao() const;
+
+	/**
+	 * Metodo que devolve o motivo da indisponibilidade
+	 * @return copia do motivo da indisponibilidade
+	 */
+	string getMotivo() const;
+
+
+	/**
+	 * Metodo que altera o motivo da indisponibilidade
+	 */
+	void setMotivo(string mot);
 
 	/**
 	 * Metodo que devolve as participacoes do candidato

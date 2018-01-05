@@ -140,12 +140,14 @@ void draw_menu_gerir_candidatos(){
 	cout << '|' << string(WIDTH, ' ') << '|' << endl;
 	cout << '|' << string(12, ' ') << "Gerir Candidatos" << string(12, ' ') << '|' << endl;
 	cout << '|' << string(WIDTH, '_') << '|' << endl;
-	cout << "  1 - Ver todos\n";
-	cout << "  2 - Escolher Candidato\n";
-	cout << "  3 - Adicionar\n";
-	cout << "  4 - Remover\n";
-	cout << "  5 - Ordenar (-desativado)\n"; //TODO CHECK BST
-	cout << "  6 - Return\n";
+	cout << "  1 - Ver candidatos validos\n";
+	cout << "  2 - Ver candidatos invalidos\n";
+	cout << "  3 - Escolher Candidato\n";
+	cout << "  4 - Adicionar\n";
+	cout << "  5 - Remover\n";
+	cout << "  6 - Validar\n";
+	cout << "  7 - Ordenar (-desativado)\n"; //TODO CHECK BST
+	cout << "  8 - Return\n";
 	cout << ' ' << string(WIDTH, '-') << endl;
 	cout << "Escolha opcao: ";
 }
@@ -164,22 +166,28 @@ void menu_gerir_candidatos(Empresa * empresa){
 		}
 
 		switch (option) {
-		case 1: //Ver todos
-			empresa->printCandidatos();
+		case 1: //Ver candidatos validos
+			empresa->printCandidatosValidos();
 			break;
-		case 2: //Escolher Candidato
+		case 2: //Ver candidatos invalidos
+			empresa->printCandidatosInvalidos();
+			break;
+		case 3: //Escolher Candidato
 			menu_candidato(empresa->escolher_candidato());
 			break;
-		case 3: //adicionar
+		case 4: //Adicionar
 			empresa->adicionar_candidato();
 			break;
-		case 4: //remover
+		case 5: //Remover
 			empresa->remover_candidato();
 			break;
-		case 5: //Ordenar
+		case 6: //Validar
+					empresa->validar_candidato();
+					break;
+		case 7: //Ordenar
 			//menu_ordenar_candidatos(empresa);
-			break;
-		case 6: //Return
+					break;
+		case 8: //Return
 			done=true;
 			break;
 		}
