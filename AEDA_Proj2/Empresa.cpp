@@ -849,6 +849,26 @@ void Empresa::printDetalhesSessao(Sessao * sessao){
 		it.advance();
 	}
 
+	//check hash table
+
+	for (auto i=candidatosInvalidos.begin(); i!=candidatosInvalidos.end(); i++){
+		Candidato* c=new Candidato(*i);
+		pair<Participacao *,Participacao *> infoCandidato = c->getParticipacao(sessao->getData());
+		if(infoCandidato.first != NULL)
+		{
+			info_1[c] = infoCandidato;
+			candidatosOrdenar_1.push_back(c);
+		}
+
+		if(infoCandidato.second != NULL)
+		{
+			info_2[c] = infoCandidato;
+			candidatosOrdenar_2.push_back(c);
+		}
+
+
+	}
+
 	cout << "\n\n";
 	cout << "Genero de Arte: " << sessao->getArtePerformativa();
 	cout << "         Data: " << sessao->getData();
