@@ -643,33 +643,6 @@ void Empresa::load_participacao(string &s){
 	}
 }
 
-vector <Candidato *> Empresa::getCandidatos(){
-	vector<Candidato *> ret;
-
-	//TODO CHECK BST
-	BSTItrIn<Candidato> it(candidatos);
-
-	while(! it.isAtEnd())
-	{
-
-		ret.push_back(&it.retrieve());
-
-		it.advance();
-	}
-	return ret;
-}
-
-vector <Jurado *> Empresa::getJurados(){
-
-	return jurados;
-}
-
-vector <Sessao *> Empresa::getSessoes(){
-
-	return sessoes;
-}
-
-
 void Empresa::sortJurados(sort_t const & by)
 {
 	switch(by)

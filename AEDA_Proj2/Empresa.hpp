@@ -157,27 +157,6 @@ public:
 	Empresa(string (&nomes)[4]);
 
 	/**
-	 *Metodo que devolve os jurados
-	 *
-	 * @return copia do membro dado "jurados"
-	 */
-	vector<Jurado *> getJurados();
-
-	/**
-	 * Metodo que devolve os candidatos
-	 *
-	 * @return copia do membro dado "candidatos"
-	 */
-	vector<Candidato *> getCandidatos();
-
-	/**
-	 * Metodo que devolve as sessoes
-	 *
-	 * @return copia do membro dado "sessoes"
-	 */
-	vector<Sessao *> getSessoes();
-
-	/**
 	 * metodo que imprime todos os jurados
 	 */
 	void printJurados();
