@@ -70,19 +70,19 @@ private:
 	///usado para guardar os candidatos apagados, considerados como inválidos por forma a não perder os dados relativos a sessões antigas
 	candidatosIndisponiveisHash candidatosInvalidos;
 
-	///Vetor usado para guardar pointers para os objetos da classe Jurado
+	///vetor usado para guardar pointers para os objetos da classe Jurado
 	vector<Jurado *> jurados;
 
-	///árvore binária de pesquisa usada para guardar os candidatos ordenados alfabéticamente pela arte e por ordem de idades dentro da mesma arte
+	///arvore binaria de pesquisa usada para guardar os candidatos ordenados alfabéticamente pela arte e por ordem de idades dentro da mesma arte
 	BST<Candidato> candidatos;
 
-	///Vetor usado para guardar os candidatos apagados, considerados como inválidos por forma a não perder os dados relativos a sessões antigas
+	///vetor usado para guardar os candidatos apagados, considerados como inválidos por forma a não perder os dados relativos a sessões antigas
 	//vector<Candidato> candidatosInvalidos;
 
-	///Vetor usado para guardar pointers para os objetos da classe Sessao
+	///vetor usado para guardar pointers para os objetos da classe Sessao
 	vector<Sessao *> sessoes;
 
-	///Fila de prioridade utilizada para guardar candidattos ordenados por sessao mais recente
+	///fila de prioridade utilizada para guardar candidattos ordenados por sessao mais recente
 	vector<pq_recentes> candidatos_ordenados;
 
 	/**
