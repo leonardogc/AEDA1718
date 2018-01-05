@@ -134,6 +134,7 @@ Candidato& Candidato::operator= (const Candidato & c){
 	this->generoArte = c.getGeneroArte();
 	this->validade = c.getValidade();
 	this->participacoes = c.getParticipacoes();
+	this->motivo_da_indisponibilidade=c.getMotivo();
 	return *this;
 }
 

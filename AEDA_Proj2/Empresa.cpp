@@ -1653,7 +1653,6 @@ void Empresa::adicionar_candidato_sessao(Sessao * sessao){
 				c.addParticipacao(new Participacao(sessao, points, 0, 1));
 
 				candidatos.insert(c);
-
 				break;
 			}
 		}
