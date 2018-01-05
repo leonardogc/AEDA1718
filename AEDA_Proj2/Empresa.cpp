@@ -1753,6 +1753,8 @@ void Empresa::remover_candidato_sessao(Sessao * sessao){
 
 	candidatos.insert(*candidato);
 
+	atualiza_candidato_pq(*candidato);
+
 	cout << "\nCandidato removido com sucesso!\n" << endl;
 
 	pressKeyToContinue();
@@ -1931,15 +1933,13 @@ void Empresa::atualiza_candidato_pq(Candidato cand){
 
 	for(unsigned int i = 0; i < candidatos_ordenados.size(); i++){
 		if(candidatos_ordenados[i].top()->getGeneroArte() == cand.getGeneroArte()){
-			cout << "here"<<endl;
 			vector<Candidato *> c;
-
-			c.clear();
 
 			while(!candidatos_ordenados[i].empty()){
 			c.push_back(candidatos_ordenados[i].top());
 			candidatos_ordenados[i].pop();
 			}
+
 
 			for(unsigned i2=0; i2< c.size(); i2++){
 				if(c[i2]->getNumInscricao() == cand.getNumInscricao()){
@@ -1950,6 +1950,7 @@ void Empresa::atualiza_candidato_pq(Candidato cand){
 
 			while(c.size() > 0){
 				candidatos_ordenados[i].push(c[0]);
+				c.erase(c.begin());
 			}
 		}
 	}
